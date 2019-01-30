@@ -3,7 +3,7 @@
 Make sure you are authenticated with Artifactory
 
 ```bash
-npx create-react-app {app-name} --scripts-version @familysearch/react-scripts
+npx create-react-app {app-name} --scripts-version @fs/react-scripts
 ```
 
 ## How to test your local copy of react-scripts
