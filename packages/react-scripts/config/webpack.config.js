@@ -254,6 +254,7 @@ module.exports = function(webpackEnv) {
       runtimeChunk: true,
     },
     resolve: {
+      symlinks: false,
       // This allows you to set a fallback for where Webpack should look for modules.
       // We placed these paths second because we want `node_modules` to "win"
       // if there are any conflicts. This matches Node resolution mechanism.
@@ -345,7 +346,7 @@ module.exports = function(webpackEnv) {
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
-              include: paths.appSrc,
+              include: [paths.appSrc, path.join(paths.appNodeModules, '@fs')],
               loader: require.resolve('babel-loader'),
               options: {
                 customize: require.resolve(
