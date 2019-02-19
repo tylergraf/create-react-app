@@ -4,38 +4,13 @@ const fs = require('fs-extra');
 const os = require('os');
 const path = require('path');
 const fsCli = require('fs-cli-goodies');
-const inquirer = require('inquirer');
 const osUtils = require('./osUtils');
 
 module.exports = {
   installFrontierDependencies,
-  promptForConfig,
   packageJsonWritten,
   cleanupFrontierCode,
 };
-
-async function promptForConfig() {
-  console.log(fsCli.fsLogo('Frontier React Scripts'));
-  const questions = [
-    {
-      type: 'checkbox',
-      name: 'additionalFeatures',
-      message: 'What additional features does your app require',
-      choices: [
-        {
-          name: 'Using a shared Polymer Component within your React App?',
-          value: 'polymer',
-        },
-        {
-          name: `Configure app for Electric Flow`,
-          value: 'electric-flow',
-        },
-      ],
-    },
-  ];
-  const answers = await inquirer.prompt(questions);
-  return answers;
-}
 
 function packageJsonWritten() {}
 
@@ -82,9 +57,7 @@ function installFrontierDependencies(appPath, answers, useYarn, ownPath) {
   });
 }
 function alterPackageJsonFile(appPath, extendFunction) {
-  let appPackage = JSON.parse(
-    fs.readFileSync(path.join(appPath, 'package.json'), 'UTF8')
-  );
+  let appPackage = JSON.parse(fs.readFileSync(path.join(appPath, 'package.json'), 'UTF8'));
   appPackage = extendFunction(appPackage);
   fs.writeFileSync(
     path.join(appPath, 'package.json'),
@@ -97,13 +70,11 @@ function configurePolymer(appPath, useYarn) {
     const packageJson = { ...appPackage };
     packageJson.vendorCopy = [
       {
-        from:
-          'node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
+        from: 'node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
         to: 'public/vendor/custom-elements-es5-adapter.js',
       },
       {
-        from:
-          'node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js',
+        from: 'node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js',
         to: 'public/vendor/webcomponents-bundle.js',
       },
     ];
@@ -111,10 +82,7 @@ function configurePolymer(appPath, useYarn) {
     return packageJson;
   });
 
-  const polymerModules = [
-    'vendor-copy@2.0.0',
-    '@webcomponents/webcomponentsjs@2.1.3',
-  ];
+  const polymerModules = ['vendor-copy@2.0.0', '@webcomponents/webcomponentsjs@2.1.3'];
   installModulesSync(polymerModules, useYarn, true);
 }
 
@@ -127,10 +95,7 @@ function injectPolymerCode(appPath) {
     <script src="%PUBLIC_URL%/vendor/custom-elements-es5-adapter.js"></script>
  `;
 
-  indexHtml = indexHtml.replace(
-    '<!--FRONTIER WEBCOMPONENT LOADER CODE FRONTIER -->',
-    polymerCode
-  );
+  indexHtml = indexHtml.replace('<!--FRONTIER WEBCOMPONENT LOADER CODE FRONTIER -->', polymerCode);
   fs.writeFileSync(indexPath, indexHtml);
 }
 
