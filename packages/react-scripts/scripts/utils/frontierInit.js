@@ -13,7 +13,6 @@ const depsToInstall = []
 const devDepsToInstall = []
 
 function installFrontierDependencies(appPath, appName, ownPath) {
-
   configureEF(appPath, ownPath, appName)
   configureHF(appPath, ownPath)
 
@@ -21,7 +20,9 @@ function installFrontierDependencies(appPath, appName, ownPath) {
     ...[
       '@emotion/core@10',
       '@fs/zion-axios',
+      '@fs/zion-cache',
       '@fs/zion-frontend-friends',
+      '@fs/zion-icon',
       '@fs/zion-locale',
       '@fs/zion-root',
       '@fs/zion-router',
@@ -29,9 +30,11 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/zion-subnav',
       '@fs/zion-user',
       '@fs/zion-ui',
+      'formik@1',
       'i18next@15',
       'react-i18next@10',
       'prop-types@15',
+      'yup@0.27',
     ]
   )
   devDepsToInstall.push(
@@ -41,6 +44,7 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@storybook/addon-console@1',
       '@storybook/addon-info@5',
       '@storybook/addon-knobs@5',
+      '@storybook/addon-storysource@5',
       '@storybook/addon-viewport@5',
       '@storybook/addons@5',
       '@storybook/react@5',
@@ -50,12 +54,16 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/storybook-addons',
       '@fs/zion-testing-library',
       '@fs/zion-style-normalize',
+      'core-js@2',
       'eslint@5',
       'i18next-scanner@2',
       '@alienfast/i18next-loader@1',
       'dotenv@7',
       'jest-dom@3',
       'http-proxy-middleware@0.19',
+      'husky@2',
+      'lint-staged@8',
+      'suppress-exit-code@0.1',
     ]
   )
 
@@ -67,13 +75,14 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       'storybook:build': 'NODE_ENV=development build-storybook -c .storybook -o build',
       lint: 'eslint src/',
       'lint:fix': 'eslint src/ --fix',
-      test: `eslint src/ && ${packageJson.scripts.test}`,
     }
     packageJson.scripts = { ...packageJson.scripts, ...additionalScripts }
     delete packageJson.scripts.eject
-    packageJson.eslintConfig = {
-      extends: ['@fs/eslint-config-frontier-react'],
+    packageJson.eslintConfig = { extends: ['@fs/eslint-config-frontier-react'] }
+    packageJson.husky = {
+      hooks: { 'pre-commit': 'lint-staged', 'pre-push': 'npm run lint && CI=true npm test' },
     }
+    packageJson['lint-staged'] = { '*.js': ['suppress-exit-code eslint --fix', 'git add'] }
     return packageJson
   })
   installModulesSync(depsToInstall)
