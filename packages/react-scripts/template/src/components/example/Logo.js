@@ -36,7 +36,6 @@ const Logo = ({ color = 'black', animationDuration = 20 }) => {
   return (
     <div
       css={logoCss(color, animationDuration)}
-      astyle={{ fill: 'blue' }}
       /* eslint-disable-next-line react/no-danger */
       dangerouslySetInnerHTML={{ __html: svgContent }}
     />
