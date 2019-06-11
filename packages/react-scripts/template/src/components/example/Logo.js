@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
-import logo from './Logo.svg'
+import logo from './wheel.svg'
 
 const logoCss = (color, animationDuration) => css`
   animation: spin infinite ${animationDuration}s linear;
