@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
-import logo from './Logo.svg'
+import logo from './wheel.svg'
 
 const logoCss = (color, animationDuration) => css`
   animation: spin infinite ${animationDuration}s linear;
@@ -36,7 +36,6 @@ const Logo = ({ color = 'black', animationDuration = 20 }) => {
   return (
     <div
       css={logoCss(color, animationDuration)}
-      astyle={{ fill: 'blue' }}
       /* eslint-disable-next-line react/no-danger */
       dangerouslySetInnerHTML={{ __html: svgContent }}
     />
