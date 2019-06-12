@@ -4,7 +4,11 @@ import ZionImage from './zion.jpg'
 
 const ZionCard = () => (
   <Card>
-    <CardMedia height="calc(var(--cell-width) / 1.906)" image={ZionImage} title="Zion National Park" />
+    <CardMedia
+      height="calc(var(--cell-width) / 1.906)"
+      image={ZionImage}
+      title="Zion National Park"
+    />
     <CardContent>
       <h2>Zion</h2>
       <p>Zion is the place to go to find reusable components for your FamilySearch application.</p>
