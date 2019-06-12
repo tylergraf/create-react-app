@@ -6,10 +6,7 @@
 // Changes to routes should be done in server.js
 
 // sets local proxies using http-proxy-middleware configs
-<<<<<<< HEAD
-=======
-// docs here:
->>>>>>> develop
+// TODO: Put a link to the docs here
 const setProxies = require('@fs/react-scripts/proxy/setupProxy')
 const app = require('./server')()
 
