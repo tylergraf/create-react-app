@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Card, CardMedia, CardActions, CardContent } from '@fs/zion-ui'
-import ReactImage from './reactjs.webp'
+import ReactImage from './reactjs.jpg'
 
 const LearnReactCard = () => (
   <Card>
