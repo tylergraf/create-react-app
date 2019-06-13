@@ -18,7 +18,7 @@ const FrontierDocsCard = ({ logoColor, animationDuration, handleLogoClick }) => 
           )}
         </p>
       </CardContent>
-      <CardActionArea onClick={handleLogoClick}>
+      <CardActionArea onClick={handleLogoClick} aria-label="Click here to change color">
         <Logo
           alt={t('getting.started.click.logo.text', 'Click me')}
           color={logoColor}
