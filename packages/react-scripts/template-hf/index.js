@@ -6,7 +6,7 @@
 // Changes to routes should be done in server.js
 
 // sets local proxies using http-proxy-middleware configs
-// TODO: Put a link to the docs here
+// Docs here: https://www.familysearch.org/frontier/docs/develop/proxies
 const setProxies = require('@fs/react-scripts/proxy/setupProxy')
 const app = require('./server')()
 

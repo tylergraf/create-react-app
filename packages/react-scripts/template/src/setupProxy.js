@@ -3,6 +3,7 @@
 // For more details see: https://bit.ly/2JfbgHX
 
 // sets local proxies using http-proxy-middleware configs
+// Docs here: https://www.familysearch.org/frontier/docs/develop/proxies
 const setProxies = require('@fs/react-scripts/proxy/setupProxy')
 
 // Make setProxies() available in other files
