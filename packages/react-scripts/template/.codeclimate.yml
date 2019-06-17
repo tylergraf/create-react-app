@@ -1,0 +1,24 @@
+version: "2"
+prepare:
+  fetch:
+    - url: "https://raw.githubusercontent.com/fs-webdev/eslint-config-frontier-react/master/codeclimateEslintRules.js"
+      path: "eslint-config-frontier-react.js"
+plugins:
+  eslint:
+    enabled: true
+    channel: "eslint-5"
+    config:
+      config: .codeclimate.eslintrc.js
+      extensions:
+        - .js
+        - .json
+      ignore_warnings: false
+exclude_patterns:
+  - ".*"
+  - build/
+  - dist/
+  - eslint-config-frontier-react.js
+  - "**/node_modules/"
+  - "**/*min.*"
+  - "**/reports/**/*"
+  - "**/vendor/**/*"
