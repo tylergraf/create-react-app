@@ -1,4 +1,3 @@
-// Snow is FS version of Express
 const snow = require('snow')
 const layout = require('@fs/react-scripts/layout')
 
@@ -32,10 +31,10 @@ const snowConfig = {
 }
 
 module.exports = (app, dir = 'build') => {
-  // Create Snow app
   snowConfig.app = app
   const snowApp = snow(__dirname, layout, snowConfig)
 
+  // If you need to add routes, add them here.
   snowApp.stack.postRoute(() => {
     // Create route for CRA SPA (Single Page App)
     snowApp.get('*', (req, res) => {
