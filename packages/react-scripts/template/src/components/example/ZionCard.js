@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button, Card, CardMedia, CardActions, CardContent } from '@fs/zion-ui'
+import { Card, CardMedia, CardActions, CardContent } from '@fs/zion-ui'
+import ButtonLink from '../ButtonLink'
 import ZionImage from './zion.jpg'
 
 const ZionCard = () => (
@@ -14,17 +15,8 @@ const ZionCard = () => (
       <p>Zion is the place to go to find reusable components for your FamilySearch application.</p>
     </CardContent>
     <CardActions>
-      <Button
-        variant="text"
-        size="small"
-        color="primary"
-        href="https://beta.familysearch.org/frontier/zion"
-      >
-        Components
-      </Button>
-      <Button variant="text" size="small" color="primary" href="https://github.com/fs-webdev/zion">
-        Github
-      </Button>
+      <ButtonLink href="https://beta.familysearch.org/frontier/zion">Components</ButtonLink>
+      <ButtonLink href="https://github.com/fs-webdev/zion">Github</ButtonLink>
     </CardActions>
   </Card>
 )
