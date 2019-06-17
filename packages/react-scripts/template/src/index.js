@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Root from '@fs/zion-root'
 import { addTranslations } from '@fs/zion-locale'
+import Root from '@fs/zion-root'
 import { Router } from '@fs/zion-router'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
