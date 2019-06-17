@@ -1,9 +1,9 @@
-// This is a magic file. This is not required or imported from anywhere else.
-// CRA runs this file when running npm start.
-// This file is only run in development mode.
+// This is a magic file that CRA loads when running npm start.
+// This file is only used in development mode.
+// For more details see: https://bit.ly/2JfbgHX
 
 // sets local proxies using http-proxy-middleware configs
-// docs here: https://github.com/fs-webdev/exo#proxy
+// Docs here: https://www.familysearch.org/frontier/docs/develop/proxies
 const setProxies = require('@fs/react-scripts/proxy/setupProxy')
 
 // Make setProxies() available in other files

@@ -64,7 +64,7 @@ const FormCard = () => {
         Formik is a library to help tame forms in react.
         Docs: https://jaredpalmer.com/formik/
         */}
-      {cachedData && (
+      {cachedData ? (
         <Formik
           validationSchema={validationSchema}
           initialValues={cachedData}
@@ -154,6 +154,8 @@ const FormCard = () => {
             </>
           )}
         </Formik>
+      ) : (
+        'Loading...'
       )}
     </Card>
   )

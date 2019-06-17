@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Card, CardActions, CardContent, CardActionArea } from '@fs/zion-ui'
+import { Card, CardActions, CardContent, CardActionArea } from '@fs/zion-ui'
 import { useTranslation } from 'react-i18next'
+import ButtonLink from '../ButtonLink'
 import Logo from './Logo'
 
 const FrontierDocsCard = ({ logoColor, animationDuration, handleLogoClick }) => {
@@ -18,7 +19,7 @@ const FrontierDocsCard = ({ logoColor, animationDuration, handleLogoClick }) => 
           )}
         </p>
       </CardContent>
-      <CardActionArea onClick={handleLogoClick}>
+      <CardActionArea onClick={handleLogoClick} aria-label="Click here to change color">
         <Logo
           alt={t('getting.started.click.logo.text', 'Click me')}
           color={logoColor}
@@ -31,14 +32,9 @@ const FrontierDocsCard = ({ logoColor, animationDuration, handleLogoClick }) => 
       </CardContent>
 
       <CardActions>
-        <Button
-          variant="text"
-          size="small"
-          color="primary"
-          href="https://www.familysearch.org/frontier/docs"
-        >
+        <ButtonLink href="https://www.familysearch.org/frontier/docs">
           {t('getting.started.docs.link', 'Frontier Docs')}
-        </Button>
+        </ButtonLink>
       </CardActions>
     </Card>
   )
