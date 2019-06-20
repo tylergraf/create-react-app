@@ -7,3 +7,6 @@ before_install:
   - echo "@fs:registry=https://code.lds.org/artifactory/api/npm/npm-fhd/" >> ~/.npmrc
   - npm i -g npm@6.8.0
 script: npm run lint && npm run test
+branches:
+  only:
+    - master
