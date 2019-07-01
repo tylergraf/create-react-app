@@ -49,8 +49,6 @@ const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
 // Check if TypeScript is setup
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
-// FS - check if hf is installed in root node_modules
-const isHF = fs.existsSync(path.join(paths.appNodeModules, 'hf/webpack.config.js'));
 // FS - check if snow is installed in root node_modules
 const isSnow = fs.existsSync(path.join(paths.appNodeModules, 'snow/package.json'));
 
@@ -256,9 +254,16 @@ module.exports = function(webpackEnv) {
       // https://twitter.com/wSokra/status/969633336732905474
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
       splitChunks: {
-        // FS - split chunks was causing issues for webpacked hf build, async fixes it so that it doesn't
-        // try to use the same chunks for async/non-async assets
-        chunks: isHF ? 'async' : 'all',
+        // put react and react-dom into a single commonVendor chunk that can be reused by all pages on familysearch.org
+        // https://webpack.js.org/plugins/split-chunks-plugin/#split-chunks-example-3
+        cacheGroups: {
+          commonVendor: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'commonVendor',
+            chunks: 'all',
+          },
+        },
+        chunks: 'all',
         name: false,
       },
       // Keep the runtime chunk separated to enable long term caching
@@ -580,16 +585,6 @@ module.exports = function(webpackEnv) {
           toType: 'template',
         },
       ]),
-      // FS - copy over hf's webpack built files to /static/hf directory to be
-      // used by snow.
-      isHF &&
-        new CopyWebpackPlugin([
-          {
-            from: path.join(paths.appNodeModules, `hf/dist/${isEnvProduction ? 'prod' : 'dev'}`),
-            to: 'static/hf/[name].[ext]',
-            toType: 'template',
-          },
-        ]),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
