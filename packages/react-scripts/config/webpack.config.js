@@ -254,6 +254,15 @@ module.exports = function(webpackEnv) {
       // https://twitter.com/wSokra/status/969633336732905474
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
       splitChunks: {
+        // put react and react-dom into a single commonVendor chunk that can be reused by all pages on familysearch.org
+        // https://webpack.js.org/plugins/split-chunks-plugin/#split-chunks-example-3
+        cacheGroups: {
+          commonVendor: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'commonVendor',
+            chunks: 'all',
+          },
+        },
         chunks: 'all',
         name: false,
       },
