@@ -54,7 +54,6 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/storybook-addons@1',
       '@fs/zion-testing-library@1',
       '@fs/zion-style-normalize@1',
-      'core-js@2',
       'eslint@5',
       'i18next-scanner@2',
       '@alienfast/i18next-loader@1',
@@ -64,6 +63,7 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       'husky@2',
       'lint-staged@8',
       'suppress-exit-code@0.1',
+      'source-map-explorer@2',
     ]
   )
 
@@ -129,6 +129,7 @@ function configureHF(appPath, ownPath) {
       'heroku-postbuild': 'npm run build:prod',
       'heroku-prebuild': './heroku-prebuild.sh',
       start: 'react-scripts start',
+      analyzeBundle: "npm run build && source-map-explorer 'build/static/js/*.js'",
     }
     packageJson.scripts = sortScripts({
       ...packageJson.scripts,
