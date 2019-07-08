@@ -1,6 +1,5 @@
 import React from 'react'
-import { Card, CardMedia, CardActions, CardContent } from '@fs/zion-ui'
-import ButtonLink from '../ButtonLink'
+import { Button, Card, CardMedia, CardActions, CardContent } from '@fs/zion-ui'
 import ReactImage from './reactjs.jpg'
 
 const LearnReactCard = () => (
@@ -10,10 +9,22 @@ const LearnReactCard = () => (
       <h2>Learn React</h2>
     </CardContent>
     <CardActions>
-      <ButtonLink href="https://reactjs.org/docs/getting-started.html">React Docs</ButtonLink>
-      <ButtonLink href="https://github.com/fs-webdev/skill-building-program/tree/master/badges-active/react">
-        Earn your badge
-      </ButtonLink>
+      <Button
+        variant="text"
+        size="small"
+        color="primary"
+        href="https://reactjs.org/docs/getting-started.html"
+      >
+        React Docs
+      </Button>
+      <Button
+        href="https://github.com/fs-webdev/skill-building-program/tree/master/badges-active/react"
+        variant="text"
+        size="small"
+        color="primary"
+      >
+        Earn your Badge
+      </Button>
     </CardActions>
   </Card>
 )
