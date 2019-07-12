@@ -1,7 +1,8 @@
 #! /bin/bash
 
 cd ${HOME}/tmp/my-test-app
-# https://www.cyberciti.biz/faq/how-to-use-sed-to-find-and-replace-text-in-files-in-linux-unix-shell/
+# The order of these sed commands is kind of important. The last one of uncommenting all lines needs to occur after
+# removing comments explaining in english steps for replacing the binding path
 sed -i.bak 's/{{BINDING_PATH}}/fresh-cra-template.frontier/' blueprint.yml
 # https://stackoverflow.com/questions/5410757/delete-lines-in-a-text-file-that-contain-a-specific-string
 sed -i.bak '/Replace/d' blueprint.yml
