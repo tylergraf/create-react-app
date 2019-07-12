@@ -23,7 +23,14 @@ module.exports = (resolve, rootDir, isEjecting) => {
     : undefined;
 
   const config = {
-    collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
+    collectCoverageFrom:[
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts",
+      "!src/**/*.stories.{js,jsx,ts,tsx}",
+      "!src/serviceWorker.js",
+      "!src/setupProxy.js",
+      "!src/locales/*"
+    ],
 
     setupFiles: [
       isEjecting
