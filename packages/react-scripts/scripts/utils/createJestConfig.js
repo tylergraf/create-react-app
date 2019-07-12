@@ -29,6 +29,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
       "!src/**/*.stories.{js,jsx,ts,tsx}",
       "!src/serviceWorker.js",
       "!src/setupProxy.js",
+      "!src/index.js",
       "!src/locales/*"
     ],
 
