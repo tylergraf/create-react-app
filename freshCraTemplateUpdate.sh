@@ -1,7 +1,13 @@
 #! /bin/bash
 
 cd ${HOME}/tmp/my-test-app
-cp ${TRAVIS_BUILD_DIR}/freshCraTemplateBlueprint.yml ${HOME}/tmp/my-test-app/blueprint.yml
+# https://www.cyberciti.biz/faq/how-to-use-sed-to-find-and-replace-text-in-files-in-linux-unix-shell/
+sed -i.bak 's/{{BINDING_PATH}}/fresh-cra-template.frontier/' blueprint.yml
+# https://stackoverflow.com/questions/5410757/delete-lines-in-a-text-file-that-contain-a-specific-string
+sed -i.bak '/Replace/d' blueprint.yml
+sed -i.bak '/See/d' blueprint.yml
+sed -i.bak 's/#//' blueprint.yml
+rm blueprint.yml.bak
 git commit -a -m 'putting correct blueprint.yml file in place'
 git remote add origin https://github.com/fs-webdev/fresh-cra-template.git
 git push --force origin master
