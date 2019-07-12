@@ -111,7 +111,7 @@
     "react-i18next": "^10.11.0"
   },
   "optionalDependencies": {
-    "fsevents": "2.0.6"
+    "fsevents": "2.0.7"
   },
   "browserslist": {
     "production": [
