@@ -22,8 +22,7 @@ script:
   - cd fresh-cra-template
   - CI=true npm test
   - npm run build
-  - cd ${TRAVIS_BUILD_DIR}
-before_deploy: "cd packages/react-scripts"
+before_deploy: "cd ${TRAVIS_BUILD_DIR}/packages/react-scripts"
 deploy:
   - provider: npm
     skip_cleanup: true
