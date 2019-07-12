@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 10
+  - "10"
 before_install:
   - echo -e "machine github.com\n  login $CI_USER_TOKEN" > ~/.netrc
   - echo "//code.lds.org/artifactory/api/npm/npm-fhd/:_authToken=${NPM_PUBLISH_TOKEN}" >> ~/.npmrc
@@ -25,12 +25,17 @@ script:
   - cd ${TRAVIS_BUILD_DIR}
 before_deploy: "cd packages/react-scripts"
 deploy:
-  provider: npm
-  skip_cleanup: true
-  email: "dl-fh-eng-frontier@groups.ldschurch.org"
-  api_key: "$NPM_PUBLISH_TOKEN"
-  on:
-    branch: frontierMaster
+  - provider: npm
+    skip_cleanup: true
+    email: "dl-fh-eng-frontier@groups.ldschurch.org"
+    api_key: "$NPM_PUBLISH_TOKEN"
+    on:
+      branch: frontierMaster
+  - provider: script
+    skip_cleanup: true
+    script: cd ${TRAVIS_BUILD_DIR} && ./freshCraTemplateUpdate.sh
+    on:
+      branch: frontierMaster
 # This tells travis to not build when the branch is master. This is important to have on our master
 # branch as well because anytime we merge upstream changes from facebook, travis builds their whole matrix of 24 different builds.
 # We do NOT need or want that to occur. Please leave this branches.except here, even on the master branch
