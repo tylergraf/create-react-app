@@ -1,29 +1,11 @@
 const proxy = require('http-proxy-middleware')
-const fsconfig = require('fs-config/config/default')
 
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 require('dotenv').config()
 
 const setProxies = (app, customProxies = []) => {
   // detect env
-  const env = process.env.REMOTE_ENV || 'beta'
-  // backwards compat for auth-middleware env implicit dependency
-  if (process.env.TARGET_ENV === 'local') {
-    process.env.TARGET_ENV = env
-  }
-
-  // set keys directly from fs-config for the current env
-  function getFromEnv(thisEnv, key) {
-    return fsconfig[thisEnv][key] || fsconfig.default[key]
-  }
-
-  const keys = ['FS_KEY', 'CIS_WEB']
-  keys.forEach(key => {
-    process.env[key] = getFromEnv(env, key)
-  })
-
-  // dev key is only in default
-  process.env.FS_DEV_KEY = fsconfig.default.FS_DEV_KEY
+  const env = process.env.TARGET_ENV || 'local'
 
   // bring in auth middleware once required keys are set
   const cookieParser = require('cookie-parser')
@@ -45,7 +27,7 @@ const setProxies = (app, customProxies = []) => {
 
   // set default env target
   // prod auth keys don't exist in fs-config for security reasons, so only other alt-envs for now
-  const target = getFromEnv(env, 'BASE_URL')
+  const target = process.env.BASE_URL
 
   const setProxy = proxyConfig => {
     app.use(

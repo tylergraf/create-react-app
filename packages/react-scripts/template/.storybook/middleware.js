@@ -5,6 +5,6 @@ module.exports = router => {
   setupProxy(router)
 
   router.get('/dev-env', (req, res) => {
-    res.status(200).send({ environment: process.env.REMOTE_ENV || 'beta' })
+    res.status(200).send({ environment: process.env.TARGET_ENV || 'local' })
   })
 }
