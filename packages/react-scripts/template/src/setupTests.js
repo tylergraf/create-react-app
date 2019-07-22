@@ -4,7 +4,7 @@
 
 /* eslint-disable import/no-extraneous-dependencies */
 import { cleanup } from '@fs/zion-testing-library'
-import 'jest-dom/extend-expect'
+import '@testing-library/jest-dom/extend-expect'
 
 // This performs a global cleanup as recommended by Kent C. Dodds.
 // For more details see: https://bit.ly/2FhMiUT
