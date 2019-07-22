@@ -3,19 +3,24 @@
 // This file is only run in development mode.
 
 // sets local proxies using http-proxy-middleware configs
-// docs here: https://github.com/fs-webdev/exo#proxy
+// docs here: https://www.familysearch.org/frontier/docs/develop/proxies
 const setProxies = require('@fs/react-scripts/proxy/setupProxy')
 const waitForWebpack = require('snow/lib/utils/waitForWebpack.js')
 const setupServer = require('../server')
 
+// put any custom proxies here, see https://www.familysearch.org/frontier/docs/develop/proxies
+const customProxies = []
+
 module.exports = app => {
   // Sets up local proxies for XHR calls.
-  //      e.g. /service/tf => https://beta.familysearch.org/service/tf
+  //      e.g. /service/tree/tf => https://beta.familysearch.org/service/tree/tf
   //      beta above comes from your .env file
-  setProxies(app)
+  setProxies(app, customProxies)
   // Wait for Webpack to finish writing to the /dist folder
   // before starting up the app
   waitForWebpack(app, false)
   // Start up the Snow app
   setupServer(app, 'dist')
 }
+
+module.exports.customProxies = customProxies

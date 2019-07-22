@@ -8,6 +8,7 @@
 // sets local proxies using http-proxy-middleware configs
 // Docs here: https://www.familysearch.org/frontier/docs/develop/proxies
 const setProxies = require('@fs/react-scripts/proxy/setupProxy')
+const customProxies = require('./src/setupProxy').customProxies
 const app = require('./server')()
 
 // If in development mode i.e. locally
@@ -16,7 +17,7 @@ if (app.get('env') === 'development') {
     // Sets up local proxies for XHR calls.
     //      e.g. /service/tree/tf => https://beta.familysearch.org/service/tree/tf
     //      beta above comes from your .env file
-    setProxies(app)
+    setProxies(app, customProxies)
   })
 }
 
