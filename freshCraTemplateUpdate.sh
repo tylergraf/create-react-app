@@ -2,6 +2,7 @@
 
 npm i -g json
 cd ${HOME}/tmp/fresh-cra-template
+ls -a
 
 # The order of these sed commands is kind of important. The last one of uncommenting all lines needs to occur after
 # removing comments explaining in english steps for replacing the binding path
