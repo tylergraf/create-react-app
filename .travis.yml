@@ -20,6 +20,8 @@ script:
   - mkdir -p ${HOME}/tmp && cd ${HOME}/tmp
   - npx create-react-app fresh-cra-template --use-npm --scripts-version file:${TRAVIS_BUILD_DIR}/packages/react-scripts/
   - cd fresh-cra-template
+  - echo "//code.lds.org/artifactory/api/npm/npm-fhd/:_authToken=${NPM_PUBLISH_TOKEN}" >> ${HOME}/tmp/.npmrc
+  - echo "@fs:registry=https://code.lds.org/artifactory/api/npm/npm-fhd/" >> ${HOME}/tmp/.npmrc
   - CI=true npm test
   - npm run build
 before_deploy: "cd ${TRAVIS_BUILD_DIR}/packages/react-scripts"

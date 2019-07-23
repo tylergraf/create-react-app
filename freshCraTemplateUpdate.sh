@@ -36,6 +36,7 @@ sed -i.bak '/cacheEncryption/d' server.js
 rm blueprint.yml.bak
 rm server.js.bak
 rm package-lock.json
+rm .npmrc
 
 # Commit and push to the existing fs-webdev/fresh-cra-template repo on github
 git commit -a -m 'editing blueprint.yml, fixing @fs/react-scripts version, and putting in github oauth'
