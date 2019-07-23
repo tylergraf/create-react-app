@@ -11,9 +11,30 @@ sed -i.bak '/Replace/d' blueprint.yml
 sed -i.bak '/See/d' blueprint.yml
 sed -i.bak 's/#//' blueprint.yml
 
+# @fs/react-scripts dep version points to the local file (cause of `npx create-react-app file:localReactScriptsPath`),
+# so we need to replace that with the actual version
 NEW_CRA_VERSION=$(json -f ${TRAVIS_BUILD_DIR}/packages/react-scripts/package.json version)
 echo "NEW_CRA_VERSION: $NEW_CRA_VERSION"
 json -I -f package.json -e "this.dependencies[\"@fs/react-scripts\"]=\"$NEW_CRA_VERSION\""
+
+# Put the fresh-cra-template behind github auth
+npm i cookie-session fs-webdev/express-github-org-auth#semver:^1
+sed -i.bak '1 i\
+  const cookieSession = require(\"cookie-session\")\
+  ' server.js
+sed -i.bak '1 i\
+   const githubOrgAuth = require(\"express-github-org-auth\")\
+  ' server.js
+sed -i.bak '/const snowApp/a\
+  snowApp.stack.preRoute(() => {\
+        // Authenticate all the things. Must be member of github org(s) to view\
+    snowApp.use(cookieSession({ keys: [process.env.SESSION_SECRET] }))\
+    // require github org auth\
+    githubOrgAuth(['fs-webdev', 'fs-eng'], snowApp)\
+  })' server.js
+sed -i.bak '/proxyUser/d' server.js
+sed -i.bak '/cacheEncryption/d' server.js
+
 
 rm blueprint.yml.bak
 rm package-lock.json
