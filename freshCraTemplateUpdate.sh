@@ -37,8 +37,10 @@ sed -i.bak '/cacheEncryption/d' server.js
 
 
 rm blueprint.yml.bak
+rm server.js.bak
 rm package-lock.json
 
-git commit -a -m 'putting correct blueprint.yml file in place'
+# Commit and push to the existing fs-webdev/fresh-cra-template repo on github
+git commit -a -m 'editing blueprint.yml, fixing @fs/react-scripts version, and putting in github oauth'
 git remote add origin https://github.com/fs-webdev/fresh-cra-template.git
 git push --force origin master
