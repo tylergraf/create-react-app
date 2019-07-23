@@ -19,18 +19,15 @@ json -I -f package.json -e "this.dependencies[\"@fs/react-scripts\"]=\"$NEW_CRA_
 
 # Put the fresh-cra-template behind github auth
 npm i cookie-session fs-webdev/express-github-org-auth#semver:^1
-sed -i.bak '1 i\
-  const cookieSession = require(\"cookie-session\")\
-  ' server.js
-sed -i.bak '1 i\
-   const githubOrgAuth = require(\"express-github-org-auth\")\
-  ' server.js
+# debugging note - to run these insert commands on mac's sed, you have to put a literal newline after the "i\" (literal, not a "\n")
+sed -i.bak '1 i\const cookieSession = require(\"cookie-session\")' server.js
+sed -i.bak '1 i\const githubOrgAuth = require(\"express-github-org-auth\")' server.js
 sed -i.bak '/const snowApp/a\
   snowApp.stack.preRoute(() => {\
-        // Authenticate all the things. Must be member of github org(s) to view\
+    // Authenticate all the things. Must be member of github org(s) to view\
     snowApp.use(cookieSession({ keys: [process.env.SESSION_SECRET] }))\
     // require github org auth\
-    githubOrgAuth(['fs-webdev', 'fs-eng'], snowApp)\
+    githubOrgAuth(["fs-webdev", "fs-eng"], snowApp)\
   })' server.js
 sed -i.bak '/proxyUser/d' server.js
 sed -i.bak '/cacheEncryption/d' server.js
