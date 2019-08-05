@@ -30,6 +30,9 @@ const proxies = [
     route: '/hf',
   },
   {
+    route: '/home',
+  },
+  {
     route: '/ident',
   },
   {
