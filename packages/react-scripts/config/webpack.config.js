@@ -294,6 +294,7 @@ module.exports = function(webpackEnv) {
         'react-dom': require.resolve('react-dom'),
         i18next: require.resolve('i18next'),
         'react-i18next': require.resolve('react-i18next'),
+        'react-router': require.resolve('react-router'),
         '@emotion/core': require.resolve('@emotion/core'),
       },
       plugins: [
