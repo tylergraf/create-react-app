@@ -28,7 +28,7 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/zion-router@2',
       '@fs/zion-style-normalize@1',
       '@fs/zion-subnav@1',
-      '@fs/zion-user@1',
+      '@fs/zion-user@2',
       '@fs/zion-ui@1',
       'formik@1',
       'i18next@17',
@@ -114,7 +114,7 @@ function configureEF(appPath, ownPath, appName) {
   const templatePath = path.join(ownPath, 'template-ef')
   fs.copySync(templatePath, appPath, { overwrite: true })
 
-  depsToInstall.push(...['express@4.16.4'])
+  depsToInstall.push(...['express@4'])
   replaceStringInFile(appPath, './blueprint.yml', /\{\{APP_NAME\}\}/g, appName)
 }
 
