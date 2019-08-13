@@ -4,11 +4,15 @@
 
 /* eslint-disable import/no-extraneous-dependencies */
 import { cleanup } from '@fs/zion-testing-library'
+import { act } from 'react-dom/test-utils'
 import '@testing-library/jest-dom/extend-expect'
 
 // This performs a global cleanup as recommended by Kent C. Dodds.
 // For more details see: https://bit.ly/2FhMiUT
-afterEach(cleanup)
+afterEach(() => async () => {
+  await act(async () => {})
+  cleanup()
+})
 
 // Use this file to reduce boilerplate when writing tests. Add code that
 // needs to be run for all or most of your tests. The most common
