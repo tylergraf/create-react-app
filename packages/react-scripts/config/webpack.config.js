@@ -428,6 +428,10 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
+                  [
+                    require.resolve('babel-plugin-react-docgen'),
+                    { DOC_GEN_COLLECTION_NAME: 'STORYBOOK_REACT_CLASSES' },
+                  ]
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
