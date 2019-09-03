@@ -33,6 +33,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const eslint = require('eslint');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // @remove-on-eject-begin
@@ -40,11 +41,17 @@ const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 // @remove-on-eject-end
 const postcssNormalize = require('postcss-normalize');
 
+const appPackageJson = require(paths.appPackageJson);
+
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
 const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
+
+const imageInlineSizeLimit = parseInt(
+  process.env.IMAGE_INLINE_SIZE_LIMIT || '10000'
+);
 
 // Check if TypeScript is setup
 const useTypeScript = fs.existsSync(paths.appTsConfig);
@@ -67,7 +74,9 @@ module.exports = function(webpackEnv) {
   // Webpack uses `publicPath` to determine where the app is being served from.
   // It requires a trailing slash, or the file assets will get an incorrect path.
   // In development, we always serve from the root. This makes config easier.
-  const publicPath = isEnvProduction ? paths.servedPath : isEnvDevelopment && '/';
+  const publicPath = isEnvProduction
+    ? paths.servedPath
+    : isEnvDevelopment && '/';
   // Some apps do not use client-side routing with pushState.
   // For these, "homepage" can be set to "." to enable relative asset paths.
   const shouldUseRelativeAssetPaths = publicPath === './';
@@ -75,7 +84,9 @@ module.exports = function(webpackEnv) {
   // `publicUrl` is just like `publicPath`, but we will provide it to our app
   // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
   // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
-  const publicUrl = isEnvProduction ? publicPath.slice(0, -1) : isEnvDevelopment && '';
+  const publicUrl = isEnvProduction
+    ? publicPath.slice(0, -1)
+    : isEnvDevelopment && '';
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(publicUrl);
 
@@ -85,10 +96,7 @@ module.exports = function(webpackEnv) {
       isEnvDevelopment && require.resolve('style-loader'),
       isEnvProduction && {
         loader: MiniCssExtractPlugin.loader,
-        options: Object.assign(
-          {},
-          shouldUseRelativeAssetPaths ? { publicPath: '../../' } : undefined
-        ),
+        options: shouldUseRelativeAssetPaths ? { publicPath: '../../' } : {},
       },
       {
         loader: require.resolve('css-loader'),
@@ -121,12 +129,20 @@ module.exports = function(webpackEnv) {
       },
     ].filter(Boolean);
     if (preProcessor) {
-      loaders.push({
-        loader: require.resolve(preProcessor),
-        options: {
-          sourceMap: isEnvProduction && shouldUseSourceMap,
+      loaders.push(
+        {
+          loader: require.resolve('resolve-url-loader'),
+          options: {
+            sourceMap: isEnvProduction && shouldUseSourceMap,
+          },
         },
-      });
+        {
+          loader: require.resolve(preProcessor),
+          options: {
+            sourceMap: true,
+          },
+        }
+      );
     }
     return loaders;
   };
@@ -182,8 +198,15 @@ module.exports = function(webpackEnv) {
       publicPath: publicPath,
       // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: isEnvProduction
-        ? info => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/')
-        : isEnvDevelopment && (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
+        ? info =>
+            path
+              .relative(paths.appSrc, info.absoluteResourcePath)
+              .replace(/\\/g, '/')
+        : isEnvDevelopment &&
+          (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
+      // Prevents conflicts when multiple Webpack runtimes (from different apps)
+      // are used on the same page.
+      jsonpFunction: `webpackJsonp${appPackageJson.name}`,
     },
     optimization: {
       minimize: isEnvProduction,
@@ -192,8 +215,8 @@ module.exports = function(webpackEnv) {
         new TerserPlugin({
           terserOptions: {
             parse: {
-              // we want terser to parse ecma 8 code. However, we don't want it
-              // to apply any minfication steps that turns valid ecma 5 code
+              // We want terser to parse ecma 8 code. However, we don't want it
+              // to apply any minification steps that turns valid ecma 5 code
               // into invalid ecma 5 code. This is why the 'compress' and 'output'
               // sections only apply transformations that are ecma 5 safe
               // https://github.com/facebook/create-react-app/pull/4234
@@ -209,7 +232,7 @@ module.exports = function(webpackEnv) {
               comparisons: false,
               // Disabled because of an issue with Terser breaking valid code:
               // https://github.com/facebook/create-react-app/issues/5250
-              // Pending futher investigation:
+              // Pending further investigation:
               // https://github.com/terser-js/terser/issues/120
               inline: 2,
             },
@@ -276,7 +299,9 @@ module.exports = function(webpackEnv) {
       // We placed these paths second because we want `node_modules` to "win"
       // if there are any conflicts. This matches Node resolution mechanism.
       // https://github.com/facebook/create-react-app/issues/253
-      modules: ['node_modules', paths.appNodeModules].concat(modules.additionalModulePaths || []),
+      modules: ['node_modules', paths.appNodeModules].concat(
+        modules.additionalModulePaths || []
+      ),
       // These are the reasonable defaults supported by the Node ecosystem.
       // We also include JSX as a common component filename extension to support
       // some tools, although we do not recommend using it, see:
@@ -332,6 +357,7 @@ module.exports = function(webpackEnv) {
               options: {
                 formatter: require.resolve('react-dev-utils/eslintFormatter'),
                 eslintPath: require.resolve('eslint'),
+                resolvePluginsRelativeTo: __dirname,
                 // @remove-on-eject-begin
                 baseConfig: {
                   extends: [
@@ -362,7 +388,7 @@ module.exports = function(webpackEnv) {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
               loader: require.resolve('url-loader'),
               options: {
-                limit: 10000,
+                limit: imageInlineSizeLimit,
                 name: 'static/media/[name].[hash:8].[ext]',
               },
             },
@@ -385,9 +411,9 @@ module.exports = function(webpackEnv) {
                 // so we explicitly exclude the resource if it is npmLinkedReactScripts
                 const npmLinkedReactScripts = /create-react-app\/packages\/react-scripts/.test(resource)
 
-                // in order to exclude a file from compilation, it needs to have a node_modules that ISN'T an @fs module, 
+                // in order to exclude a file from compilation, it needs to have a node_modules that ISN'T an @fs module,
                 // AND be in the appPath but not the ${AppPath}/src
-                // Doing things this was with an exclude allows us to transpile npm linked modules no matter what their name is 
+                // Doing things this was with an exclude allows us to transpile npm linked modules no matter what their name is
                 // (ie zion, whatever tree calls their monorepo, etc)
                 const nodeModulesWithNoFS = /node_modules\/(?!@fs)/.test(resource)
                 const appPathNoSrc = new RegExp(`${process.cwd()}/(?!src)`).test(resource)
@@ -423,7 +449,8 @@ module.exports = function(webpackEnv) {
                     {
                       loaderMap: {
                         svg: {
-                          ReactComponent: '@svgr/webpack?-svgo,+ref![path]',
+                          ReactComponent:
+                            '@svgr/webpack?-svgo,+titleProp,+ref![path]',
                         },
                       },
                     },
@@ -648,7 +675,8 @@ module.exports = function(webpackEnv) {
       // to restart the development server for Webpack to discover it. This plugin
       // makes the discovery automatic so you don't have to restart.
       // See https://github.com/facebook/create-react-app/issues/186
-      isEnvDevelopment && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
+      isEnvDevelopment &&
+        new WatchMissingNodeModulesPlugin(paths.appNodeModules),
       isEnvProduction &&
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
@@ -690,9 +718,11 @@ module.exports = function(webpackEnv) {
           navigateFallbackBlacklist: [
             // Exclude URLs starting with /_, as they're likely an API call
             new RegExp('^/_'),
-            // Exclude URLs containing a dot, as they're likely a resource in
-            // public/ and not a SPA route
-            new RegExp('/[^/]+\\.[^/]+$'),
+            // Exclude any URLs whose last part seems to be a file extension
+            // as they're likely a resource and not a SPA route.
+            // URLs containing a "?" character won't be blacklisted as they're likely
+            // a route with query params (e.g. auth callbacks).
+            new RegExp('/[^/?]+\\.[^/]+$'),
           ],
         }),
       // TypeScript type checking
@@ -704,6 +734,12 @@ module.exports = function(webpackEnv) {
           async: isEnvDevelopment,
           useTypescriptIncrementalApi: true,
           checkSyntacticErrors: true,
+          resolveModuleNameModule: process.versions.pnp
+            ? `${__dirname}/pnpTs.js`
+            : undefined,
+          resolveTypeReferenceDirectiveModule: process.versions.pnp
+            ? `${__dirname}/pnpTs.js`
+            : undefined,
           tsconfig: paths.appTsConfig,
           reportFiles: [
             '**',

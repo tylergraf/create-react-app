@@ -10,9 +10,9 @@
 var chalk = require('chalk');
 var execSync = require('child_process').execSync;
 var spawn = require('cross-spawn');
-var opn = require('opn');
+var open = require('open');
 
-// https://github.com/sindresorhus/opn#app
+// https://github.com/sindresorhus/open#app
 var OSX_CHROME = 'google chrome';
 
 const Actions = Object.freeze({
@@ -24,8 +24,11 @@ const Actions = Object.freeze({
 function getBrowserEnv() {
   // Attempt to honor this environment variable.
   // It is specific to the operating system.
-  // See https://github.com/sindresorhus/opn#app for documentation.
+  // See https://github.com/sindresorhus/open#app for documentation.
   const value = process.env.BROWSER;
+  const args = process.env.BROWSER_ARGS
+    ? process.env.BROWSER_ARGS.split(' ')
+    : [];
   let action;
   if (!value) {
     // Default.
@@ -37,7 +40,7 @@ function getBrowserEnv() {
   } else {
     action = Actions.BROWSER;
   }
-  return { action, value };
+  return { action, value, args };
 }
 
 function executeNodeScript(scriptPath, url) {
@@ -57,7 +60,7 @@ function executeNodeScript(scriptPath, url) {
   return true;
 }
 
-function startBrowserProcess(browser, url) {
+function startBrowserProcess(browser, url, args) {
   // If we're on OS X, the user hasn't specifically
   // requested a different browser, we can try opening
   // Chrome with AppleScript. This lets us reuse an
@@ -88,11 +91,16 @@ function startBrowserProcess(browser, url) {
     browser = undefined;
   }
 
-  // Fallback to opn
+  // If there are arguments, they must be passed as array with the browser
+  if (typeof browser === 'string' && args.length > 0) {
+    browser = [browser].concat(args);
+  }
+
+  // Fallback to open
   // (It will always open new tab)
   try {
     var options = { app: browser, wait: false };
-    opn(url, options).catch(() => {}); // Prevent `unhandledRejection` error.
+    open(url, options).catch(() => {}); // Prevent `unhandledRejection` error.
     return true;
   } catch (err) {
     return false;
@@ -104,7 +112,7 @@ function startBrowserProcess(browser, url) {
  * true if it opened a browser or ran a node.js script, otherwise false.
  */
 function openBrowser(url) {
-  const { action, value } = getBrowserEnv();
+  const { action, value, args } = getBrowserEnv();
   switch (action) {
     case Actions.NONE:
       // Special case: BROWSER="none" will prevent opening completely.
@@ -112,7 +120,7 @@ function openBrowser(url) {
     case Actions.SCRIPT:
       return executeNodeScript(value, url);
     case Actions.BROWSER:
-      return startBrowserProcess(value, url);
+      return startBrowserProcess(value, url, args);
     default:
       throw new Error('Not implemented.');
   }
