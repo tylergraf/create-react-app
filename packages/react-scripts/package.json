@@ -1,6 +1,6 @@
 {
   "name": "@fs/react-scripts",
-  "version": "3.0.0-RC.11",
+  "version": "3.0.0-RC.12",
   "upstreamVersion": "3.1.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
@@ -46,7 +46,6 @@
     "babel-plugin-bundled-import-meta": "^0.2.0",
     "babel-plugin-named-asset-import": "^0.3.3",
     "babel-preset-react-app": "^9.0.1",
-    "bfj": "6.1.1",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "connect-base": "^0.1.7",
     "connect-metric": "^1.0.1",

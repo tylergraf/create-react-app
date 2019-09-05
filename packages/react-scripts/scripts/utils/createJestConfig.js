@@ -90,6 +90,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
     'moduleNameMapper',
     'resetMocks',
     'resetModules',
+    'roots',
     'snapshotSerializers',
     'transform',
     'transformIgnorePatterns',
