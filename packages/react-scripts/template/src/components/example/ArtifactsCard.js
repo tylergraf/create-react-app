@@ -84,24 +84,23 @@ const ArtifactsCard = ({ cisId, likeButtonPressed }) => {
     return <CardContent>An error has occured</CardContent>
   }
 
+  function renderNoArtifacts() {
+    return <CardContent>There are no artifacts to display.</CardContent>
+  }
+
   function renderArtifacts() {
+    if (!artifacts || !artifacts.length) return renderNoArtifacts()
+
     const selectedArtifact = artifacts ? artifacts[selectedIndex] : null
     const featuredImage = selectedArtifact ? selectedArtifact.featuredImages[0] : null
     return (
       <>
-        <CardMedia
-          height="var(--cell-width)"
-          image={featuredImage.thumbSquareUrl}
-          title={featuredImage.title}
-        />
+        <CardMedia height="var(--cell-width)" image={featuredImage.thumbSquareUrl} title={featuredImage.title} />
         <CardContent>
           <h3>{selectedArtifact.name}</h3>
         </CardContent>
         <CardActions>
-          <IconButton
-            color={liked[selectedIndex] ? 'secondary' : 'default'}
-            onClick={handleToggleLiked}
-          >
+          <IconButton color={liked[selectedIndex] ? 'secondary' : 'default'} onClick={handleToggleLiked}>
             <SocialLike />
           </IconButton>
           <IconButton onClick={handlePreviousClick} disabled={selectedIndex === 0}>

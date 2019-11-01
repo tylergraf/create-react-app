@@ -1,6 +1,6 @@
 {
   "name": "@fs/react-scripts",
-  "version": "3.0.0-RC.14",
+  "version": "3.0.0-RC.15",
   "upstreamVersion": "3.1.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
@@ -16,7 +16,7 @@
     "url": "https://github.com/fs-webdev/create-react-app/issues"
   },
   "scripts": {
-    "prettier": "npx prettier --single-quote --trailing-comma es5 --print-width 100 --no-semi --write \"template*/**/*.js\""
+    "prettier": "npx prettier --single-quote --trailing-comma es5 --print-width 120 --no-semi --write \"template*/**/*.js\""
   },
   "files": [
     "bin",
