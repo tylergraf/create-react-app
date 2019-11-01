@@ -43,7 +43,7 @@
     <script>
       window.SERVER_DATA = {};
       <%- typeof cacheKey !== 'undefined' ? `SERVER_DATA.cacheKey = '${cacheKey}';` : ''; %>
-      SERVER_DATA.appPath = "<%- appPathOverride || appPath('') %>";
+      SERVER_DATA.appPath = "<%- typeof appPathOverride !== 'undefined' ? appPathOverride : appPath('') %>";
       <% include partials/experiments %>
     </script>
   </head>
