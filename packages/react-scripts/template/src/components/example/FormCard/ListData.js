@@ -7,22 +7,13 @@ export default function ListData({ data }) {
   return (
     <List>
       <ListItem divider>
-        <ListItemText
-          primary="Username"
-          secondary={(data && data.username) || 'No username yet.'}
-        />
+        <ListItemText primary="Username" secondary={(data && data.username) || 'No username yet.'} />
       </ListItem>
       <ListItem divider>
-        <ListItemText
-          primary="Password"
-          secondary={(data && data.password.replace(/./g, '*')) || 'No password yet.'}
-        />
+        <ListItemText primary="Password" secondary={(data && data.password.replace(/./g, '*')) || 'No password yet.'} />
       </ListItem>
       <ListItem divider>
-        <ListItemText
-          primary="Favorite Food"
-          secondary={(data && data.food) || 'No favorite food yet.'}
-        />
+        <ListItemText primary="Favorite Food" secondary={(data && data.food) || 'No favorite food yet.'} />
       </ListItem>
       <ListItem divider>
         <ListItemText primary="Email" secondary={(data && data.email) || 'No email yet.'} />

@@ -16,7 +16,7 @@
     "url": "https://github.com/fs-webdev/create-react-app/issues"
   },
   "scripts": {
-    "prettier": "npx prettier --single-quote --trailing-comma es5 --print-width 100 --no-semi --write \"template*/**/*.js\""
+    "prettier": "npx prettier --single-quote --trailing-comma es5 --print-width 120 --no-semi --write \"template*/**/*.js\""
   },
   "files": [
     "bin",

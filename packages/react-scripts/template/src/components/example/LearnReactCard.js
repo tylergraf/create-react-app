@@ -9,12 +9,7 @@ const LearnReactCard = () => (
       <h2>Learn React</h2>
     </CardContent>
     <CardActions>
-      <Button
-        variant="text"
-        size="small"
-        color="primary"
-        href="https://reactjs.org/docs/getting-started.html"
-      >
+      <Button variant="text" size="small" color="primary" href="https://reactjs.org/docs/getting-started.html">
         React Docs
       </Button>
       <Button

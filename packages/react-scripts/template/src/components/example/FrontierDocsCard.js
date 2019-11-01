@@ -31,12 +31,7 @@ const FrontierDocsCard = ({ logoColor, animationDuration, handleLogoClick }) => 
       </CardContent>
 
       <CardActions>
-        <Button
-          variant="text"
-          size="small"
-          color="primary"
-          href="https://www.familysearch.org/frontier/docs"
-        >
+        <Button variant="text" size="small" color="primary" href="https://www.familysearch.org/frontier/docs">
           {t('getting.started.docs.link', 'Frontier Docs')}
         </Button>
       </CardActions>

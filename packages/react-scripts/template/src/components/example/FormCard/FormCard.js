@@ -81,12 +81,9 @@ const FormCard = () => {
               <CardContent>
                 <h2>Forms in React</h2>
                 <p>
-                  We recommend <a href="https://jaredpalmer.com/formik/">Formik</a>. It&#39;s really
-                  helpful to watch the{' '}
-                  <a href="https://jaredpalmer.com/formik/docs/overview#motivation">
-                    author&#39;s video
-                  </a>{' '}
-                  to understand the why.
+                  We recommend <a href="https://jaredpalmer.com/formik/">Formik</a>. It&#39;s really helpful to watch
+                  the <a href="https://jaredpalmer.com/formik/docs/overview#motivation">author&#39;s video</a> to
+                  understand the why.
                 </p>
                 <h3>Example Form</h3>
 
@@ -113,12 +110,7 @@ const FormCard = () => {
                     >
                       Cancel
                     </Button>
-                    <Button
-                      onClick={handleSubmit}
-                      disabled={!isDirty && !isValid}
-                      size="small"
-                      color="primary"
-                    >
+                    <Button onClick={handleSubmit} disabled={!isDirty && !isValid} size="small" color="primary">
                       Save to Local Cache
                     </Button>
                   </>

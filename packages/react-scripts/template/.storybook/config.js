@@ -47,4 +47,4 @@ addParameters({
   },
 })
 
-configure(require.context('../src', true, /\.stories\.(js|mdx)$/), module);
+configure(require.context('../src', true, /\.stories\.(js|mdx)$/), module)

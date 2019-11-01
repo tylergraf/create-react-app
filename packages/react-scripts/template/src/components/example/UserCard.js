@@ -91,11 +91,7 @@ const UserCard = ({
 
   return details ? (
     <Card>
-      <CardHeader
-        avatar={<Avatar src={portraitUrl} />}
-        title={displayName}
-        subheader={contactName}
-      />
+      <CardHeader avatar={<Avatar src={portraitUrl} />} title={displayName} subheader={contactName} />
       <CardContent>
         <List>
           <ListItem>

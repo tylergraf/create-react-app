@@ -61,13 +61,7 @@ export default function Edit({ values, errors, touched }) {
           <Field name="age">
             {({ field }) => (
               <>
-                <TextField
-                  {...field}
-                  type="number"
-                  error={touched.age && errors.age}
-                  id="age"
-                  label="Age"
-                />
+                <TextField {...field} type="number" error={touched.age && errors.age} id="age" label="Age" />
                 <ErrorMessage name="age" render={msg => <p>{msg}</p>} />
               </>
             )}
@@ -77,12 +71,7 @@ export default function Edit({ values, errors, touched }) {
           <Field name="email">
             {({ field }) => (
               <>
-                <TextField
-                  {...field}
-                  error={touched.email && errors.email}
-                  id="email"
-                  label="An Email"
-                />
+                <TextField {...field} error={touched.email && errors.email} id="email" label="An Email" />
                 <ErrorMessage name="email" render={msg => <p>{msg}</p>} />
               </>
             )}
