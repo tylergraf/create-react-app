@@ -6,7 +6,7 @@ const NotSignedInCard = ({ user: { userLoading } }) => (
   <Card>
     <CardContent>{userLoading ? <p>User loading ...</p> : <p>You must sign in to see this content</p>}</CardContent>
     <CardActions>
-      <Button disabled={userLoading} size="small" color="primary" href="/auth/familysearch/login">
+      <Button disabled={userLoading} size="small" href="/auth/familysearch/login">
         Sign In
       </Button>
     </CardActions>

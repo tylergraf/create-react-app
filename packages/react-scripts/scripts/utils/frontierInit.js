@@ -29,7 +29,7 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/zion-style-normalize@1',
       '@fs/zion-subnav@1',
       '@fs/zion-user@2',
-      '@fs/zion-ui@1',
+      '@fs/zion-ui@3',
       'formik@1',
       'i18next@17',
       'react-i18next@10',

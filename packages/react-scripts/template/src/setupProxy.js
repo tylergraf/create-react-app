@@ -7,7 +7,7 @@
 const setProxies = require('@fs/react-scripts/proxy/setupProxy')
 
 // Make setProxies() available in other files
-module.exports = app => {
+module.exports = (app) => {
   // Sets up local proxies for XHR calls.
   //      e.g. /service/tf => https://beta.familysearch.org/service/tf
   //      beta above comes from your .env file

@@ -11,7 +11,7 @@ const setupServer = require('../server')
 // put any custom proxies here, see https://www.familysearch.org/frontier/docs/develop/proxies
 const customProxies = []
 
-module.exports = app => {
+module.exports = (app) => {
   // Sets up local proxies for XHR calls.
   //      e.g. /service/tree/tf => https://beta.familysearch.org/service/tree/tf
   //      beta above comes from your .env file
