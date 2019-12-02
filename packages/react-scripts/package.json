@@ -1,6 +1,6 @@
 {
   "name": "@fs/react-scripts",
-  "version": "3.0.0-RC.16",
+  "version": "3.0.0-RC.17",
   "upstreamVersion": "3.1.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
@@ -16,7 +16,7 @@
     "url": "https://github.com/fs-webdev/create-react-app/issues"
   },
   "scripts": {
-    "prettier": "npx prettier --single-quote --trailing-comma es5 --print-width 120 --no-semi --write \"template*/**/*.js\""
+    "prettier": "npx prettier --arrow-parens always --single-quote --trailing-comma es5 --print-width 120 --no-semi --write \"template*/**/*.js\""
   },
   "files": [
     "bin",
@@ -36,7 +36,7 @@
     "@alienfast/i18next-loader": "^1.0.18",
     "@babel/core": "7.5.5",
     "@fs/babel-preset-frontier": "^2.0.0",
-    "@fs/eslint-config-frontier-react": "^2.2.0",
+    "@fs/eslint-config-frontier-react": "^3.0.0",
     "@svgr/webpack": "4.3.2",
     "auth-middleware": "github:fs-webdev/auth-middleware",
     "babel-core": "7.0.0-bridge.0",
@@ -54,7 +54,7 @@
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
-    "eslint": "^5.16.0",
+    "eslint": "^6.7.1",
     "eslint-config-react-app": "^5.0.1",
     "eslint-loader": "2.2.1",
     "eslint-plugin-flowtype": "3.13.0",

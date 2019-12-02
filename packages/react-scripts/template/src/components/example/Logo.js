@@ -28,8 +28,8 @@ const Logo = ({ color = 'black', animationDuration = 20 }) => {
   const [svgContent, setSvgContent] = React.useState()
 
   React.useEffect(() => {
-    fetch(logo).then(response => {
-      response.text().then(content => setSvgContent(content))
+    fetch(logo).then((response) => {
+      response.text().then((content) => setSvgContent(content))
     })
   })
 

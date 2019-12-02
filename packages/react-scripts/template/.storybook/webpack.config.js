@@ -21,7 +21,7 @@ module.exports = async ({ config }) => {
 
   //ability to turn off HMR with an envar
   if (process.env.DISABLE_HMR === 'true') {
-    config.entry = config.entry.filter(singleEntry => !singleEntry.includes('/webpack-hot-middleware/'))
+    config.entry = config.entry.filter((singleEntry) => !singleEntry.includes('/webpack-hot-middleware/'))
   }
 
   return config
@@ -37,7 +37,7 @@ function isNotStorybookBabelLoader(rule) {
 }
 
 function printRules(config) {
-  config.module.rules.forEach(rule => {
+  config.module.rules.forEach((rule) => {
     console.log('rule.test: ', rule.test)
     console.log('rule.include: ', rule.include)
     console.log('rule.exclude: ', rule.exclude)

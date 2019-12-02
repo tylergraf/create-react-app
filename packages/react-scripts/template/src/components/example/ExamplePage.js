@@ -1,13 +1,13 @@
 import React from 'react'
 import { useUser } from '@fs/zion-user'
-import { Grid, Cell } from '@fs/zion-ui'
+import { Grid, Cell, TypeBlock } from '@fs/zion-ui'
 import FrontierDocsCard from './FrontierDocsCard'
 import ZionCard from './ZionCard'
 import LearnReactCard from './LearnReactCard'
 import NotSignedInCard from './NotSignedInCard'
 import ArtifactsCard from './ArtifactsCard'
 import UserCard from './UserCard'
-import FormCard from './FormCard/FormCard'
+import FormCard from './FormCard'
 
 // Hook to generate a random color
 const useRandomColor = () => {
@@ -40,7 +40,7 @@ const ExamplePage = () => {
 
   // Event handlers
   function likeButtonPressed() {
-    setLikeButtonPressedCount(currentCount => currentCount + 1)
+    setLikeButtonPressedCount((currentCount) => currentCount + 1)
   }
 
   function handleLogoAnimationDurationChange(duration) {
@@ -51,7 +51,7 @@ const ExamplePage = () => {
     <Grid>
       {/* Row 1 */}
       <Cell>
-        <h1>Welcome to your new Frontier Application</h1>
+        <TypeBlock header="Welcome to your new Frontier Application" />
       </Cell>
 
       {/* Row 2 */}
@@ -72,19 +72,22 @@ const ExamplePage = () => {
         <LearnReactCard />
       </Cell>
 
-      <Cell sm="6" lg="4">
-        <RequireSignedInUser
-          user={user}
-          Component={UserCard}
-          likeButtonPressedCount={likeButtonPressedCount}
-          logoColor={logoColor}
-          logoAnimationDuration={logoAnimationDuration}
-          handleLogoAnimationDurationChange={handleLogoAnimationDurationChange}
-        />
-      </Cell>
+      {
+        <Cell sm="6" lg="4">
+          <RequireSignedInUser
+            user={user}
+            Component={UserCard}
+            likeButtonPressedCount={likeButtonPressedCount}
+            logoColor={logoColor}
+            logoAnimationDuration={logoAnimationDuration}
+            handleLogoAnimationDurationChange={handleLogoAnimationDurationChange}
+          />
+        </Cell>
+      }
 
       {/* Row 4 */}
-      <Cell sm="6" lg="4">
+
+      <Cell sm="4" md="6" lg="4">
         <RequireSignedInUser
           user={user}
           cisId={user.cisId}
@@ -92,8 +95,7 @@ const ExamplePage = () => {
           likeButtonPressed={likeButtonPressed}
         />
       </Cell>
-
-      <Cell sm="6" lg="8">
+      <Cell sm="8" md="6" lg="8">
         <FormCard />
       </Cell>
     </Grid>

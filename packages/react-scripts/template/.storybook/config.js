@@ -24,7 +24,7 @@ const baseCss = css`
 addDecorator(withKnobs)
 addDecorator(withA11y)
 addDecorator(addReadme)
-addDecorator(storyFn => (
+addDecorator((storyFn) => (
   <I18nProvider i18nInstance={i18n}>
     <ThemeProvider theme={zionTheme}>
       <StyleNormalize>

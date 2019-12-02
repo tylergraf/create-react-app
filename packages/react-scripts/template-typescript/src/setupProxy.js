@@ -2,6 +2,6 @@
 // docs here: https://github.com/fs-webdev/exo#proxy
 const setProxies = require('@fs/react-scripts/proxy/setupProxy')
 
-module.exports = app => {
+module.exports = (app) => {
   setProxies(app)
 }

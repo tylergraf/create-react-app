@@ -1,28 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  Avatar,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  TextField,
-  TypeBlock,
-  useOpener,
-} from '@fs/zion-ui'
+import { Button, Card, CardActions, CardContent, List, ListItem, TextField, TypeBlock, useOpener } from '@fs/zion-ui'
 import { ViewerContrastMore, SocialLike, MediaFastForward } from '@fs/zion-icon'
 import axios from '@fs/zion-axios'
 
 // Hook for fetching a users portrait
-const usePersonPortrait = personId => {
+const usePersonPortrait = (personId) => {
   const reducer = (state, { type, response }) => {
     switch (type) {
       case 'FETCHING':
@@ -44,15 +28,15 @@ const usePersonPortrait = personId => {
   React.useEffect(() => {
     axios
       .get(`/service/memories/tps/persons/${personId}/portrait`)
-      .then(response => dispatch({ type: 'SUCCESS', response }))
-      .catch(response => dispatch({ type: 'ERROR', response }))
+      .then((response) => dispatch({ type: 'SUCCESS', response }))
+      .catch((response) => dispatch({ type: 'ERROR', response }))
   }, [personId])
 
   return [state]
 }
 
 // Hook for fetchting a users details
-const usePersonDetails = personId => {
+const usePersonDetails = (personId) => {
   const reducer = (state, { type, response }) => {
     switch (type) {
       case 'FETCHING':
@@ -70,8 +54,8 @@ const usePersonDetails = personId => {
   React.useEffect(() => {
     axios
       .get(`/service/tree/tf/person/CURRENT`)
-      .then(response => dispatch({ type: 'SUCCESS', response }))
-      .catch(response => dispatch({ type: 'ERROR', response }))
+      .then((response) => dispatch({ type: 'SUCCESS', response }))
+      .catch((response) => dispatch({ type: 'ERROR', response }))
   }, [personId])
 
   return [state]
@@ -87,76 +71,43 @@ const UserCard = ({
   const dialogOpener = useOpener()
   const [{ portraitUrl }] = usePersonPortrait(user.personId)
   const [{ details }] = usePersonDetails(user.personId)
-  const { personId, cisId, gender, displayName, contactName } = user
+  // const { personId, cisId, gender, displayName, contactName } = user
+  const { displayName, contactName } = user
 
   return details ? (
     <Card>
-      <CardHeader avatar={<Avatar src={portraitUrl} />} title={displayName} subheader={contactName} />
+      <TypeBlock avatarProps={{ src: portraitUrl }} header={displayName} subHeader={contactName} />
       <CardContent>
         <List>
-          <ListItem>
-            <ListItemIcon>
-              <SocialLike />
-            </ListItemIcon>
-            <ListItemText primary={likeButtonPressedCount} secondary="Like Button Press Count" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <ViewerContrastMore />
-            </ListItemIcon>
-            <ListItemText
-              css={css`
-                color: ${logoColor};
-              `}
-              primary={logoColor}
-              secondary="Logo Color"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <MediaFastForward />
-            </ListItemIcon>
-            <TextField
-              id="logo-animation-duration"
-              label="Animation Duration"
-              value={logoAnimationDuration}
-              onChange={e => handleLogoAnimationDurationChange(e.target.value)}
-            />
-          </ListItem>
+          <ListItem primaryText="Like Button Press Count" metaText={`${likeButtonPressedCount}`} Icon={SocialLike} />
+          <ListItem
+            primaryText="Logo Color"
+            metaText={logoColor}
+            Icon={() => (
+              <ViewerContrastMore
+                css={css`
+                  color: ${logoColor};
+                `}
+              />
+            )}
+          />
+          <ListItem
+            Icon={MediaFastForward}
+            primaryText={
+              <TextField
+                id="logo-animation-duration"
+                label="Animation Duration"
+                value={logoAnimationDuration}
+                onChange={(e) => handleLogoAnimationDurationChange(e.target.value)}
+              />
+            }
+          />
         </List>
-
-        <Dialog opener={dialogOpener} dismiss="Close" fullscreen>
-          <DialogTitle>
-            <TypeBlock
-              size="xs"
-              avatar={{ src: portraitUrl }}
-              avatarProps={{ src: portraitUrl }}
-              header={details.fullName}
-              subHeader={details.summary.lifespan}
-            />
-          </DialogTitle>
-          <List dense>
-            <ListItem>
-              <ListItemText primary={personId} secondary="PID" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary={cisId} secondary="CIS ID" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary={gender} secondary="Gender" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary={details.summary.lifespan} secondary="Lifespan" />
-            </ListItem>
-          </List>
-        </Dialog>
       </CardContent>
 
       <CardActions>
-        <Button size="small" color="primary" onClick={dialogOpener.open}>
-          User Info
-        </Button>
-        <Button size="small" color="primary" href="/auth/familysearch/logout">
+        <Button onClick={dialogOpener.open}>User Info</Button>
+        <Button emphasis="high" href="/auth/familysearch/logout">
           Sign Out
         </Button>
       </CardActions>
