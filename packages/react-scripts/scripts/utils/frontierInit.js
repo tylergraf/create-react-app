@@ -51,7 +51,7 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/eslint-config-frontier-react@3',
       '@fs/babel-preset-frontier@2',
       '@fs/storybook-addons@1',
-      '@fs/zion-testing-library@1',
+      '@fs/zion-testing-library@2',
       '@fs/zion-style-normalize@1',
       'eslint@6',
       'i18next-scanner@2',
