@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Card, CardActions, CardContent, CardMedia } from '@fs/zion-ui'
-import IconButton from '@fs/zion-ui/icon-button'
+import { Card, CardActions, CardContent, CardMedia, IconButton, TypeBlock, colors } from '@fs/zion-ui'
+import { Body1, Caption } from '@fs/zion-ui/type'
+import { css } from '@emotion/core'
 import { SocialLike, ArrowChevron } from '@fs/zion-icon'
 import axios from '@fs/zion-axios'
+import { boolAttr } from '@fs/zion-frontend-friends'
 
 // Custom hook for fetching artifacts from the the memory service
-const useArtifacts = cisId => {
+const useArtifacts = (cisId) => {
   // Handles dispatched actions
   // Take an action type, applies state changes and returns new state
   const reducer = (state, { type, ...data }) => {
@@ -36,12 +38,12 @@ const useArtifacts = cisId => {
       .get(
         `/service/memories/presentation/patrons/${cisId}/persons?numTaggedPersonArtifacts=3&includeTaggedPersons=true&includeEmptyPersons=false&includeHistory=false`
       )
-      .then(response => response.data.filter(a => a.featuredImages && a.featuredImages.length > 0))
-      .then(artifacts => {
+      .then((response) => response.data.filter((a) => a.featuredImages && a.featuredImages.length > 0))
+      .then((artifacts) => {
         // Success!  Dispatch action with results
         dispatch({ type: 'SUCCESS', artifacts })
       })
-      .catch(error => dispatch({ type: 'ERROR', error })) // Dispatch Error, update state
+      .catch((error) => dispatch({ type: 'ERROR', error })) // Dispatch Error, update state
   }, [cisId])
 
   return [state]
@@ -57,11 +59,11 @@ const ArtifactsCard = ({ cisId, likeButtonPressed }) => {
 
   // Event handlers
   const handleNextClick = () => {
-    setSelectedIndex(currentIndex => currentIndex + 1)
+    setSelectedIndex((currentIndex) => currentIndex + 1)
   }
 
   const handlePreviousClick = () => {
-    setSelectedIndex(currentIndex => currentIndex - 1)
+    setSelectedIndex((currentIndex) => currentIndex - 1)
   }
 
   const handleToggleLiked = () => {
@@ -69,7 +71,7 @@ const ArtifactsCard = ({ cisId, likeButtonPressed }) => {
     likeButtonPressed()
 
     // Update internal state
-    setLiked(current => {
+    setLiked((current) => {
       current[selectedIndex] = !current[selectedIndex]
       return current
     })
@@ -77,15 +79,27 @@ const ArtifactsCard = ({ cisId, likeButtonPressed }) => {
 
   // Helper functions for rendering
   function renderLoading() {
-    return <CardContent>Loading ... </CardContent>
+    return (
+      <CardContent>
+        <TypeBlock size="sm" header="Loading ... " />
+      </CardContent>
+    )
   }
 
   function renderError() {
-    return <CardContent>An error has occured</CardContent>
+    return (
+      <CardContent>
+        <TypeBlock size="sm" header="An Error Occurred" />
+      </CardContent>
+    )
   }
 
   function renderNoArtifacts() {
-    return <CardContent>There are no artifacts to display.</CardContent>
+    return (
+      <CardContent>
+        <Body1>There are no artifacts to display</Body1>
+      </CardContent>
+    )
   }
 
   function renderArtifacts() {
@@ -97,28 +111,54 @@ const ArtifactsCard = ({ cisId, likeButtonPressed }) => {
       <>
         <CardMedia height="var(--cell-width)" image={featuredImage.thumbSquareUrl} title={featuredImage.title} />
         <CardContent>
-          <h3>{selectedArtifact.name}</h3>
+          <TypeBlock size="sm" header={selectedArtifact.name} />
+          <Caption>{featuredImage.title}</Caption>
         </CardContent>
         <CardActions>
-          <IconButton color={liked[selectedIndex] ? 'secondary' : 'default'} onClick={handleToggleLiked}>
-            <SocialLike />
-          </IconButton>
-          <IconButton onClick={handlePreviousClick} disabled={selectedIndex === 0}>
-            <ArrowChevron direction="left" />
-          </IconButton>
-          <IconButton onClick={handleNextClick} disabled={selectedIndex + 1 === artifacts.length}>
-            <ArrowChevron />
-          </IconButton>
+          <ToggleIconButton
+            aria-label="Click to like this photo"
+            Icon={SocialLike}
+            onClick={handleToggleLiked}
+            pressed={liked[selectedIndex]}
+          />
+          <IconButton
+            aria-label="Click to see the previous photo"
+            Icon={ArrowChevron}
+            onClick={handlePreviousClick}
+            iconDirection="left"
+            disabled={selectedIndex === 0}
+          />
+          <IconButton
+            aria-label="Click to see the next photo"
+            Icon={ArrowChevron}
+            onClick={handleNextClick}
+            disabled={selectedIndex + 1 === artifacts.length}
+          />
         </CardActions>
       </>
     )
   }
 
   return (
-    <Card>
+    <Card stretch={false}>
       {error && renderError()}
       {loading ? renderLoading() : renderArtifacts()}
     </Card>
+  )
+}
+
+const ToggleIconButton = ({ pressed = false, ...props }) => {
+  const buttonStyle = css`
+    &[pressed] {
+      svg {
+        fill: ${colors.link.visited};
+      }
+    }
+  `
+  return (
+    <div css={buttonStyle} pressed={boolAttr(pressed)}>
+      <IconButton {...props} />
+    </div>
   )
 }
 
