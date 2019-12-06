@@ -88,7 +88,8 @@ function installFrontierDependencies(appPath, appName, ownPath) {
   installModulesSync(depsToInstall)
   installModulesSync(devDepsToInstall, true)
 
-  syncLocales()
+  // put this back in once we have it fixed and working well
+  // syncLocales()
 
   replaceStringInFile(appPath, './README.md', /\{GITHUB_REPO\}/g, appName)
 }
