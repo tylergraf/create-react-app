@@ -131,6 +131,7 @@ function configureHF(appPath, ownPath) {
       'heroku-postbuild': 'npm run build:prod',
       'heroku-prebuild': './heroku-prebuild.sh',
       start: 'react-scripts start',
+      'test:ci': 'CI=true react-scripts test --coverage',
       analyzeBundle: "npm run build && source-map-explorer 'build/static/js/*.js'",
     }
     packageJson.scripts = sortScripts({
@@ -138,7 +139,7 @@ function configureHF(appPath, ownPath) {
       ...additionalScripts,
     })
     packageJson.main = './index.js'
-    packageJson.engines = { node: '10' }
+    packageJson.engines = { node: '12' }
 
     return packageJson
   })
