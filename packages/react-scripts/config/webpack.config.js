@@ -446,9 +446,9 @@ module.exports = function(webpackEnv) {
                   isEnvProduction ? 'production' : isEnvDevelopment && 'development',
                   [
                     'babel-plugin-named-asset-import',
-                    'babel-preset-frontier',
+                    '@fs/babel-preset-frontier',
                     'react-dev-utils',
-                    'react-scripts',
+                    '@fs/react-scripts',
                   ]
                 ),
                 // @remove-on-eject-end
@@ -511,9 +511,9 @@ module.exports = function(webpackEnv) {
                       isEnvProduction ? 'production' : isEnvDevelopment && 'development',
                       [
                         'babel-plugin-named-asset-import',
-                        'babel-preset-frontier',
+                        '@fs/babel-preset-frontier',
                         'react-dev-utils',
-                        'react-scripts',
+                        '@fs/react-scripts',
                       ]
                     ),
                     // @remove-on-eject-end
