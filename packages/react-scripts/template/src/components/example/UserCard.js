@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
-import { Button, Card, CardActions, CardContent, List, ListItem, TextField, TypeBlock, useOpener } from '@fs/zion-ui'
+import {
+  Body1,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  DialogOverlay,
+  DialogOverlayContent,
+  DialogOverlayFooter,
+  List,
+  ListItem,
+  TextField,
+  useOverlay,
+  PersonBlock,
+} from '@fs/zion-ui'
 import { ViewerContrastMore, SocialLike, MediaFastForward } from '@fs/zion-icon'
 import axios from '@fs/zion-axios'
 
@@ -68,7 +82,7 @@ const UserCard = ({
   logoAnimationDuration,
   handleLogoAnimationDurationChange,
 }) => {
-  const dialogOpener = useOpener()
+  const dialogOverlay = useOverlay({})
   const [{ portraitUrl }] = usePersonPortrait(user.personId)
   const [{ details }] = usePersonDetails(user.personId)
   // const { personId, cisId, gender, displayName, contactName } = user
@@ -76,7 +90,16 @@ const UserCard = ({
 
   return details ? (
     <Card>
-      <TypeBlock avatarProps={{ src: portraitUrl }} header={displayName} subHeader={contactName} />
+      <PersonBlock
+        size="xl"
+        avatarProps={{
+          src: { portraitUrl },
+          sex: 'male',
+        }}
+        name={displayName}
+      >
+        {contactName}
+      </PersonBlock>
       <CardContent>
         <List>
           <ListItem primaryText="Like Button Press Count" metaText={`${likeButtonPressedCount}`} Icon={SocialLike} />
@@ -97,7 +120,7 @@ const UserCard = ({
               <TextField
                 id="logo-animation-duration"
                 label="Animation Duration"
-                value={logoAnimationDuration}
+                value={`${logoAnimationDuration}`}
                 onChange={(e) => handleLogoAnimationDurationChange(e.target.value)}
               />
             }
@@ -106,7 +129,23 @@ const UserCard = ({
       </CardContent>
 
       <CardActions>
-        <Button onClick={dialogOpener.open}>User Info</Button>
+        <Button onClick={dialogOverlay.open}>User Info</Button>
+        <Suspense fallback={<div />}>
+          <DialogOverlay headingText="User info" {...dialogOverlay}>
+            <DialogOverlayContent>
+              <Body1>Full Name: {details.summary.name}</Body1>
+              <Body1>Id: {details.id}</Body1>
+              <Body1>Place of birth: {details.birth.value.place.original}</Body1>
+              <Body1>Gender: {details.summary.gender}</Body1>
+            </DialogOverlayContent>
+            <DialogOverlayFooter>
+              <Button onClick={() => dialogOverlay.close()}>Cancel</Button>
+              <Button onClick={() => dialogOverlay.close()} emphasis="high">
+                Submit
+              </Button>
+            </DialogOverlayFooter>
+          </DialogOverlay>
+        </Suspense>
         <Button emphasis="high" href="/auth/familysearch/logout">
           Sign Out
         </Button>
