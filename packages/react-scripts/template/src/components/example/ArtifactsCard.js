@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Card, CardActions, CardContent, CardMedia, IconButton, TypeBlock, colors } from '@fs/zion-ui'
+import { Card, CardActions, CardContent, CardMedia, IconButton, HeaderBlock, TypeBlock, colors, Separator } from '@fs/zion-ui'
 import { Body1, Caption } from '@fs/zion-ui/type'
 import { css } from '@emotion/core'
 import { SocialLike, ArrowChevron } from '@fs/zion-icon'
@@ -81,7 +81,7 @@ const ArtifactsCard = ({ cisId, likeButtonPressed }) => {
   function renderLoading() {
     return (
       <CardContent>
-        <TypeBlock size="sm" header="Loading ... " />
+        <HeaderBlock size="sm" heading="Loading ... " />
       </CardContent>
     )
   }
@@ -89,7 +89,7 @@ const ArtifactsCard = ({ cisId, likeButtonPressed }) => {
   function renderError() {
     return (
       <CardContent>
-        <TypeBlock size="sm" header="An Error Occurred" />
+        <TypeBlock size="sm" heading="An Error Occurred" />
       </CardContent>
     )
   }
@@ -109,9 +109,14 @@ const ArtifactsCard = ({ cisId, likeButtonPressed }) => {
     const featuredImage = selectedArtifact ? selectedArtifact.featuredImages[0] : null
     return (
       <>
-        <CardMedia height="var(--cell-width)" image={featuredImage.thumbSquareUrl} title={featuredImage.title} />
+        <CardMedia
+          height="calc(var(--cell-width) / 1.403)"
+          image={featuredImage.thumbSquareUrl}
+          title={featuredImage.title}
+        />
         <CardContent>
-          <TypeBlock size="sm" header={selectedArtifact.name} />
+          <Separator size="xs" />
+          <HeaderBlock size="sm" heading={selectedArtifact.name} />
           <Caption>{featuredImage.title}</Caption>
         </CardContent>
         <CardActions>
