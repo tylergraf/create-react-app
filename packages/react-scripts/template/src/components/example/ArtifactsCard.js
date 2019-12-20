@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Card, CardActions, CardContent, CardMedia, IconButton, HeaderBlock, TypeBlock, colors, Separator } from '@fs/zion-ui'
+import { Card, CardActions, CardContent, CardMedia, IconButton, HeaderBlock, HeaderBlock, colors, Separator } from '@fs/zion-ui'
 import { Body1, Caption } from '@fs/zion-ui/type'
 import { css } from '@emotion/core'
 import { SocialLike, ArrowChevron } from '@fs/zion-icon'
