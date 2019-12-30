@@ -1,15 +1,18 @@
 import React from 'react'
-import { Button, Card, CardMedia, CardActions, CardContent, TypeBlock } from '@fs/zion-ui'
+import { Button, Card, CardMedia, CardActions, CardContent, HeaderBlock, Separator } from '@fs/zion-ui'
 import ZionImage from './zion.jpg'
 
 const ZionCard = () => (
   <Card>
     <CardMedia height="calc(var(--cell-width) / 1.906)" image={ZionImage} alt="Zion National Park" />
     <CardContent>
-      <TypeBlock
-        header="Zion"
-        subHeader="Zion is the place to go to find reusable components for your FamilySearch application."
+      <Separator size="xs" />
+      <HeaderBlock
+        size="md"
+        heading="Zion"
+        subHeading="Zion is the place to go to find reusable components for your FamilySearch application."
       />
+      <Separator size="xs" />
     </CardContent>
     <CardActions>
       <Button href="https://beta.familysearch.org/frontier/zion">Components</Button>

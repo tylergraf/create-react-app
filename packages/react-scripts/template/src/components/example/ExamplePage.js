@@ -1,6 +1,6 @@
 import React from 'react'
 import { useUser } from '@fs/zion-user'
-import { Grid, Cell, TypeBlock } from '@fs/zion-ui'
+import { Grid, Cell, HeaderBlock, Separator } from '@fs/zion-ui'
 import FrontierDocsCard from './FrontierDocsCard'
 import ZionCard from './ZionCard'
 import LearnReactCard from './LearnReactCard'
@@ -50,30 +50,31 @@ const ExamplePage = () => {
   return (
     <Grid>
       {/* Row 1 */}
-      <Cell>
-        <TypeBlock header="Welcome to your new Frontier Application" />
+      <Cell columns={12}>
+        <Separator size="xs" />
+        <HeaderBlock size="md" heading="Welcome to your new Frontier Application" />
+        <Separator size="xs" />
       </Cell>
 
       {/* Row 2 */}
-      <Cell sm="6" lg="4">
+      <Cell columns={4}>
         <FrontierDocsCard
           logoColor={logoColor}
           handleLogoClick={randomizeLogoColor}
           animationDuration={logoAnimationDuration}
         />
       </Cell>
-
-      <Cell sm="6" lg="8">
+      <Cell columns={8}>
         <ZionCard />
       </Cell>
 
       {/* Row 3 */}
-      <Cell sm="6" lg="8">
+      <Cell columns={8}>
         <LearnReactCard />
       </Cell>
 
       {
-        <Cell sm="6" lg="4">
+        <Cell columns={4}>
           <RequireSignedInUser
             user={user}
             Component={UserCard}
@@ -86,8 +87,7 @@ const ExamplePage = () => {
       }
 
       {/* Row 4 */}
-
-      <Cell sm="4" md="6" lg="4">
+      <Cell columns={4}>
         <RequireSignedInUser
           user={user}
           cisId={user.cisId}
@@ -95,7 +95,7 @@ const ExamplePage = () => {
           likeButtonPressed={likeButtonPressed}
         />
       </Cell>
-      <Cell sm="8" md="6" lg="8">
+      <Cell columns={8}>
         <FormCard />
       </Cell>
     </Grid>

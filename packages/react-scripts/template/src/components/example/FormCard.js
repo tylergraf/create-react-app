@@ -1,6 +1,18 @@
 import React from 'react'
 import { css } from '@emotion/core'
-import { Button, Card, CardContent, TextField, ZionForm, Autosuggest, TypeBlock, Checkbox, colors } from '@fs/zion-ui'
+import {
+  Button,
+  Card,
+  CardContent,
+  TextField,
+  ZionForm,
+  Autosuggest,
+  Checkbox,
+  colors,
+  HeaderBlock,
+  Grid,
+  Cell,
+} from '@fs/zion-ui'
 import InputRow from '@fs/zion-ui/input-row'
 import * as Yup from 'yup'
 
@@ -65,10 +77,11 @@ const InputForm = ({ handleFormSubmit }) => {
   }
   return (
     <>
-      <TypeBlock
-        header="Purpose Statement Generator"
+      <HeaderBlock
+        heading="Purpose Statement Generator"
+        size="md"
         overline="Zion Form Example"
-        subHeader="Fill in the following form to generate a new purpose statement."
+        subHeading="Fill in the following form to generate a new purpose statement."
       />
       <ZionForm
         onSubmit={(formData) => {
@@ -77,34 +90,64 @@ const InputForm = ({ handleFormSubmit }) => {
         initialValues={defaultValues}
         validationSchema={validationSchema}
         mustTouchToError
-        render={({ values, errors, ...props }) => (
+      >
+        {({ handleReset, ...props }) => (
           <>
-            <TextField label="Adjective that ends with *ing" name="adjective1" placeholder="inspiring" />
-            <TextField label="Plural Noun" name="pluralNoun1" placeholder="experiences" />
-            <Autosuggest label="Emotion" name="emotion1" placeholder="joy" options={emotionOptions} />
-            <TextField label="Plural Noun" name="pluralNoun2" placeholder="people" />
-            <TextField label="Verb" name="verb1" placeholder="discover" />
-            <TextField label="Verb" name="verb2" placeholder="gather" />
-            <TextField label="Verb" name="verb3" placeholder="connect" />
-            <TextField label="Plural Noun" name="pluralNoun3" placeholder="families" />
-            <TextField
-              label="Time Period (i.e Christmas, September 8th, next week, etc) "
-              name="timePeriod1"
-              placeholder="future"
-            />
+            <Grid>
+              {/* Row 1 */}
+              <Cell columns={5}>
+                <TextField label="Adjective that ends with *ing" name="adjective1" placeholder="inspiring" />
+              </Cell>
+              <Cell columns={3}>
+                <TextField label="Plural Noun" name="pluralNoun1" placeholder="experiences" />
+              </Cell>
 
-            <Checkbox label="Debug Form" name="debug" />
-            {values.debug && <pre>{JSON.stringify({ errors, values }, null, 2)}</pre>}
+              {/* Row 2 */}
+              <Cell columns={4}>
+                <Autosuggest label="Emotion" name="emotion1" placeholder="joy" suggestions={emotionOptions} />
+              </Cell>
+              <Cell columns={4}>
+                <TextField label="Plural Noun" name="pluralNoun2" placeholder="people" />
+              </Cell>
 
+              {/* Row 3 */}
+              <Cell columns={2}>
+                <TextField label="Verb" name="verb1" placeholder="discover" />
+              </Cell>
+              <Cell columns={2}>
+                <TextField label="Verb" name="verb2" placeholder="gather" />
+              </Cell>
+              <Cell columns={2}>
+                <TextField label="Verb" name="verb3" placeholder="connect" />
+              </Cell>
+              <Cell columns={2}>
+                <TextField label="Plural Noun" name="pluralNoun3" placeholder="families" />
+              </Cell>
+              <Cell columns={8}>
+                <TextField
+                  label="Time Period (i.e Christmas, September 8th, next week, etc) "
+                  name="timePeriod1"
+                  placeholder="future"
+                />
+              </Cell>
+              <Cell columns={8}>
+                <Checkbox label="Debug Form" name="debug" />
+              </Cell>
+              <Cell columns={8}>
+                {props.values.debug && (
+                  <pre>{JSON.stringify({ errors: props.errors, values: props.values }, null, 2)}</pre>
+                )}
+              </Cell>
+            </Grid>
             <InputRow>
               <Button type="submit" emphasis="high">
                 Submit
               </Button>
-              <Button onClick={props.handleReset}> Reset </Button>
+              <Button onClick={handleReset}> Reset </Button>
             </InputRow>
           </>
         )}
-      />
+      </ZionForm>
     </>
   )
 }
@@ -123,7 +166,7 @@ const PurposeStatement = ({
 
   return (
     <>
-      <TypeBlock header="Our Purpose Statement" />
+      <HeaderBlock heading="Our Purpose Statement" size="md" />
 
       <div css={containerCss}>
         We create {adjective1} {pluralNoun1} that bring {emotion1.primaryText} to all {pluralNoun2} as they {verb1},{' '}
