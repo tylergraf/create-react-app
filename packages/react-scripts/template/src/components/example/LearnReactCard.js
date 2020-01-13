@@ -1,12 +1,14 @@
 import React from 'react'
-import { Button, Card, CardMedia, CardActions, CardContent, TypeBlock } from '@fs/zion-ui'
+import { Button, Card, CardMedia, CardActions, CardContent, HeaderBlock, Separator } from '@fs/zion-ui'
 import ReactImage from './reactjs.jpg'
 
 const LearnReactCard = () => (
   <Card>
     <CardMedia image={ReactImage} alt="React" height="300px" />
     <CardContent>
-      <TypeBlock header="Learn React" />
+      <Separator size="xs" />
+      <HeaderBlock size="md" heading="Learn React" />
+      <Separator size="xs" />
     </CardContent>
     <CardActions>
       <Button href="https://reactjs.org/docs/getting-started.html">React Docs</Button>

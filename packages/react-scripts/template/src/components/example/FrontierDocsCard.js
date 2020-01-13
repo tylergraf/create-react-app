@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Card, CardActions, CardContent, CardActionArea, TypeBlock } from '@fs/zion-ui'
+import { Button, Card, CardActions, CardContent, CardActionArea, HeaderBlock } from '@fs/zion-ui'
 import { Body1 } from '@fs/zion-ui/type'
 import { useTranslation } from 'react-i18next'
 import Logo from './Logo'
@@ -11,9 +11,10 @@ const FrontierDocsCard = ({ logoColor, animationDuration, handleLogoClick }) => 
   return (
     <Card>
       <CardContent>
-        <TypeBlock
-          header={t('getting.started.title', 'Getting Started')}
-          subHeader={t(
+        <HeaderBlock
+          size="md"
+          heading={t('getting.started.title', 'Getting Started')}
+          subHeading={t(
             'getting.started.description',
             'Try clicking the wheel to add a splash of color and then check out the code in the example directory to get started.'
           )}

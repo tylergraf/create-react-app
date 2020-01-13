@@ -44,9 +44,6 @@ const proxies = [
   {
     route: '/service',
   },
-  {
-    route: '/tf',
-  },
 ]
 
 module.exports = proxies

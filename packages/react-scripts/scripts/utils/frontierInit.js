@@ -24,12 +24,12 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/zion-frontend-friends@1',
       '@fs/zion-icon@2',
       '@fs/zion-locale@1',
-      '@fs/zion-root@1',
+      '@fs/zion-root@2',
       '@fs/zion-router@2',
       '@fs/zion-style-normalize@1',
       '@fs/zion-subnav@1',
       '@fs/zion-user@2',
-      '@fs/zion-ui@3',
+      '@fs/zion-ui@4',
       'formik@1',
       'i18next@17',
       'react-i18next@10',
@@ -131,6 +131,7 @@ function configureHF(appPath, ownPath) {
       'heroku-postbuild': 'npm run build:prod',
       'heroku-prebuild': './heroku-prebuild.sh',
       start: 'react-scripts start',
+      'test:ci': 'CI=true react-scripts test --coverage',
       analyzeBundle: "npm run build && source-map-explorer 'build/static/js/*.js'",
     }
     packageJson.scripts = sortScripts({
@@ -138,7 +139,7 @@ function configureHF(appPath, ownPath) {
       ...additionalScripts,
     })
     packageJson.main = './index.js'
-    packageJson.engines = { node: '10' }
+    packageJson.engines = { node: '12' }
 
     return packageJson
   })

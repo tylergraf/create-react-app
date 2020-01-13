@@ -70,6 +70,8 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 module.exports = function(webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
+  const isEnvProductionProfile =
+    isEnvProduction && process.argv.includes('--profile');
 
   // Webpack uses `publicPath` to determine where the app is being served from.
   // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -239,6 +241,9 @@ module.exports = function(webpackEnv) {
             mangle: {
               safari10: true,
             },
+            // Added for profiling in devtools
+            keep_classnames: isEnvProductionProfile,
+            keep_fnames: isEnvProductionProfile,
             output: {
               ecma: 5,
               comments: false,
@@ -315,6 +320,11 @@ module.exports = function(webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
+        // Allows for better profiling with ReactDevTools
+        ...(isEnvProductionProfile && {
+          'react-dom$': 'react-dom/profiling',
+          'scheduler/tracing': 'scheduler/tracing-profiling',
+        }),
         react: require.resolve('react'),
         'react-dom': require.resolve('react-dom'),
         i18next: require.resolve('i18next'),
@@ -446,9 +456,9 @@ module.exports = function(webpackEnv) {
                   isEnvProduction ? 'production' : isEnvDevelopment && 'development',
                   [
                     'babel-plugin-named-asset-import',
-                    'babel-preset-frontier',
+                    '@fs/babel-preset-frontier',
                     'react-dev-utils',
-                    'react-scripts',
+                    '@fs/react-scripts',
                   ]
                 ),
                 // @remove-on-eject-end
@@ -464,10 +474,6 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
-                  [
-                    require.resolve('babel-plugin-react-docgen'),
-                    { DOC_GEN_COLLECTION_NAME: 'STORYBOOK_REACT_CLASSES' },
-                  ]
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -511,9 +517,9 @@ module.exports = function(webpackEnv) {
                       isEnvProduction ? 'production' : isEnvDevelopment && 'development',
                       [
                         'babel-plugin-named-asset-import',
-                        'babel-preset-frontier',
+                        '@fs/babel-preset-frontier',
                         'react-dev-utils',
-                        'react-scripts',
+                        '@fs/react-scripts',
                       ]
                     ),
                     // @remove-on-eject-end
