@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, Switch, Route, AuthRoute, NotFound } from '@fs/zion-router'
 import Subnav from '@fs/zion-subnav'
-import { Trans } from 'react-i18next'
+import { Trans } from 'react-i18next/icu.macro'
 
 // Dynamically load components to reduce bundle size
 // https://reactjs.org/docs/react-api.html#reactlazy

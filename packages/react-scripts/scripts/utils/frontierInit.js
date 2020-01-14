@@ -23,7 +23,7 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/zion-cache@1',
       '@fs/zion-frontend-friends@1',
       '@fs/zion-icon@2',
-      '@fs/zion-locale@1',
+      '@fs/zion-locale@2',
       '@fs/zion-root@2',
       '@fs/zion-router@2',
       '@fs/zion-style-normalize@1',
@@ -31,10 +31,10 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/zion-user@2',
       '@fs/zion-ui@4',
       'formik@1',
-      'i18next@17',
-      'react-i18next@10',
+      'i18next@19',
+      'react-i18next@11',
       'prop-types@15',
-      'yup@0.27',
+      'yup@0.28',
     ]
   )
   devDepsToInstall.push(
@@ -54,7 +54,6 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/zion-testing-library@2',
       '@fs/zion-style-normalize@1',
       'eslint@6',
-      'i18next-scanner@2',
       '@alienfast/i18next-loader@1',
       'dotenv@8',
       '@testing-library/jest-dom@4',
@@ -70,7 +69,6 @@ function installFrontierDependencies(appPath, appName, ownPath) {
   alterPackageJsonFile(appPath, appPackage => {
     const packageJson = { ...appPackage }
     const additionalScripts = {
-      'locales:sync': `i18next-scanner --output src/locales 'src/**/*.js'`,
       storybook: 'start-storybook --port 5009',
       'storybook:build': 'NODE_ENV=development build-storybook -c .storybook -o build',
       lint: 'eslint src/',
