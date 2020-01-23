@@ -6,7 +6,7 @@ import { Switch, Route, AuthRoute, NotFound } from '@fs/zion-router'
 // https://reactjs.org/docs/react-api.html#reactlazy
 const HomePage = React.lazy(() => import('./components/example/HomePage'))
 const UserInfo = React.lazy(() => import('./components/example/UserInfo'))
-const I18nPage = React.lazy(() => import('./components/example/I18nPage'))
+// const I18nPage = React.lazy(() => import('./components/example/I18nPage'))
 
 function App() {
   return (
