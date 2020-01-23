@@ -1,25 +1,24 @@
 import React from 'react'
-import { Button, Card, CardMedia, CardActions, CardContent, HeaderBlock, Separator } from '@fs/zion-ui'
+import { MenuPopout, LogoGithub } from '@fs/zion-icon'
+import { Button, Card, CardMedia, CardActions, CardHeader } from '@fs/zion-ui'
 import ZionImage from './zion.jpg'
 
-const ZionCard = () => (
-  <Card>
-    <CardMedia height="calc(var(--cell-width) / 1.906)" image={ZionImage} alt="Zion National Park" />
-    <CardContent>
-      <Separator size="xs" />
-      <HeaderBlock
-        size="md"
-        heading="Zion"
-        subHeading="Zion is the place to go to find reusable components for your FamilySearch application."
-      />
-      <Separator size="xs" />
-    </CardContent>
-    <CardActions>
-      <Button href="https://beta.familysearch.org/frontier/zion">Components</Button>
-      <Button href="https://github.com/fs-webdev/zion">Github</Button>
-    </CardActions>
-  </Card>
-)
+const ZionCard = () => {
+  return (
+    <Card>
+      <CardMedia height="calc(var(--cell-width) / 2.5)" image={ZionImage} alt="Zion National Park" />
+      <CardHeader heading="Zion Design System" />
+      <CardActions>
+        <Button Icon={MenuPopout} keyline="left" href="https://beta.familysearch.org/frontier/zion">
+          Zion Docs + Components
+        </Button>
+        <Button Icon={LogoGithub} href="https://github.com/fs-webdev/zion">
+          Github
+        </Button>
+      </CardActions>
+    </Card>
+  )
+}
 
 // Use React.memo() to keep our component from re-rendering if the props havent changed
 // https://reactjs.org/docs/react-api.html#reactmemo

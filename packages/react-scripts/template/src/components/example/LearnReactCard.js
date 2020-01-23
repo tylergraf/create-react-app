@@ -1,25 +1,27 @@
 import React from 'react'
-import { Button, Card, CardMedia, CardActions, CardContent, HeaderBlock, Separator } from '@fs/zion-ui'
+import { MenuPopout } from '@fs/zion-icon'
+import { Button, Card, CardMedia, CardActions, CardHeader } from '@fs/zion-ui'
 import ReactImage from './reactjs.jpg'
 
 const LearnReactCard = () => (
   <Card>
-    <CardMedia image={ReactImage} alt="React" height="300px" />
-    <CardContent>
-      <Separator size="xs" />
-      <HeaderBlock size="md" heading="Learn React" />
-      <Separator size="xs" />
-    </CardContent>
+    <CardMedia image={ReactImage} alt="React" height="calc(var(--cell-width) / 2.5)" />
+    <CardHeader heading="Learn React" />
     <CardActions>
-      <Button href="https://reactjs.org/docs/getting-started.html">React Docs</Button>
-      <Button href="https://github.com/fs-webdev/skill-building-program/tree/master/badges-active/react">
+      <Button Icon={MenuPopout} href="https://reactjs.org/docs/getting-started.html">
+        React Docs
+      </Button>
+      <Button
+        Icon={MenuPopout}
+        href="https://github.com/fs-webdev/skill-building-program/tree/master/badges-active/react"
+      >
         Earn your Badge
       </Button>
     </CardActions>
   </Card>
 )
 
-// Use React.memo() to keep our component from re-rendering if the props havent changed
+// Use React.memo() to keep our component from re-rendering if the props haven't changed
 // https://reactjs.org/docs/react-api.html#reactmemo
 // https://egghead.io/lessons/react-prevent-unnecessary-component-rerenders-with-react-memo
 export default React.memo(LearnReactCard)
