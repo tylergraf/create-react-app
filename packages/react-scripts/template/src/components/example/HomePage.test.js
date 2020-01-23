@@ -1,9 +1,9 @@
 import React from 'react'
 import { render } from '@fs/zion-testing-library'
-import ExamplePage from './ExamplePage'
+import HomePage from './HomePage'
 
 test('renders with Frontier Application on the page', () => {
-  const { getByText } = render(<ExamplePage />)
-  const frontierApplication = getByText(/Frontier Application/i)
+  const { getByText } = render(<HomePage />)
+  const frontierApplication = getByText(/Welcome to the start of your new Frontier application/i)
   expect(frontierApplication).toBeInTheDocument()
 })

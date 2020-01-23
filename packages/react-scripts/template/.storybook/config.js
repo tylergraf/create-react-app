@@ -15,7 +15,7 @@ import withThemeSwitcher from '@fs/storybook-addons/dist/theme-switcher/withThem
 addDecorator(withKnobs)
 addDecorator(withA11y)
 addDecorator(addReadme)
-addDecorator(storyFn => <I18nProvider i18nInstance={i18n}>{storyFn()}</I18nProvider>)
+addDecorator((storyFn) => <I18nProvider i18nInstance={i18n}>{storyFn()}</I18nProvider>)
 addDecorator(withThemeSwitcher({ themes }))
 
 // eslint-disable-next-line no-extend-native
