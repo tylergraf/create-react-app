@@ -13,7 +13,7 @@ import {
   DialogOverlayContent,
 } from '@fs/zion-ui'
 import { css } from '@emotion/core'
-import NoticeLoading from '@fs/zion-icon/src/icons/NoticeLoading'
+import { NoticeLoading } from '@fs/zion-icon'
 import ZionCard from './ZionCard'
 import ArtifactsViewer from './ArtifactsViewer'
 import LearnReactCard from './LearnReactCard'

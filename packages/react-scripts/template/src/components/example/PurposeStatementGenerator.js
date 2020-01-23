@@ -42,7 +42,6 @@ const PurposeStatementGenerator = () => {
   const atSize = useAtSize()
 
   const handleFormSubmit = (formData) => {
-    console.log(formData)
     setData(formData)
   }
 

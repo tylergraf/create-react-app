@@ -12,7 +12,6 @@ export default function UserInfo() {
   const [{ portraitUrl }] = usePersonPortrait(user.personId)
   const [{ details }] = usePersonDetails(user.personId)
 
-  console.log('user', user, portraitUrl, details)
   if (!user.signedIn || !details) return 'Loading ...'
   const sex = user.gender ? user.gender.toLowerCase() : 'unknown'
   return (
