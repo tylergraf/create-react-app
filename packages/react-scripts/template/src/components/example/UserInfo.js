@@ -2,18 +2,18 @@ import React from 'react'
 import { useUser } from '@fs/zion-user'
 import { useTranslation } from 'react-i18next'
 import { Cell, Grid, HeaderBlock, List, ListItem, PersonBlock, Separator, CollapsableListItem } from '@fs/zion-ui'
-import axios from '@fs/zion-axios'
+import { NoticeLoading } from '@fs/zion-icon'
+import ErrorBoundary from '@fs/zion-error-boundary'
+import usePersonDetails from './personDetailsService'
 import usePersonPortrait from './portraitService'
 import ResponsiveDebug from './ResponsiveDebug'
 
-export default function UserInfo() {
+export default function UserInfoPage() {
   const { t } = useTranslation()
   const user = useUser()
-  const [{ portraitUrl }] = usePersonPortrait(user.personId)
-  const [{ details }] = usePersonDetails(user.personId)
 
-  if (!user.signedIn || !details) return 'Loading ...'
-  const sex = user.gender ? user.gender.toLowerCase() : 'unknown'
+  if (!user.signedIn) return <NoticeLoading />
+
   return (
     <>
       <Separator size="sm" />
@@ -26,37 +26,9 @@ export default function UserInfo() {
           <Separator size="sm" />
         </Cell>
         <Cell>
-          <PersonBlock
-            size="lg"
-            avatarProps={{
-              src: portraitUrl || '',
-              sex,
-            }}
-            name={user.displayName}
-            details={`${user.personId}`}
-          />
-        </Cell>
-        <Cell>
-          <List>
-            <CollapsableListItem primaryText="Identification">
-              <ListItem primaryText="CIS" metaText={user.cisId} />
-              <ListItem primaryText="PID" metaText={user.personId} />
-              <ListItem primaryText="Family Name" metaText={details.familyName} />
-              <ListItem primaryText="Full Bame" metaText={details.fullName} />
-              <ListItem primaryText="Display Name" metaText={user.displayName} />
-              <ListItem primaryText="Contact Name" metaText={user.contactName} />
-              <ListItem primaryText="Gender" metaText={user.gender} />
-            </CollapsableListItem>
-            <CollapsableListItem primaryText="Birth">
-              <ListItem primaryText="Lifespan" metaText={details.summary.lifespan} />
-              <ListItem primaryText="Date of Birth" metaText={details.summary.lifespanBegin.date.original} />
-              <ListItem primaryText="Place of Birth" metaText={details.summary.lifespanBegin.place.original} />
-            </CollapsableListItem>
-            <CollapsableListItem primaryText="Stats">
-              <ListItem primaryText="Contributor Count" metaText={details.personStats.contributorCount} />
-              <ListItem primaryText="User Change Count" metaText={details.personStats.userChangeCount} />
-            </CollapsableListItem>
-          </List>
+          <ErrorBoundary>
+            <UserInfo user={user} />
+          </ErrorBoundary>
         </Cell>
       </Grid>
       <ResponsiveDebug />
@@ -64,28 +36,48 @@ export default function UserInfo() {
   )
 }
 
-// Hook for fetching a users details
-function usePersonDetails(personId) {
-  const reducer = (state, { type, response }) => {
-    switch (type) {
-      case 'FETCHING':
-        return { ...state, status: 'FETCHING' }
-      case 'SUCCESS':
-        return { ...state, status: 'SUCCESS', details: response.data }
-      case 'ERROR':
-        return { ...state, status: 'ERROR', response }
-      default:
-        return state
-    }
-  }
-  const [state, dispatch] = React.useReducer(reducer, { status: null, response: null })
+const UserInfo = React.memo(({ user }) => {
+  const [{ status: portraitStatus, portraitUrl }] = usePersonPortrait(user.personId)
+  const [{ status: detailsStatus, details }] = usePersonDetails(user.personId)
 
-  React.useEffect(() => {
-    axios
-      .get(`/service/tree/tf/person/CURRENT`)
-      .then((response) => dispatch({ type: 'SUCCESS', response }))
-      .catch((response) => dispatch({ type: 'ERROR', response }))
-  }, [personId])
+  if (!(portraitStatus === 'SUCCESS' && detailsStatus === 'SUCCESS')) return <NoticeLoading />
+  const sex = user.gender ? user.gender.toLowerCase() : 'unknown'
 
-  return [state]
-}
+  return (
+    <Grid>
+      <Cell>
+        <PersonBlock
+          size="lg"
+          avatarProps={{
+            src: portraitUrl || '',
+            sex,
+          }}
+          name={user.displayName}
+          details={`${user.personId}`}
+        />
+      </Cell>
+      <Cell>
+        <List>
+          <CollapsableListItem primaryText="Identification">
+            <ListItem primaryText="CIS" metaText={user.cisId} />
+            <ListItem primaryText="PID" metaText={user.personId} />
+            <ListItem primaryText="Family Name" metaText={details.familyName} />
+            <ListItem primaryText="Full Bame" metaText={details.fullName} />
+            <ListItem primaryText="Display Name" metaText={user.displayName} />
+            <ListItem primaryText="Contact Name" metaText={user.contactName} />
+            <ListItem primaryText="Gender" metaText={user.gender} />
+          </CollapsableListItem>
+          <CollapsableListItem primaryText="Birth">
+            <ListItem primaryText="Lifespan" metaText={details.summary.lifespan} />
+            <ListItem primaryText="Date of Birth" metaText={details.summary.lifespanBegin.date.original} />
+            <ListItem primaryText="Place of Birth" metaText={details.summary.lifespanBegin.place.original} />
+          </CollapsableListItem>
+          <CollapsableListItem primaryText="Stats">
+            <ListItem primaryText="Contributor Count" metaText={details.personStats.contributorCount} />
+            <ListItem primaryText="User Change Count" metaText={details.personStats.userChangeCount} />
+          </CollapsableListItem>
+        </List>
+      </Cell>
+    </Grid>
+  )
+})

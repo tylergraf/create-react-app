@@ -1,6 +1,7 @@
 import React from 'react'
 import { Tab, Tabs } from '@fs/zion-ui'
 import { Switch, Route, AuthRoute, NotFound } from '@fs/zion-router'
+import ErrorBoundary from '@fs/zion-error-boundary'
 
 // Dynamically load components to reduce bundle size
 // https://reactjs.org/docs/react-api.html#reactlazy
@@ -10,7 +11,7 @@ const UserInfo = React.lazy(() => import('./components/example/UserInfo'))
 
 function App() {
   return (
-    <>
+    <ErrorBoundary>
       <Tabs>
         <Tab title="Home" to="./" />
         <Tab title="User Info" to="/user" />
@@ -23,7 +24,7 @@ function App() {
         {/* <Route path="/i18n" component={I18nPage} /> */}
         <Route component={NotFound} />
       </Switch>
-    </>
+    </ErrorBoundary>
   )
 }
 export default App
