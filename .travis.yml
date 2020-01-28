@@ -17,7 +17,7 @@ script:
   - npm test
   # test that a new app can be created with these scripts
   - mkdir -p ${HOME}/tmp && cd ${HOME}/tmp
-  - npx create-react-app fresh-cra-template --use-npm --scripts-version file:${TRAVIS_BUILD_DIR}/packages/react-scripts/
+  - npx create-react-app@3.2.0 fresh-cra-template --use-npm --scripts-version file:${TRAVIS_BUILD_DIR}/packages/react-scripts/
   - cd fresh-cra-template
   # this is necessary so we can do some additional npm installs in the freshCraTemplateUpdate.sh script
   - echo "//code.lds.org/artifactory/api/npm/npm-fhd/:_authToken=${NPM_PUBLISH_TOKEN}" >> ${HOME}/tmp/fresh-cra-template/.npmrc
