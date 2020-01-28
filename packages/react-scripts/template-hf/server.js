@@ -24,6 +24,10 @@ const snowConfig = {
       description: 'The coolest experiment. Author/Owner: {Your Name}',
       default: false,
     },
+    {
+      name: 'header2019',
+      default: true
+    },
   ],
   proxyUser: false,
   cacheEncryption: true,

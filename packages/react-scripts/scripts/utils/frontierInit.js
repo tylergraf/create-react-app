@@ -25,6 +25,7 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/zion-icon@3.0.0-alpha.1',
       '@fs/zion-locale@3.0.0-alpha.2',
       '@fs/zion-root@3.0.0-alpha.3',
+      '@fs/zion-error-boundary@2.0.0-alpha.1',
       '@fs/zion-router@3.0.0-alpha.1',
       '@fs/zion-style-normalize@3.0.0-alpha.2',
       '@fs/zion-subnav@2.0.0-alpha.1',
