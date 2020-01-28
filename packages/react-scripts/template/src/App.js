@@ -6,7 +6,7 @@ import ErrorBoundary from '@fs/zion-error-boundary'
 // Dynamically load components to reduce bundle size
 // https://reactjs.org/docs/react-api.html#reactlazy
 const HomePage = React.lazy(() => import('./components/example/HomePage'))
-const UserInfo = React.lazy(() => import('./components/example/UserInfo'))
+const UserInfoPage = React.lazy(() => import('./components/example/UserInfoPage'))
 const I18nPage = React.lazy(() => import('./components/example/I18nPage'))
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
 
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <AuthRoute path="/user" component={UserInfo} />
+        <AuthRoute path="/user" component={UserInfoPage} />
         <Route path="/i18n" component={I18nPage} />
         <Route component={NotFound} />
       </Switch>
