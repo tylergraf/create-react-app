@@ -3,7 +3,7 @@ import { withKnobs, text, number } from '@storybook/addon-knobs'
 
 import HomePageComponent from './HomePage'
 import LearnReactCardComponent from './LearnReactCard'
-import ZionCardComponent from './ZionCard'
+import ZionDesignCardComponent from './ZionDesignCard'
 import WagonWheelComponent from './WagonWheel'
 import PurposeStatementGeneratorComponent from './PurposeStatementGenerator'
 
@@ -15,7 +15,7 @@ export const HomePage = () => <HomePageComponent />
 
 export const LearnReactCard = () => <LearnReactCardComponent />
 
-export const ZionCard = () => <ZionCardComponent />
+export const ZionDesignCard = () => <ZionDesignCardComponent />
 
 export const PurposeStatementGenerator = () => <PurposeStatementGeneratorComponent />
 
