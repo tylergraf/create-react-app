@@ -14,7 +14,7 @@ import {
 } from '@fs/zion-ui'
 import { css } from '@emotion/core'
 import { NoticeLoading } from '@fs/zion-icon'
-import ZionCard from './ZionCard'
+import ZionDesignCard from './ZionDesignCard'
 import ArtifactsViewer from './ArtifactsViewer'
 import LearnReactCard from './LearnReactCard'
 import PurposeStatementGenerator from './PurposeStatementGenerator'
@@ -78,7 +78,7 @@ const HomePage = () => {
         </Cell>
 
         <Cell columns={atSize({ md: 6 })}>
-          <ZionCard />
+          <ZionDesignCard />
         </Cell>
 
         <Cell columns={atSize({ md: 6 })}>

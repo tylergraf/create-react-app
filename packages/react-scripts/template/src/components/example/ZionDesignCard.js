@@ -3,7 +3,7 @@ import { MenuPopout, LogoGithub } from '@fs/zion-icon'
 import { Button, Card, CardMedia, CardActions, CardHeader } from '@fs/zion-ui'
 import ZionImage from './zion.jpg'
 
-const ZionCard = () => {
+const ZionDesignCard = () => {
   return (
     <Card>
       <CardMedia height="calc(var(--cell-width) / 2.5)" image={ZionImage} alt="Zion National Park" />
@@ -23,4 +23,4 @@ const ZionCard = () => {
 // Use React.memo() to keep our component from re-rendering if the props havent changed
 // https://reactjs.org/docs/react-api.html#reactmemo
 // https://egghead.io/lessons/react-prevent-unnecessary-component-rerenders-with-react-memo
-export default React.memo(ZionCard)
+export default React.memo(ZionDesignCard)
