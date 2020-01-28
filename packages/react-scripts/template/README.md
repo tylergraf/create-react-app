@@ -4,10 +4,10 @@ This project was bootstrapped with FamilySearch's [Fork of Create React App](htt
 
 ## Running App Locally
 There are a few steps to get this app cloned and ready to run locally.
-1. Clone this repo to your machine  
+1. Clone this repo to your machine
   `git clone https://github.com/fs-webdev/{GITHUB_REPO}.git`
 2. Run `npm install`
-3. Make sure you have @fs/fr-cli installed  
+3. Make sure you have @fs/fr-cli installed
   `npm i -g @fs/fr-cli`
 4. Run `fr env` to make a .env file for you automatically
 5. You should now be in a good state to run/develop the app locally
