@@ -127,6 +127,6 @@
     ]
   },
   "publishConfig": {
-    "registry": "https://code.lds.org/artifactory/api/npm/npm-fhd/"
+    "registry": "https://repo.churchofjesuschrist.org/artifactory/api/npm/npm-fhd/"
   }
 }
