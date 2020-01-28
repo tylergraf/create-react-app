@@ -59,7 +59,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
       ),
     },
     transformIgnorePatterns: [
-      "node_modules/(\\?!@fs)",
+      "node_modules/(\\?!lodash-es|@popper)",
       '^.+\\.module\\.(css|sass|scss)$',
     ],
     modulePaths: modules.additionalModulePaths || [],
