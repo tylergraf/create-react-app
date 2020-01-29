@@ -5,7 +5,7 @@ import ReactImage from './reactjs.jpg'
 
 const LearnReactCard = () => (
   <Card>
-    <CardMedia image={ReactImage} alt="React" height="calc(var(--cell-width, 300px) / 2.5)" />
+    <CardMedia image={ReactImage} alt="React" height="calc(var(--cell-width, 750px) / 2.5)" />
     <CardHeader heading="Learn React" />
     <CardActions>
       <Button Icon={MenuPopout} href="https://reactjs.org/docs/getting-started.html">
