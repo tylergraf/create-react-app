@@ -73,13 +73,15 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       lint: 'eslint src/',
       'lint:fix': 'eslint src/ --fix',
     }
-    packageJson.scripts = { ...packageJson.scripts, ...additionalScripts }
+
+    packageJson.scripts = sortScripts({ ...packageJson.scripts, ...additionalScripts })
     delete packageJson.scripts.eject
     packageJson.eslintConfig = { extends: ['@fs/eslint-config-frontier-react'] }
     packageJson.husky = {
       hooks: { 'pre-commit': 'lint-staged', 'pre-push': 'npm run lint && CI=true npm test' },
     }
     packageJson['lint-staged'] = { '*.js': ['suppress-exit-code eslint --fix', 'git add'] }
+    packageJson.engines = { node: '12' }
     return packageJson
   })
   installModulesSync(depsToInstall)
@@ -89,6 +91,8 @@ function installFrontierDependencies(appPath, appName, ownPath) {
   // syncLocales()
 
   replaceStringInFile(appPath, './README.md', /\{GITHUB_REPO\}/g, appName)
+
+  fs.unlinkSync(path.join(appPath, 'package-lock.json'));
 }
 
 function alterPackageJsonFile(appPath, extendFunction) {
@@ -136,7 +140,6 @@ function configureHF(appPath, ownPath) {
       ...additionalScripts,
     })
     packageJson.main = './index.js'
-    packageJson.engines = { node: '12' }
 
     return packageJson
   })
