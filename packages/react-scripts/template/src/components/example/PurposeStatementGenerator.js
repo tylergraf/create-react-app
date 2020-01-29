@@ -150,23 +150,23 @@ const PurposeStatementGenerator = () => {
   )
 }
 
+const purposeStatementCss = css`
+  height: 100%;
+  color: ${colors.feedback.confirmation.accent};
+  background-color: ${colors.background.secondary};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 50px;
+  text-align: center;
+`
 const PurposeStatement = ({
   data: { adjective1, pluralNoun1, emotion1, pluralNoun2, pluralNoun3, verb1, verb2, verb3, timePeriod1 },
 }) => {
-  const containerCss = css`
-    height: 100%;
-    color: ${colors.feedback.confirmation.accent};
-    background-color: ${colors.background.secondary};
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 50px;
-    text-align: center;
-  `
   const purposeStatement = `We create ${adjective1} ${pluralNoun1} that bring ${emotion1.primaryText} to all ${pluralNoun2} as they ${verb1}, ${verb2} and ${verb3} their ${pluralNoun3} — past, present and ${timePeriod1}.`
 
   return (
-    <div css={containerCss}>
+    <div css={purposeStatementCss}>
       <HeaderBlock size="md" heading={purposeStatement} />
     </div>
   )

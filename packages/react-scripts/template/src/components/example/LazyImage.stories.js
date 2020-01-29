@@ -7,26 +7,25 @@ export default {
   title: 'LazyImage',
 }
 
+const storyCss = css`
+  position: absolute;
+  bottom: -385px;
+  padding-bottom: 20px;
+  img {
+    height: 360px;
+    width: 640px;
+    opacity: 0.3;
+    &.loaded {
+      transition: opacity 1s ease-in-out;
+      opacity: 1;
+    }
+  }
+`
 export const LazyImageStory = () => {
   return (
     <div>
       <div>⬇️ Scroll down to see image lazy load ⬇️</div>
-      <div
-        css={css`
-          position: absolute;
-          bottom: -385px;
-          padding-bottom: 20px;
-          img {
-            height: 360px;
-            width: 640px;
-            opacity: 0.3;
-            &.loaded {
-              transition: opacity 1s ease-in-out;
-              opacity: 1;
-            }
-          }
-        `}
-      >
+      <div css={storyCss}>
         <LazyImage src={`https://placekitten.com/640/360?ts=${Math.random()}`} />
       </div>
     </div>
