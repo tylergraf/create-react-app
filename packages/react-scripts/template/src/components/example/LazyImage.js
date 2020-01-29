@@ -3,7 +3,7 @@ import React from 'react'
 const defaultPlaceHolder =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII='
 
-const LazyImage = ({ src, alt, placeholder = defaultPlaceHolder, handleOnError, handleOnLoad }) => {
+const LazyImage = ({ src, alt, placeholder = defaultPlaceHolder, handleOnError, handleOnLoad, className }) => {
   const [imageSrc, setImageSrc] = React.useState(placeholder)
   const [imageRef, setImageRef] = React.useState()
 
@@ -51,7 +51,7 @@ const LazyImage = ({ src, alt, placeholder = defaultPlaceHolder, handleOnError, 
     }
   }, [imageRef, imageSrc, placeholder, src])
 
-  return <img ref={setImageRef} src={imageSrc} alt={alt} onLoad={onLoad} onError={onError} />
+  return <img className={className} ref={setImageRef} src={imageSrc} alt={alt} onLoad={onLoad} onError={onError} />
 }
 
 export default LazyImage

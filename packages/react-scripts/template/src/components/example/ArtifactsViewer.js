@@ -5,13 +5,13 @@ import axios from '@fs/zion-axios'
 import RequireSignedInUser from './RequireSignedInUser'
 import LazyImage from './LazyImage'
 
+const artifactsCss = css`
+  margin: 0 -24px;
+`
 const ArtifactsViewer = ({ user: { cisId } }) => {
   // Use our custom hook
   const [{ loading, artifacts, photos, error }] = useArtifacts(cisId)
 
-  const containerCss = css`
-    margin: 0 -24px;
-  `
   function renderLoading() {
     return <Banner color={colors.background.primary} message="Finding some fantastic photos of your ancestors ..." />
   }
@@ -32,7 +32,7 @@ const ArtifactsViewer = ({ user: { cisId } }) => {
   function renderArtifacts() {
     if (!artifacts || !artifacts.length) return renderNoArtifacts()
     return (
-      <div css={containerCss}>
+      <div css={artifactsCss}>
         <PhotoViewer photos={photos} />
       </div>
     )
@@ -42,32 +42,32 @@ const ArtifactsViewer = ({ user: { cisId } }) => {
   return loading ? renderLoading() : renderArtifacts()
 }
 
-const PhotoViewer = ({ photos, height = '250px' }) => {
-  const containerCss = css`
-    height: ${height};
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    background: ${colors.background.primary};
+const photoViewerCss = css`
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  background: ${colors.background.primary};
+`
+const viewerImageCss = css`
+  height: 100%;
+  margin-right: 8px;
 
-    img {
-      margin-right: 8px;
-      height: ${height};
-      &.loaded:not(.has-error) {
-        animation: loaded 300ms ease-in-out;
-      }
-      &.has-error {
-      }
-      @keyframes loaded {
-        0% {
-          opacity: 0.1;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
+  &.loaded:not(.has-error) {
+    animation: loaded 300ms ease-in-out;
+  }
+  &.has-error {
+  }
+  @keyframes loaded {
+    0% {
+      opacity: 0.1;
     }
-  `
+    100% {
+      opacity: 1;
+    }
+  }
+`
+
+const PhotoViewer = ({ photos, height = 250 }) => {
   const handleOnError = (event) => {
     // event.target.src = `https://dummyimage.com/${height}/e0e2e2/000.png&text=unable+to+load+:(`
     // event.target.src = `https://placekitten.com/250`
@@ -75,23 +75,21 @@ const PhotoViewer = ({ photos, height = '250px' }) => {
   }
 
   return (
-    <div css={containerCss}>
+    <div css={photoViewerCss} style={{ height }}>
       {photos.map((photo) => (
-        <LazyImage key={photo.id} src={photo.url} alt={photo.alt} handleOnError={handleOnError} />
+        <LazyImage css={viewerImageCss} key={photo.id} src={photo.url} alt={photo.alt} handleOnError={handleOnError} />
       ))}
     </div>
   )
 }
 
+const bannerCss = css`
+  padding: 25px;
+  text-align: center;
+  color: ${colors.text.primary};
+`
 const Banner = ({ message, color }) => (
-  <div
-    css={css`
-      padding: 25px;
-      text-align: center;
-      background: ${color};
-      color: ${colors.text.primary};
-    `}
-  >
+  <div css={bannerCss} style={{ backgroundColor: color }}>
     <HeaderBlock size="sm" heading={message} />
   </div>
 )
