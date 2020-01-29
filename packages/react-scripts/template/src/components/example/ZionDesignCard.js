@@ -6,7 +6,7 @@ import ZionImage from './zion.jpg'
 const ZionDesignCard = () => {
   return (
     <Card>
-      <CardMedia height="calc(var(--cell-width) / 2.5)" image={ZionImage} alt="Zion National Park" />
+      <CardMedia height="calc(var(--cell-width, 750px) / 2.5)" image={ZionImage} alt="Zion National Park" />
       <CardHeader heading="Zion Design System" />
       <CardActions>
         <Button Icon={MenuPopout} keyline="left" href="https://beta.familysearch.org/frontier/zion">
