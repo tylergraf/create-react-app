@@ -21,3 +21,13 @@ afterEach(() => async () => {
 // particular application/component.
 
 // Add any global configuration for your tests below...
+
+// Mock matchMedia (used in zion-ui dialog)
+// See: https://jestjs.io/docs/en/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
+window.matchMedia = jest.fn().mockImplementation((query) => ({
+  matches: false,
+  media: query,
+  onchange: null,
+  addListener: jest.fn(),
+  removeListener: jest.fn(),
+}))

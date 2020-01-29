@@ -1,1 +1,0 @@
-export * from '@fs/zion-frontend-friends/__mocks__/@fs/zion-frontend-friends'
