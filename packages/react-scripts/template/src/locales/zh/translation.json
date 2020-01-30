@@ -1,6 +1,7 @@
 {
   "birth.label": "出生",
   "death.label": "死亡",
+  "welcome.message.name": "歡迎來到 FamilySearch，{name}",
   "lesson.plan.title.placeholder": "課程{number, number}（{date, date, medium}）",
   "modified.attribution": "修改日期：{date, date} 建立者：{user} ",
   "app.unavailable.alert": "{app}將於{month}{ordinalDayOfMonth}{weekday}，{time}（世界標準時間{utcOffset}）起改善網站，約持續{duration}，屆時將無法使用。  很抱歉造成不便。",
