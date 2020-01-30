@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react'
 import {
   Body1,
-  Button,
   colors,
   Cell,
   DialogOverlay,
@@ -12,15 +11,21 @@ import {
   useOverlay,
   DialogOverlayContent,
 } from '@fs/zion-ui'
+
 import { css } from '@emotion/core'
 import { NoticeLoading } from '@fs/zion-icon'
+import zionDebug from '@fs/zion-debug'
 import ZionDesignCard from './ZionDesignCard'
-import ArtifactsViewer from './ArtifactsViewer'
 import LearnReactCard from './LearnReactCard'
 import PurposeStatementGenerator from './PurposeStatementGenerator'
 import WagonWheel from './WagonWheel'
-import WagonWheelControl from './WagonWheelControl'
 import ResponsiveDebug from './ResponsiveDebug'
+import RequireSignedInUser from './RequireSignedInUser'
+import Banner from './Banner'
+
+const debug = zionDebug('frontier:cra:example')
+const WagonWheelControl = React.lazy(() => import('./WagonWheelControl'))
+const ArtifactsViewer = React.lazy(() => import('./ArtifactsViewer'))
 
 // Custom CSS
 const gettingStartedCss = css`
@@ -34,17 +39,24 @@ const HomePage = () => {
   // Initiate state variables and hooks
   const atSize = useAtSize()
   const overlay = useOverlay({})
-  const [logoColor, setLogoColor] = React.useState(colors.text.primary)
-  const [logoAnimationDuration, setLogoAnimationDuration] = React.useState('0s')
+  const [wheelColor, setWheelColor] = React.useState(colors.text.primary)
+  const [wheelSpeed, setWheelSpeed] = React.useState('0s')
 
-  // Event handlers
-  function handleLogoColorChange(color) {
-    setLogoColor(color)
-  }
+  const handleWheelSpeedChange = React.useCallback(
+    (speed) => {
+      debug(`changing wheel animation speed: ${speed}`)
+      setWheelSpeed(speed)
+    },
+    [setWheelSpeed]
+  )
 
-  function handleLogoChangeAnimationDuration(duration) {
-    setLogoAnimationDuration(duration)
-  }
+  const handleWheelColorChange = React.useCallback(
+    (color) => {
+      debug(`changing wheel color: ${color}`)
+      setWheelColor(color)
+    },
+    [setWheelColor]
+  )
 
   return (
     <>
@@ -61,8 +73,8 @@ const HomePage = () => {
         <Cell columns={atSize({ sm: 4 })}>
           <WagonWheel
             alt="Wagon Wheel"
-            color={logoColor}
-            animationDuration={logoAnimationDuration}
+            color={wheelColor}
+            animationDuration={wheelSpeed}
             handleClick={overlay.handleOpen}
           />
         </Cell>
@@ -95,19 +107,27 @@ const HomePage = () => {
         </Cell>
 
         <Cell>
-          <ArtifactsViewer />
+          <RequireSignedInUser
+            Component={ArtifactsViewer}
+            fallback={
+              <Banner
+                color={colors.help.accent2}
+                message="We really want to show you some pictures of your ancestors but you must sign in first"
+              />
+            }
+          />
         </Cell>
       </Grid>
 
       {/* Overlay */}
-      <Suspense fallback={<Button Icon={NoticeLoading}>Wagon Wheel Controls</Button>}>
+      <Suspense fallback={<NoticeLoading />}>
         <DialogOverlay headingText="Wagon Wheel Controls" {...overlay}>
           <DialogOverlayContent>
             <WagonWheelControl
-              color={logoColor}
-              animationDuration={logoAnimationDuration}
-              handleColorChange={handleLogoColorChange}
-              handleAnimationDurationChange={handleLogoChangeAnimationDuration}
+              color={wheelColor}
+              animationDuration={wheelSpeed}
+              handleColorChange={handleWheelColorChange}
+              handleAnimationDurationChange={handleWheelSpeedChange}
             />
           </DialogOverlayContent>
         </DialogOverlay>

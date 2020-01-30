@@ -87,4 +87,4 @@ const WagonWheelControl = ({ animationDuration, color, handleColorChange, handle
   )
 }
 
-export default WagonWheelControl
+export default React.memo(WagonWheelControl)
