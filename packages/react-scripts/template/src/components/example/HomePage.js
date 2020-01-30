@@ -22,12 +22,20 @@ import WagonWheel from './WagonWheel'
 import WagonWheelControl from './WagonWheelControl'
 import ResponsiveDebug from './ResponsiveDebug'
 
+// Custom CSS
+const gettingStartedCss = css`
+  color: ${colors.text.secondary};
+  background-color: ${colors.background.secondary};
+  padding: 20px 20px 8px 20px;
+  margin: 0 -24px;
+`
+
 const HomePage = () => {
   // Initiate state variables and hooks
   const atSize = useAtSize()
   const overlay = useOverlay({})
   const [logoColor, setLogoColor] = React.useState(colors.text.primary)
-  const [logoAnimationDuration, setLogoAnimationDuration] = React.useState(0)
+  const [logoAnimationDuration, setLogoAnimationDuration] = React.useState('0s')
 
   // Event handlers
   function handleLogoColorChange(color) {
@@ -38,13 +46,6 @@ const HomePage = () => {
     setLogoAnimationDuration(duration)
   }
 
-  // Custom CSS
-  const gettingStartedCss = css`
-    color: ${colors.text.secondary};
-    background-color: ${colors.background.secondary};
-    padding: 20px 20px 8px 20px;
-    margin: 0 -24px;
-  `
   return (
     <>
       <Separator size="sm" />
@@ -61,8 +62,7 @@ const HomePage = () => {
           <WagonWheel
             alt="Wagon Wheel"
             color={logoColor}
-            animationDuration={parseInt(logoAnimationDuration, 10)}
-            h
+            animationDuration={logoAnimationDuration}
             handleClick={overlay.handleOpen}
           />
         </Cell>

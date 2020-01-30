@@ -6,36 +6,34 @@ import WagonWheel from './WagonWheel'
 export const WheelSpeedOptions = {
   stop: {
     label: 'Stopped',
-    animationDuration: 0,
+    animationDuration: '0s',
   },
   slow: {
     label: 'Slow',
-    animationDuration: 20,
+    animationDuration: '20s',
   },
   medium: {
     label: 'Medium',
-    animationDuration: 7,
+    animationDuration: '7s',
   },
   fast: {
     label: 'Fast',
-    animationDuration: 1,
+    animationDuration: '1s',
   },
 }
+
+const colorCellCss = css`
+  height: var(--cell-width);
+  cursor: pointer;
+`
 
 const WagonWheelControl = ({ animationDuration, color, handleColorChange, handleAnimationDurationChange }) => {
   const atSize = useAtSize()
 
-  // Custom CSS
-  const colorCellCss = (a) => css`
-    background-color: ${a};
-    height: var(--cell-width);
-    cursor: pointer;
-  `
-
   return (
     <Grid>
       <Cell columns={atSize({ sm: 6 })}>
-        <WagonWheel maxHeight="150px" color={color} animationDuration={parseInt(animationDuration, 10)} />
+        <WagonWheel maxHeight={150} color={color} animationDuration={animationDuration} />
         <Separator />
       </Cell>
       <Cell columns={atSize({ sm: 6 })}>
@@ -43,7 +41,7 @@ const WagonWheelControl = ({ animationDuration, color, handleColorChange, handle
           {Object.keys(WheelSpeedOptions).map((k) => {
             return (
               <Radio
-                checked={parseInt(animationDuration, 10) === WheelSpeedOptions[k].animationDuration}
+                checked={animationDuration === WheelSpeedOptions[k].animationDuration}
                 name="wheelSpeed"
                 label={WheelSpeedOptions[k].label}
                 value={`${WheelSpeedOptions[k].animationDuration}`}
@@ -69,15 +67,16 @@ const WagonWheelControl = ({ animationDuration, color, handleColorChange, handle
             colors.progress.ready,
             colors.sex.female,
             colors.feedback.warning.accent,
-          ].map((a) => {
+          ].map((c) => {
             return (
-              <Cell key={a} columns={atSize({ xs: 2, sm: 1 })}>
+              <Cell key={c} columns={atSize({ xs: 2, sm: 1 })}>
                 <div
                   tabIndex={0}
                   role="button"
-                  onKeyPress={() => handleColorChange(a)}
-                  onClick={() => handleColorChange(a)}
-                  css={colorCellCss(a)}
+                  onKeyPress={() => handleColorChange(c)}
+                  onClick={() => handleColorChange(c)}
+                  css={colorCellCss}
+                  style={{ backgroundColor: c }}
                 />
               </Cell>
             )

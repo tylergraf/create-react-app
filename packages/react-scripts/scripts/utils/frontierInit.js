@@ -19,18 +19,20 @@ function installFrontierDependencies(appPath, appName, ownPath) {
   depsToInstall.push(
     ...[
       '@emotion/core@10',
-      '@fs/zion-axios@2.0.0-alpha.1',
-      '@fs/zion-cache@2.0.0-alpha.1',
-      '@fs/zion-frontend-friends@2.0.0-alpha.2',
-      '@fs/zion-icon@3.0.0-alpha.1',
-      '@fs/zion-locale@3.0.0-alpha.2',
-      '@fs/zion-root@3.0.0-alpha.3',
-      '@fs/zion-error-boundary@2.0.0-alpha.1',
-      '@fs/zion-router@3.0.0-alpha.1',
-      '@fs/zion-style-normalize@3.0.0-alpha.2',
-      '@fs/zion-subnav@2.0.0-alpha.1',
-      '@fs/zion-user@3.0.0-alpha.1',
-      '@fs/zion-ui@6.0.0-alpha.2',
+      '@fs/zion-axios@2',
+      '@fs/zion-cache@2',
+      '@fs/zion-config@1',
+      '@fs/zion-error-boundary@2',
+      '@fs/zion-frontend-friends@2',
+      '@fs/zion-icon@3',
+      '@fs/zion-locale@3',
+      '@fs/zion-root@3',
+      '@fs/zion-router@3',
+      '@fs/zion-style-normalize@3',
+      '@fs/zion-subnav@2',
+      '@fs/zion-ui@6',
+      '@fs/zion-user@3',
+      '@sentry/browser@5',
       'i18next@19',
       'react-i18next@11',
       'prop-types@15',
@@ -51,7 +53,7 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/eslint-config-frontier-react@4',
       '@fs/babel-preset-frontier@2',
       '@fs/storybook-addons@2.0.0',
-      '@fs/zion-testing-library@3.0.0-alpha.1',
+      '@fs/zion-testing-library@3',
       'eslint@6',
       '@alienfast/i18next-loader@1',
       'dotenv@8',
@@ -73,13 +75,15 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       lint: 'eslint src/',
       'lint:fix': 'eslint src/ --fix',
     }
-    packageJson.scripts = { ...packageJson.scripts, ...additionalScripts }
+
+    packageJson.scripts = sortScripts({ ...packageJson.scripts, ...additionalScripts })
     delete packageJson.scripts.eject
     packageJson.eslintConfig = { extends: ['@fs/eslint-config-frontier-react'] }
     packageJson.husky = {
       hooks: { 'pre-commit': 'lint-staged', 'pre-push': 'npm run lint && CI=true npm test' },
     }
     packageJson['lint-staged'] = { '*.js': ['suppress-exit-code eslint --fix', 'git add'] }
+    packageJson.engines = { node: '12' }
     return packageJson
   })
   installModulesSync(depsToInstall)
@@ -89,6 +93,8 @@ function installFrontierDependencies(appPath, appName, ownPath) {
   // syncLocales()
 
   replaceStringInFile(appPath, './README.md', /\{GITHUB_REPO\}/g, appName)
+
+  fs.unlinkSync(path.join(appPath, 'package-lock.json'));
 }
 
 function alterPackageJsonFile(appPath, extendFunction) {
@@ -136,7 +142,6 @@ function configureHF(appPath, ownPath) {
       ...additionalScripts,
     })
     packageJson.main = './index.js'
-    packageJson.engines = { node: '12' }
 
     return packageJson
   })

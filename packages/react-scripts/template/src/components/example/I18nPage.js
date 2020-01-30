@@ -41,23 +41,32 @@ import { Link } from '@fs/zion-router'
 const random = (lower, upper) => lower + Math.floor(Math.random() * (upper - lower + 1))
 const sample = (array) => array[Math.floor(Math.random() * array.length)]
 
-const PurposeStatement = () => {
-  const containerCss = css`
-    height: 100%;
-    color: ${colors.feedback.confirmation.accent};
-    background-color: ${colors.background.secondary};
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 50px;
-    text-align: center;
-  `
-  const highlightCss = css`
-    color: ${colors.billboard.blue20};
-  `
+const purposeStatementCss = css`
+  height: 100%;
+  color: ${colors.feedback.confirmation.accent};
+  background-color: ${colors.background.secondary};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 50px;
+  text-align: center;
+`
+const highlightCss = css`
+  color: ${colors.billboard.blue20};
+`
 
+const currentLocaleCss = css`
+  color: ${colors.text.secondary};
+  background-color: ${colors.background.secondary};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+`
+
+const PurposeStatement = () => {
   return (
-    <div css={containerCss}>
+    <div css={purposeStatementCss}>
       <HeaderBlock
         size="md"
         heading={
@@ -195,16 +204,7 @@ const I18nPage = () => {
         </Cell>
 
         <Cell>
-          <div
-            css={css`
-              color: ${colors.text.secondary};
-              background-color: ${colors.background.secondary};
-              display: flex;
-              flex-direction: column;
-              justify-content: space-around;
-              padding: 20px;
-            `}
-          >
+          <div css={currentLocaleCss}>
             <Body1>
               The currently active locale code is <strong>{i18n.language}</strong>.
             </Body1>

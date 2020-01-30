@@ -1,5 +1,5 @@
 import React from 'react'
-import { withKnobs, text, number } from '@storybook/addon-knobs'
+import { withKnobs, text, color } from '@storybook/addon-knobs'
 
 import HomePageComponent from './HomePage'
 import LearnReactCardComponent from './LearnReactCard'
@@ -20,7 +20,7 @@ export const ZionDesignCard = () => <ZionDesignCardComponent />
 export const PurposeStatementGenerator = () => <PurposeStatementGeneratorComponent />
 
 export const WagonWheel = () => (
-  <WagonWheelComponent color={text('Color', 'rgb(0,0,0)')} animationDuration={number('Animation Duration', 30)} />
+  <WagonWheelComponent color={color('Color', '#000')} animationDuration={text('Animation Duration', '30s')} />
 )
 
 WagonWheel.story = {
