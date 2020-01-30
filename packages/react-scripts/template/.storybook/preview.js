@@ -2,7 +2,6 @@
 import React, { Suspense } from 'react'
 import { css } from '@emotion/core'
 import { configure, addParameters, addDecorator } from '@storybook/react'
-import { addReadme } from 'storybook-readme'
 import '@storybook/addon-console'
 import { withA11y } from '@storybook/addon-a11y'
 import { withKnobs } from '@storybook/addon-knobs'
@@ -16,7 +15,6 @@ import withThemeSwitcher from '@fs/storybook-addons/dist/theme-switcher/withThem
 
 addDecorator(withKnobs)
 addDecorator(withA11y)
-addDecorator(addReadme)
 addDecorator((storyFn) => (
   <Suspense fallback={<div>Storybook Wrapper Loading...</div>}>
     <I18nProvider i18nInstance={i18n}>
@@ -31,17 +29,9 @@ addDecorator((storyFn) => (
 ))
 addDecorator(withThemeSwitcher({ themes }))
 
-// eslint-disable-next-line no-extend-native
-String.prototype.injectInnerMarkdown = function injectInnerMarkdown(innerMarkdown) {
-  return this.replace('<!-- INNER_MARKDOWN -->', innerMarkdown)
-}
-
 addParameters({
-  readme: { sidebar: '<!-- PROPS -->' },
   options: {
     showPanel: true,
     theme: window.localStorage.getItem('themeId') === 'nightfall' ? darkMode : lightMode,
   },
 })
-
-configure(require.context('../src', true, /\.stories\.(js|mdx)$/), module)
