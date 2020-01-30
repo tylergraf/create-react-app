@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import { Tab, Tabs } from '@fs/zion-ui'
 import { Switch, Route, AuthRoute, NotFound } from '@fs/zion-router'
 import ErrorBoundary from '@fs/zion-error-boundary'
+import { NoticeLoading } from '@fs/zion-icon'
 
 // Dynamically load components to reduce bundle size
 // https://reactjs.org/docs/react-api.html#reactlazy
@@ -11,7 +12,7 @@ const I18nPage = React.lazy(() => import('./components/example/I18nPage'))
 
 function App() {
   return (
-    <Suspense>
+    <Suspense fallback={<NoticeLoading />}>
       <ErrorBoundary>
         <Tabs>
           <Tab title="Home" to="./" />
