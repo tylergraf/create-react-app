@@ -26,7 +26,7 @@ const snowConfig = {
     },
     {
       name: 'header2019',
-      default: true
+      default: true,
     },
   ],
   proxyUser: false,
