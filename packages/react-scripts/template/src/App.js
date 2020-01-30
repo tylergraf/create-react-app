@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Tab, Tabs } from '@fs/zion-ui'
 import { Switch, Route, AuthRoute, NotFound } from '@fs/zion-router'
 import ErrorBoundary from '@fs/zion-error-boundary'
@@ -11,20 +11,22 @@ const I18nPage = React.lazy(() => import('./components/example/I18nPage'))
 
 function App() {
   return (
-    <ErrorBoundary>
-      <Tabs>
-        <Tab title="Home" to="./" />
-        <Tab title="User Info" to="/user" />
-        <Tab title="I18n" to="/i18n" />
-      </Tabs>
+    <Suspense>
+      <ErrorBoundary>
+        <Tabs>
+          <Tab title="Home" to="./" />
+          <Tab title="User Info" to="/user" />
+          <Tab title="I18n" to="/i18n" />
+        </Tabs>
 
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <AuthRoute path="/user" component={UserInfoPage} />
-        <Route path="/i18n" component={I18nPage} />
-        <Route component={NotFound} />
-      </Switch>
-    </ErrorBoundary>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <AuthRoute path="/user" component={UserInfoPage} />
+          <Route path="/i18n" component={I18nPage} />
+          <Route component={NotFound} />
+        </Switch>
+      </ErrorBoundary>
+    </Suspense>
   )
 }
 export default App
