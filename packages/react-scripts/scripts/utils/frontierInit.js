@@ -22,7 +22,7 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/zion-axios@2',
       '@fs/zion-cache@2',
       '@fs/zion-config@1',
-      '@fs/zion-error-boundary@2.1',
+      '@fs/zion-error-boundary@2',
       '@fs/zion-frontend-friends@2',
       '@fs/zion-icon@3',
       '@fs/zion-locale@3',
