@@ -62,7 +62,7 @@ const UserInfo = React.memo(({ user }) => {
             <ListItem primaryText="CIS" metaText={user.cisId} />
             <ListItem primaryText="PID" metaText={user.personId} />
             <ListItem primaryText="Family Name" metaText={details.familyName} />
-            <ListItem primaryText="Full Bame" metaText={details.fullName} />
+            <ListItem primaryText="Full Name" metaText={details.fullName} />
             <ListItem primaryText="Display Name" metaText={user.displayName} />
             <ListItem primaryText="Contact Name" metaText={user.contactName} />
             <ListItem primaryText="Gender" metaText={user.gender} />
