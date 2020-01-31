@@ -1,8 +1,6 @@
 require('dotenv').config()
 
 module.exports = async ({ config }) => {
-  config.module.rules = config.module.rules.filter(isNotStorybookBabelLoader)
-
   const localesLoader = {
     test: /locales/,
     loader: '@alienfast/i18next-loader',
@@ -24,23 +22,18 @@ module.exports = async ({ config }) => {
     config.entry = config.entry.filter((singleEntry) => !singleEntry.includes('/webpack-hot-middleware/'))
   }
 
+  // printRules(config.module.rules)
   return config
 }
 
-function isNotStorybookBabelLoader(rule) {
-  let babelLoader
-  if (rule.use && rule.use.length) {
-    babelLoader = rule.use.find(({ loader }) => loader === 'babel-loader')
-  }
-  // the storybook babel-loader for js files has both an include and an exclude on the rule
-  return !babelLoader || !(rule.include && rule.exclude)
-}
-
-function printRules(config) {
-  config.module.rules.forEach((rule) => {
-    console.log('rule.test: ', rule.test)
-    console.log('rule.include: ', rule.include)
-    console.log('rule.exclude: ', rule.exclude)
+function printRules(rules) {
+  rules.forEach((rule) => {
+    if (rule.oneOf) {
+      return printRules(rule.oneOf)
+    }
+    console.log('rule.test: ', rule.test && rule.test.toString())
+    console.log('rule.include: ', rule.include && rule.include.toString())
+    console.log('rule.exclude: ', rule.exclude && rule.exclude.toString())
     console.log('JSON.stringify(rule, null, 2): ', JSON.stringify(rule, null, 2))
     console.log('\n')
   })

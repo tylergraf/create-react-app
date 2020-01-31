@@ -1,6 +1,7 @@
 {
   "birth.label": "出生",
   "death.label": "死亡",
+  "welcome.message.name": "{name}さん，ファミリーサーチへようこそ",
   "lesson.plan.title.placeholder": "レッスン{number, number}（{date, date}）",
   "modified.attribution": "更新日：{date, date}／{user}",
   "app.unavailable.alert": "{app}は，サイトの改善のため，{month}{ordinalDayOfMonth}（{weekday}）の{time}（UTC{utcOffset}：協定世界時）から約{duration}ほどご利用いただけません。  ご不便をおかけして申し訳ございません。",

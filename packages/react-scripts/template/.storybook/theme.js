@@ -7,13 +7,13 @@ const defaultOptions = {
 }
 
 export const lightMode = create({
-    base: 'light',
-    ...defaultOptions
+  base: 'light',
+  ...defaultOptions,
 })
 
 export const darkMode = create({
   base: 'dark',
-  ...defaultOptions
+  ...defaultOptions,
 })
 
 export default lightMode

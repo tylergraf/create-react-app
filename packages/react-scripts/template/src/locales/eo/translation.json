@@ -1,6 +1,7 @@
 {
   "birth.label": "[Ɓîŕţĥ--- П國カ내]",
   "death.label": "[Ðéåţĥ--- П國カ내]",
+  "welcome.message.name": "[Ŵéļçöɱé ţö ƑåɱîļýŠéåŕçĥ, {name}----------- П國カ내]",
   "lesson.plan.title.placeholder": "[Ļéššöñ {number, number} ({date, date, medium})------------- П國カ내]",
   "modified.attribution": "[Ṁöðîƒîéð: {date, date} ƀý {user}------------- П國カ내]",
   "app.unavailable.alert": "[{app} ŵîļļ ƀé ûñåṽåîļåƀļé åš ŵé ɱåķé îɱþŕöṽéɱéñţš ţö ţĥé šîţé šţåŕţîñĝ {weekday}, {month} {ordinalDayOfMonth} åţ {time} (ÛŢÇ{utcOffset}) åñð ļåšţîñĝ åƀöûţ {duration}.  Ŵé åþöļöĝîžé ƒöŕ ţĥé îñçöñṽéñîéñçé.----------------------------------------------------------------------- П國カ내]",

@@ -1,6 +1,7 @@
 {
   "birth.label": "Nascita",
   "death.label": "Morte",
+  "welcome.message.name": "Ti diamo il benvenuto su FamilySearch, {name}",
   "lesson.plan.title.placeholder": "Lezione {number, number} ({date, date, medium})",
   "modified.attribution": "Modificato: {date, date} da {user}",
   "app.unavailable.alert": "{app} non sarà disponibile mentre apporteremo delle migliorie al sito a partire da {weekday} {ordinalDayOfMonth} {month} alle {time} (UTC{utcOffset}) e per una durata di circa {duration}.  Ci scusiamo per l’inconveniente.",

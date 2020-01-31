@@ -9,5 +9,5 @@ export const RequireSignedInUserStory = () => {
   const SignedInComponent = ({ user }) => <div>Hello {user.displayName}!!</div>
   const NotSignedInComponent = () => <div>You are not signed in</div>
 
-  return <RequireSignedInUser Component={SignedInComponent} NotSignedInComponent={NotSignedInComponent} />
+  return <RequireSignedInUser Component={SignedInComponent} fallback={<NotSignedInComponent />} />
 }

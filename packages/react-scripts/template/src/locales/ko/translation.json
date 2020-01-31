@@ -1,6 +1,7 @@
 {
   "birth.label": "출생",
   "death.label": "사망",
+  "welcome.message.name": "{name} 님, FamilySearch에 오신 것을 환영합니다!",
   "lesson.plan.title.placeholder": "강좌 {number, number}({date, date, medium})",
   "modified.attribution": "수정됨: {date, date}에 {user}이(가) 수정함",
   "app.unavailable.alert": "{month}{ordinalDayOfMonth} {weekday}, {time}(한국 시간으로 {utcOffset})부터 약 {duration} 동안 진행되는 유지 보수 작업 때문에 {app}을(를) 이용할 수 없을 예정입니다.  불편을 끼쳐드려 죄송합니다.",

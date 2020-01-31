@@ -1,6 +1,7 @@
 {
   "birth.label": "Рождение",
   "death.label": "Смерть",
+  "welcome.message.name": "{name}, добро пожаловать на FamilySearch!",
   "lesson.plan.title.placeholder": "Урок {number, number} ({date, date, medium})",
   "modified.attribution": "Изменено: {date, date} - {user}",
   "app.unavailable.alert": "Раздел FamilySearch «{app} » будет недоступен  в связи с техническим обновлением в  {weekday}, {ordinalDayOfMonth} {month}  с {time} (UTC{utcOffset}). Обновление продлится примерно {duration}.  Приносим извинения за временные неудобства.",
