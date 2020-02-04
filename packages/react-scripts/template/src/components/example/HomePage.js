@@ -35,6 +35,19 @@ const gettingStartedCss = css`
   margin: 0 -24px;
 `
 
+const wagonButtonCss = css`
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -html-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+`
 const HomePage = () => {
   // Initiate state variables and hooks
   const atSize = useAtSize()
@@ -71,12 +84,20 @@ const HomePage = () => {
         </Cell>
 
         <Cell columns={atSize({ sm: 4 })}>
-          <WagonWheel
-            alt="Wagon Wheel"
-            color={wheelColor}
-            animationDuration={wheelSpeed}
-            handleClick={overlay.handleOpen}
-          />
+          <button
+            aria-label="Configure wagon wheel"
+            css={wagonButtonCss}
+            type="button"
+            tabIndex={0}
+            onClick={overlay.handleOpen}
+          >
+            <WagonWheel
+              alt="Wagon Wheel"
+              color={wheelColor}
+              animationDuration={wheelSpeed}
+              handleClick={overlay.handleOpen}
+            />
+          </button>
         </Cell>
 
         <Cell>
