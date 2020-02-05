@@ -75,7 +75,7 @@ const HomePage = () => {
     <>
       <Separator size="sm" />
       <Grid>
-        <Cell columns={atSize({ sm: 8 })}>
+        <Cell align="center" columns={atSize({ sm: 8 })}>
           <HeaderBlock
             size={atSize({ xs: 'md', md: 'lg', lg: 'xl' })}
             heading="This is the beginning of something amazing"
