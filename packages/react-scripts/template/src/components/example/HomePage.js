@@ -47,6 +47,10 @@ const wagonButtonCss = css`
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   overflow: hidden;
+  &:focus {
+    outline: none;
+    background-color: ${colors.background.secondary};
+  }
 `
 const HomePage = () => {
   // Initiate state variables and hooks
