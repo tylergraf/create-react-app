@@ -23,7 +23,7 @@ export const WheelSpeedOptions = {
 }
 
 const colorCellCss = css`
-  height: var(--cell-width);
+  height: calc(var(--cell-width, 740px) / 2.0);
   cursor: pointer;
 `
 
@@ -52,7 +52,7 @@ const WagonWheelControl = ({ animationDuration, color, handleColorChange, handle
           })}
         </RadioGroup>
       </Cell>
-      <Cell>
+      <Cell stretch="false" align="center">
         <Grid>
           {[
             colors.text.primary,
@@ -69,7 +69,7 @@ const WagonWheelControl = ({ animationDuration, color, handleColorChange, handle
             colors.feedback.warning.accent,
           ].map((c) => {
             return (
-              <Cell key={c} columns={atSize({ xs: 2, sm: 1 })}>
+              <Cell key={c} columns={atSize({ xs: 2, sm: 2, md: 2, lg: 1 })} >
                 <div
                   tabIndex={0}
                   role="button"
