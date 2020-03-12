@@ -8,19 +8,19 @@ const HomePageSkeleton = () => {
   return (
     <>
       <Grid>
-        <Cell align="center" columns={atSize({ md: 12 })}>
+        <Cell verticalAlign="middle" columns={atSize({ lg: 12 })}>
           <Skeleton.Image height={250} />
         </Cell>
 
-        <Cell columns={atSize({ md: 6 })}>
-          <Skeleton.Image height="calc(var(--cell-width, 1050px) / 1.9)" />
+        <Cell columns={atSize({ lg: 6 })}>
+          <Skeleton.Image height="calc(var(--cell-width, 750px) / 2.5)" />
         </Cell>
 
-        <Cell columns={atSize({ md: 6 })}>
-          <Skeleton.Image height="calc(var(--cell-width, 1050px) / 1.9)" />
+        <Cell columns={atSize({ lg: 6 })}>
+          <Skeleton.Image height="calc(var(--cell-width, 750px) / 2.5)" />
         </Cell>
 
-        <Cell columns={atSize({ md: 12 })}>
+        <Cell columns={atSize({ lg: 12 })}>
           <Skeleton.Image height={250} />
         </Cell>
       </Grid>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { MenuPopout, LogoGithub } from '@fs/zion-icon'
+import { MenuNewWindow, LogoGithub } from '@fs/zion-icon'
 import { Button, Card, CardMedia, CardActions, CardHeader } from '@fs/zion-ui'
 import ZionImage from './zion.jpg'
 
@@ -9,7 +9,7 @@ const ZionDesignCard = () => {
       <CardMedia height="calc(var(--cell-width, 750px) / 2.5)" image={ZionImage} alt="Zion National Park" />
       <CardHeader heading="Zion Design System" />
       <CardActions>
-        <Button Icon={MenuPopout} keyline="left" href="https://beta.familysearch.org/frontier/zion">
+        <Button Icon={MenuNewWindow} keyline="left" href="https://beta.familysearch.org/frontier/zion">
           Zion Docs + Components
         </Button>
         <Button Icon={LogoGithub} href="https://github.com/fs-webdev/zion">

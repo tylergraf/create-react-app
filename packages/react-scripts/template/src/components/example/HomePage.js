@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react'
 import {
-  Button,
   Cell,
   colors,
   DialogOverlay,
@@ -79,11 +78,10 @@ const HomePage = () => {
 
   return (
     <>
-      <Separator size="sm" />
       <Grid>
-        <Cell align="center" columns={atSize({ sm: 8 })}>
+        <Cell verticalAlign="middle" columns={atSize({ sm: 8 })}>
           <HeaderBlock
-            size={atSize({ xs: 'md', md: 'lg', lg: 'xl' })}
+            size={atSize({ default: 'md', lg: 'lg', xl: 'xl' })}
             heading="This is the beginning of something amazing"
             subHeading="Welcome to the start of your new Frontier application."
           />
@@ -116,11 +114,11 @@ const HomePage = () => {
           <Separator size="xxs" />
         </Cell>
 
-        <Cell columns={atSize({ md: 6 })}>
+        <Cell columns={atSize({ lg: 6 })}>
           <ZionDesignCard />
         </Cell>
 
-        <Cell columns={atSize({ md: 6 })}>
+        <Cell columns={atSize({ lg: 6 })}>
           <LearnReactCard />
         </Cell>
 
@@ -128,7 +126,7 @@ const HomePage = () => {
           <Separator />
         </Cell>
 
-        <Cell columns={atSize({ md: 12 })}>
+        <Cell columns={atSize({ lg: 12 })}>
           <PurposeStatementGenerator />
           <Separator size="xxs" />
         </Cell>
@@ -149,7 +147,7 @@ const HomePage = () => {
       </Grid>
 
       {/* Overlay */}
-      <Suspense fallback={<Button Icon={NoticeLoading} />}>
+      <Suspense fallback={{ NoticeLoading }}>
         <DialogOverlay autoWidth headingText="Wagon Wheel Controls" {...overlay}>
           <DialogOverlayContent>
             <WagonWheelControl
