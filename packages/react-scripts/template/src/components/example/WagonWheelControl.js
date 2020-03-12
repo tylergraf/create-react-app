@@ -23,7 +23,7 @@ export const WheelSpeedOptions = {
 }
 
 const colorCellCss = css`
-  height: calc(var(--cell-width, 740px) / 2.0);
+  height: calc(var(--cell-width, 740px) / 2);
   cursor: pointer;
 `
 
@@ -69,7 +69,7 @@ const WagonWheelControl = ({ animationDuration, color, handleColorChange, handle
             colors.feedback.warning.accent,
           ].map((c) => {
             return (
-              <Cell key={c} columns={atSize({ xs: 2, sm: 2, md: 2, lg: 1 })} >
+              <Cell key={c} columns={atSize({ xs: 2, sm: 2, md: 2, lg: 1 })}>
                 <div
                   tabIndex={0}
                   role="button"

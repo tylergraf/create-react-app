@@ -149,7 +149,7 @@ const HomePage = () => {
       </Grid>
 
       {/* Overlay */}
-            <Suspense fallback={<Button Icon={NoticeLoading} />}>
+      <Suspense fallback={<Button Icon={NoticeLoading} />}>
         <DialogOverlay autoWidth headingText="Wagon Wheel Controls" {...overlay}>
           <DialogOverlayContent>
             <WagonWheelControl
