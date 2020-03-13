@@ -22,7 +22,7 @@ export const WheelSpeedOptions = {
   },
 }
 
-const fallbackWidthValue = '740px'
+const fallbackWidthValue = '740px' // This is an arbitray value found to be the best width to fall back to in this case.
 const widthDivisor = 2
 
 const colorCellCss = css`
