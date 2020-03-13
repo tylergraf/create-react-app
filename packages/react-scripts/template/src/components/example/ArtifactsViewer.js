@@ -1,5 +1,5 @@
 import React from 'react'
-import { colors } from '@fs/zion-ui'
+import { colors, DataPreview, Skeleton } from '@fs/zion-ui'
 import { css } from '@emotion/core'
 import axios from '@fs/zion-axios'
 import LazyImage from './LazyImage'
@@ -8,14 +8,30 @@ import Banner from './Banner'
 const artifactsCss = css`
   margin: 0 -24px;
 `
+const artifactsViewSkeletonCss = css`
+  margin: 0 -24px;
+  display: flex;
+  & > div {
+    margin-right: 8px;
+  }
+`
+
+const ArtifactsViewSkeleton = () => {
+  return (
+    <div css={artifactsViewSkeletonCss}>
+      <Skeleton.Image height={250} width={183} />
+      <Skeleton.Image height={250} width={186} />
+      <Skeleton.Image height={250} width={250} />
+      <Skeleton.Image height={250} width={181} />
+      <Skeleton.Image height={250} width={373} />
+      <Skeleton.Image height={250} width={200} />
+    </div>
+  )
+}
 
 const ArtifactsViewer = ({ user: { cisId } }) => {
   // Use our custom hook
   const [{ loading, artifacts, photos, error }] = useArtifacts(cisId)
-
-  function renderLoading() {
-    return <Banner color={colors.background.primary} message="Finding some fantastic photos of your ancestors ..." />
-  }
 
   function renderError() {
     return <Banner color={colors.feedback.danger.accent2} message="Darn it, something went wrong!" />
@@ -31,7 +47,6 @@ const ArtifactsViewer = ({ user: { cisId } }) => {
   }
 
   function renderArtifacts() {
-    if (!artifacts || !artifacts.length) return renderNoArtifacts()
     return (
       <div css={artifactsCss}>
         <PhotoViewer photos={photos} />
@@ -40,14 +55,22 @@ const ArtifactsViewer = ({ user: { cisId } }) => {
   }
 
   if (error) return renderError()
-  return loading ? renderLoading() : renderArtifacts()
+  return (
+    <>
+      <DataPreview.Loading loading={loading}>
+        <ArtifactsViewSkeleton />
+      </DataPreview.Loading>
+      <DataPreview.Ready loading={loading}>
+        {artifacts?.length > 0 ? renderArtifacts() : renderNoArtifacts()}
+      </DataPreview.Ready>
+    </>
+  )
 }
 
 const photoViewerCss = css`
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
-  background: ${colors.background.primary};
 `
 const viewerImageCss = css`
   height: 100%;

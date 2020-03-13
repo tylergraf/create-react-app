@@ -22,8 +22,11 @@ export const WheelSpeedOptions = {
   },
 }
 
+const fallbackWidthValue = '740px' // This is an arbitray value found to be the best width to fall back to in this case.
+const widthDivisor = 2
+
 const colorCellCss = css`
-  height: var(--cell-width);
+  height: calc(var(--cell-width, ${fallbackWidthValue}) / ${widthDivisor});
   cursor: pointer;
 `
 
@@ -52,7 +55,7 @@ const WagonWheelControl = ({ animationDuration, color, handleColorChange, handle
           })}
         </RadioGroup>
       </Cell>
-      <Cell>
+      <Cell stretch="false" align="center">
         <Grid>
           {[
             colors.text.primary,
@@ -69,7 +72,7 @@ const WagonWheelControl = ({ animationDuration, color, handleColorChange, handle
             colors.feedback.warning.accent,
           ].map((c) => {
             return (
-              <Cell key={c} columns={atSize({ xs: 2, sm: 1 })}>
+              <Cell key={c} columns={atSize({ default: 2, sm: 2, lg: 2, xl: 1 })}>
                 <div
                   tabIndex={0}
                   role="button"

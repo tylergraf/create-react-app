@@ -1,5 +1,5 @@
 import React from 'react'
-import { MenuPopout } from '@fs/zion-icon'
+import { MenuNewWindow } from '@fs/zion-icon'
 import { Button, Card, CardMedia, CardActions, CardHeader } from '@fs/zion-ui'
 import ReactImage from './reactjs.jpg'
 
@@ -8,11 +8,11 @@ const LearnReactCard = () => (
     <CardMedia image={ReactImage} alt="React" height="calc(var(--cell-width, 750px) / 2.5)" />
     <CardHeader heading="Learn React" />
     <CardActions>
-      <Button Icon={MenuPopout} href="https://reactjs.org/docs/getting-started.html">
+      <Button Icon={MenuNewWindow} href="https://reactjs.org/docs/getting-started.html">
         React Docs
       </Button>
       <Button
-        Icon={MenuPopout}
+        Icon={MenuNewWindow}
         href="https://github.com/fs-webdev/skill-building-program/tree/master/badges-active/react"
       >
         Earn your Badge

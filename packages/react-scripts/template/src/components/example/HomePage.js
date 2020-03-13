@@ -1,20 +1,21 @@
 import React, { Suspense } from 'react'
 import {
-  Body1,
-  colors,
   Cell,
+  colors,
   DialogOverlay,
+  DialogOverlayContent,
   Grid,
   HeaderBlock,
+  LayoutBand,
   Separator,
+  Skeleton,
   useAtSize,
   useOverlay,
-  DialogOverlayContent,
 } from '@fs/zion-ui'
 
 import { css } from '@emotion/core'
-import { NoticeLoading } from '@fs/zion-icon'
 import zionDebug from '@fs/zion-debug'
+import { NoticeLoading } from '@fs/zion-icon'
 import ZionDesignCard from './ZionDesignCard'
 import LearnReactCard from './LearnReactCard'
 import PurposeStatementGenerator from './PurposeStatementGenerator'
@@ -31,7 +32,7 @@ const ArtifactsViewer = React.lazy(() => import('./ArtifactsViewer'))
 const gettingStartedCss = css`
   color: ${colors.text.secondary};
   background-color: ${colors.background.secondary};
-  padding: 20px 20px 8px 20px;
+  padding: 20px 20px 20px 20px;
   margin: 0 -24px;
 `
 
@@ -77,11 +78,10 @@ const HomePage = () => {
 
   return (
     <>
-      <Separator size="sm" />
       <Grid>
-        <Cell align="center" columns={atSize({ sm: 8 })}>
+        <Cell verticalAlign="middle" columns={atSize({ sm: 8 })}>
           <HeaderBlock
-            size={atSize({ xs: 'md', md: 'lg', lg: 'xl' })}
+            size={atSize({ default: 'md', lg: 'lg', xl: 'xl' })}
             heading="This is the beginning of something amazing"
             subHeading="Welcome to the start of your new Frontier application."
           />
@@ -105,20 +105,20 @@ const HomePage = () => {
         </Cell>
 
         <Cell>
-          <div css={gettingStartedCss}>
-            <Body1 as="aside">
+          <div>
+            <LayoutBand css={gettingStartedCss}>
               To get started, take a look at the code in <code>src/App.js</code>. Ready to learn more? Check out the
               resources below or visit the <a href="https://beta.familysearch.org/frontier/docs">Frontier Docs</a>.
-            </Body1>
+            </LayoutBand>
           </div>
           <Separator size="xxs" />
         </Cell>
 
-        <Cell columns={atSize({ md: 6 })}>
+        <Cell columns={atSize({ lg: 6 })}>
           <ZionDesignCard />
         </Cell>
 
-        <Cell columns={atSize({ md: 6 })}>
+        <Cell columns={atSize({ lg: 6 })}>
           <LearnReactCard />
         </Cell>
 
@@ -126,27 +126,29 @@ const HomePage = () => {
           <Separator />
         </Cell>
 
-        <Cell columns={atSize({ md: 12 })}>
+        <Cell columns={atSize({ lg: 12 })}>
           <PurposeStatementGenerator />
           <Separator size="xxs" />
         </Cell>
 
         <Cell>
-          <RequireSignedInUser
-            Component={ArtifactsViewer}
-            fallback={
-              <Banner
-                color={colors.help.accent2}
-                message="We really want to show you some pictures of your ancestors but you must sign in first"
-              />
-            }
-          />
+          <React.Suspense fallback={<Skeleton.Image height={250} />}>
+            <RequireSignedInUser
+              Component={ArtifactsViewer}
+              fallback={
+                <Banner
+                  color={colors.help.accent2}
+                  message="We really want to show you some pictures of your ancestors but you must sign in first"
+                />
+              }
+            />
+          </React.Suspense>
         </Cell>
       </Grid>
 
       {/* Overlay */}
-      <Suspense fallback={<NoticeLoading />}>
-        <DialogOverlay headingText="Wagon Wheel Controls" {...overlay}>
+      <Suspense fallback={{ NoticeLoading }}>
+        <DialogOverlay autoWidth headingText="Wagon Wheel Controls" {...overlay}>
           <DialogOverlayContent>
             <WagonWheelControl
               color={wheelColor}
