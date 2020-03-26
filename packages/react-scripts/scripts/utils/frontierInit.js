@@ -1,4 +1,4 @@
-'use strict'
+
 
 const fs = require('fs-extra')
 const os = require('os')
@@ -22,12 +22,12 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/zion-axios@2',
       '@fs/zion-config@1',
       '@fs/zion-debug@1',
-      '@fs/zion-error-boundary@2',
-      '@fs/zion-icon@3',
+      '@fs/zion-error-boundary@3',
+      '@fs/zion-icon@4',
       '@fs/zion-locale@3',
-      '@fs/zion-root@3',
-      '@fs/zion-router@3',
-      '@fs/zion-ui@6',
+      '@fs/zion-root@5',
+      '@fs/zion-router@4',
+      '@fs/zion-ui@8',
       '@fs/zion-user@3',
       '@sentry/browser@5',
       'i18next@19',
@@ -39,7 +39,7 @@ function installFrontierDependencies(appPath, appName, ownPath) {
   devDepsToInstall.push(
     ...[
       '@storybook/addon-actions@5',
-      '@storybook/addon-a11y',
+      '@storybook/addon-a11y@5',
       '@storybook/addon-console@1',
       '@storybook/addon-docs@5',
       '@storybook/addon-knobs@5',
@@ -49,8 +49,8 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@storybook/react@5',
       '@storybook/theming@5',
       '@fs/eslint-config-frontier-react@4',
-      '@fs/storybook-addons@2.0.0',
-      '@fs/zion-testing-library@3',
+      '@fs/storybook-addons@3',
+      '@fs/zion-testing-library@4',
       'eslint@6',
       '@alienfast/i18next-loader@1',
       'dotenv@8',
@@ -132,7 +132,7 @@ function configureHF(appPath, ownPath) {
       'heroku-prebuild': './heroku-prebuild.sh',
       start: 'react-scripts start',
       'test:ci': 'CI=true react-scripts test --coverage',
-      analyzeBundle: "npm run build && source-map-explorer 'build/static/js/*.js'",
+      analyzeBundle: "npm run build && source-map-explorer 'build/static/js/*.js' --gzip",
     }
     packageJson.scripts = sortScripts({
       ...packageJson.scripts,
