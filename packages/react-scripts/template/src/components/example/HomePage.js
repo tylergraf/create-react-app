@@ -147,7 +147,7 @@ const HomePage = () => {
       </Grid>
 
       {/* Overlay */}
-      <Suspense fallback={{ NoticeLoading }}>
+      <Suspense fallback={NoticeLoading}>
         <DialogOverlay autoWidth headingText="Wagon Wheel Controls" {...overlay}>
           <DialogOverlayContent>
             <WagonWheelControl
