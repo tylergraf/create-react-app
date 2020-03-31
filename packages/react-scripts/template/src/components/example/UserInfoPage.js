@@ -2,7 +2,17 @@ import React from 'react'
 import { useUser } from '@fs/zion-user'
 import { useTranslation } from 'react-i18next'
 import { parse, format } from '@fs/zion-locale/date-fns'
-import { Cell, Grid, HeaderBlock, List, ListItem, PersonBlock, Separator, CollapsableListItem } from '@fs/zion-ui'
+import {
+  Cell,
+  Grid,
+  HeaderBlock,
+  LayoutBand,
+  List,
+  ListItem,
+  PersonBlock,
+  Separator,
+  CollapsableListItem,
+} from '@fs/zion-ui'
 import { NoticeLoading } from '@fs/zion-icon'
 import ErrorBoundary from '@fs/zion-error-boundary'
 import usePersonDetails from './personDetailsService'
@@ -16,7 +26,7 @@ export default function UserInfoPage() {
   if (!user.signedIn) return <NoticeLoading />
 
   return (
-    <>
+    <LayoutBand>
       <Separator size="sm" />
       <Grid>
         <Cell>
@@ -33,7 +43,7 @@ export default function UserInfoPage() {
         </Cell>
       </Grid>
       <ResponsiveDebug />
-    </>
+    </LayoutBand>
   )
 }
 

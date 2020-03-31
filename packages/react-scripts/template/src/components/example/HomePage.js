@@ -22,7 +22,6 @@ import PurposeStatementGenerator from './PurposeStatementGenerator'
 import WagonWheel from './WagonWheel'
 import ResponsiveDebug from './ResponsiveDebug'
 import RequireSignedInUser from './RequireSignedInUser'
-import Banner from './Banner'
 
 const debug = zionDebug('frontier:cra:example')
 const WagonWheelControl = React.lazy(() => import('./WagonWheelControl'))
@@ -33,7 +32,13 @@ const gettingStartedCss = css`
   color: ${colors.text.secondary};
   background-color: ${colors.background.secondary};
   padding: 20px 20px 20px 20px;
-  margin: 0 -24px;
+`
+
+const logInCss = css`
+  background-color: ${colors.help.accent2};
+  .secondary};
+  padding: 20px 20px 20px 20px;
+  text-align: center;
 `
 
 const wagonButtonCss = css`
@@ -77,7 +82,7 @@ const HomePage = () => {
   )
 
   return (
-    <>
+    <LayoutBand>
       <Grid>
         <Cell verticalAlign="middle" columns={atSize({ sm: 8 })}>
           <HeaderBlock
@@ -136,10 +141,9 @@ const HomePage = () => {
             <RequireSignedInUser
               Component={ArtifactsViewer}
               fallback={
-                <Banner
-                  color={colors.help.accent2}
-                  message="We really want to show you some pictures of your ancestors but you must sign in first"
-                />
+                <LayoutBand css={logInCss}>
+                  We really want to show you some pictures of your ancestors but you must sign in first.
+                </LayoutBand>
               }
             />
           </React.Suspense>
@@ -161,7 +165,7 @@ const HomePage = () => {
       </Suspense>
 
       <ResponsiveDebug />
-    </>
+    </LayoutBand>
   )
 }
 
