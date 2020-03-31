@@ -29,7 +29,7 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@fs/zion-router@4',
       '@fs/zion-ui@8',
       '@fs/zion-user@3',
-      '@sentry/browser@5.15.1',
+      '@sentry/browser@5',
       'i18next@19',
       'react-i18next@11',
       'prop-types@15',

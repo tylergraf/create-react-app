@@ -14,7 +14,7 @@ const containerCss = css`
 const ResponsiveDebug = () => {
   const atSize = useAtSize()
 
-  return <div css={containerCss}>{atSize({ xs: 'XS', sm: 'SM', md: 'MD', lg: 'LG', xl: 'XL' })}</div>
+  return <div css={containerCss}>{atSize({ default: 'XS', sm: 'SM', md: 'MD', lg: 'LG', xl: 'XL' })}</div>
 }
 
 export default ResponsiveDebug

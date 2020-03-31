@@ -32,6 +32,7 @@ import {
   Select,
   InputRow,
   Divider,
+  LayoutBand,
   List,
   ListItem,
 } from '@fs/zion-ui'
@@ -192,12 +193,12 @@ const I18nPage = () => {
   }
 
   return (
-    <>
+    <LayoutBand>
       <Separator size="sm" />
       <Grid>
         <Cell columns={atSize({ sm: 8 })}>
           <HeaderBlock
-            size={atSize({ xs: 'md', md: 'lg', lg: 'xl' })}
+            size={atSize({ default: 'md', md: 'lg', lg: 'xl' })}
             heading={t('familysearch.purpose.all-people.title', 'To All People')}
             subHeading={t('i18n-page.sub-title', 'Internationalization in Frontier')}
           />
@@ -376,7 +377,7 @@ const I18nPage = () => {
           </Cell>
         </Cell>
       </Grid>
-    </>
+    </LayoutBand>
   )
 }
 export default I18nPage
