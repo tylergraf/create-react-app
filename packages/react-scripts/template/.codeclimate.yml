@@ -1,7 +1,7 @@
 version: "2"
 prepare:
   fetch:
-    - url: "https://raw.githubusercontent.com/fs-webdev/eslint-config-frontier-react/master/codeclimateEslintRules.js"
+    - url: "https://raw.githubusercontent.com/fs-webdev/eslint-config-frontier-react/master/codeclimateEslintRulesv4.js"
       path: "eslint-config-frontier-react.js"
 checks:
   method-complexity:
