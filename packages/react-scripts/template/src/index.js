@@ -29,7 +29,7 @@ const base = appPath ? new URL(appPath).pathname : ''
 
 const FrontierRoot = () => (
   <React.StrictMode>
-    <Root>
+    <Root fullWidth>
       <Router basename={base}>
         <App />
       </Router>

@@ -1,12 +1,12 @@
 import React from 'react'
-import { Cell, Grid, Skeleton, useAtSize } from '@fs/zion-ui'
+import { Cell, Grid, LayoutBand, Skeleton, useAtSize } from '@fs/zion-ui'
 
 const HomePageSkeleton = () => {
   // Initiate state variables and hooks
   const atSize = useAtSize()
 
   return (
-    <>
+    <LayoutBand>
       <Grid>
         <Cell verticalAlign="middle" columns={atSize({ lg: 12 })}>
           <Skeleton.Image height={250} />
@@ -24,7 +24,7 @@ const HomePageSkeleton = () => {
           <Skeleton.Image height={250} />
         </Cell>
       </Grid>
-    </>
+    </LayoutBand>
   )
 }
 
