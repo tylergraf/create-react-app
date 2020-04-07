@@ -1,4 +1,4 @@
-
+'use strict'
 
 const fs = require('fs-extra')
 const os = require('os')
@@ -157,9 +157,9 @@ function createLocalEnvFile() {
   osUtils.runExternalCommandSync('npx', ['@fs/fr-cli', 'env', 'local'])
 }
 
-function syncLocales() {
-  osUtils.runExternalCommandSync('npm', ['run', 'locales:sync'])
-}
+// function syncLocales() {
+//   osUtils.runExternalCommandSync('npm', ['run', 'locales:sync'])
+// }
 
 function sortScripts(scripts) {
   const sortedScripts = {}
