@@ -1,6 +1,6 @@
 {
   "name": "@fs/react-scripts",
-  "version": "4.1.5",
+  "version": "4.2.0",
   "upstreamVersion": "3.1.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
@@ -51,6 +51,7 @@
     "connect-metric": "^1.0.1",
     "cookie-parser": "^1.4.4",
     "copy-webpack-plugin": "^4.6.0",
+    "core-js": "^3.6.4",
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
@@ -77,8 +78,8 @@
     "jest-watch-typeahead": "0.3.1",
     "mini-css-extract-plugin": "0.5.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
-    "polymer-webpack-loader": "^2.0.3",
     "pnp-webpack-plugin": "1.5.0",
+    "polymer-webpack-loader": "^2.0.3",
     "postcss-flexbugs-fixes": "4.1.0",
     "postcss-loader": "3.0.0",
     "postcss-normalize": "7.0.1",
