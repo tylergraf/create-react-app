@@ -30,15 +30,30 @@ const setProxies = (app, customProxies = []) => {
   const target = process.env.BASE_URL
 
   const setProxy = proxyConfig => {
-    app.use(
-      proxy(proxyConfig.route, {
-        target,
-        changeOrigin: true,
-        logLevel: 'debug',
-        timeout: 5000,
-        ...proxyConfig.options,
+    const options = {
+      target,
+      changeOrigin: true,
+      logLevel: 'debug',
+      timeout: 5000,
+      ...proxyConfig.options,
+    }
+
+    if (proxyConfig.accept) {
+      app.use((req, res, next) => {
+        // proxy only if accept type starts with the same string
+        // (e.g., type 'application/' works for 'application/x-gedcomx-v1+json' and 'application/json')
+        if (req.headers.accept && req.headers.accept.indexOf(proxyConfig.accept) === 0) {
+          // set up proxy middleware and use immediately
+          proxy(proxyConfig.route, options)(req, res, next)
+        } else {
+          // wrong accept type: don't proxy request
+          next();
+        }
       })
-    )
+    }
+    else {
+      app.use(proxy(proxyConfig.route, options))
+    }
   }
 
   // set up all custom proxies first so they can override the defaults if needed
