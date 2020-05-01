@@ -16,6 +16,7 @@
 const proxies = [
   {
     route: '/ark',
+    accept: 'application/' /* 'application/x-gedcomx-v1+json', 'application/json', etc. */
   },
   {
     route: '/ask',
