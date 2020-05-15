@@ -49,7 +49,7 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@storybook/react@5',
       '@storybook/theming@5',
       '@fs/eslint-config-frontier-react@4',
-      '@fs/storybook-addons@3',
+      '@fs/storybook-addons@4',
       '@fs/zion-testing-library@5',
       'eslint@6',
       '@alienfast/i18next-loader@1',
@@ -144,7 +144,7 @@ function configureHF(appPath, ownPath) {
   })
 
   createLocalEnvFile()
-  depsToInstall.push(...['github:fs-webdev/snow#cra', 'github:fs-webdev/startup'])
+  depsToInstall.push(...['@fs/snow@7', '@fs/startup@2'])
 }
 
 function installModulesSync(modules, saveDev = false) {
