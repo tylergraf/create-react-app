@@ -466,7 +466,7 @@ module.exports = function(webpackEnv) {
               exclude: /@babel(?:\/|\\{1,2})runtime/,
               use: [
                 {
-                  loader: require.resolve('webpack-wci18n'),
+                  loader: require.resolve('@fs/webpack-wci18n'),
                 },
                 {
                   loader: require.resolve('babel-loader'),
