@@ -50,7 +50,7 @@ function installFrontierDependencies(appPath, appName, ownPath) {
       '@storybook/theming@5',
       '@fs/eslint-config-frontier-react@4',
       '@fs/storybook-addons@3',
-      '@fs/zion-testing-library@4',
+      '@fs/zion-testing-library@5',
       'eslint@6',
       '@alienfast/i18next-loader@1',
       'dotenv@8',
