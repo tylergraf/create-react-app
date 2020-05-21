@@ -57,7 +57,7 @@ const imageInlineSizeLimit = parseInt(
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 // FS - check if snow is installed in root node_modules
-const isSnow = fs.existsSync(path.join(paths.appNodeModules, '@fs/snow/package.json'));
+const isSnow = fs.existsSync(path.join(paths.appNodeModules, 'snow', 'package.json')) || fs.existsSync(path.join(paths.appNodeModules, '@fs', 'snow', 'package.json'));
 
 // style files regexes
 const cssRegex = /\.css$/;
