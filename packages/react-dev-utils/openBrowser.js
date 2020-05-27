@@ -51,7 +51,11 @@ function executeNodeScript(scriptPath, url) {
   child.on('close', code => {
     if (code !== 0) {
       console.log();
-      console.log(chalk.red('The script specified as BROWSER environment variable failed.'));
+      console.log(
+        chalk.red(
+          'The script specified as BROWSER environment variable failed.'
+        )
+      );
       console.log(chalk.cyan(scriptPath) + ' exited with code ' + code + '.');
       console.log();
       return;
@@ -65,21 +69,41 @@ function startBrowserProcess(browser, url, args) {
   // requested a different browser, we can try opening
   // Chrome with AppleScript. This lets us reuse an
   // existing tab when possible instead of creating a new one.
-  const shouldTryOpenChromeWithAppleScript =
-    process.platform === 'darwin' && (typeof browser !== 'string' || browser === OSX_CHROME);
+  const shouldTryOpenChromiumWithAppleScript =
+    process.platform === 'darwin' &&
+    (typeof browser !== 'string' || browser === OSX_CHROME);
 
-  if (shouldTryOpenChromeWithAppleScript) {
-    try {
-      // Try our best to reuse existing tab
-      // on OS X Google Chrome with AppleScript
-      execSync('ps cax | grep "Google Chrome"');
-      execSync('osascript openChrome.applescript "' + encodeURI(url) + '"', {
-        cwd: __dirname,
-        stdio: 'ignore',
-      });
-      return true;
-    } catch (err) {
-      // Ignore errors.
+  if (shouldTryOpenChromiumWithAppleScript) {
+    // Will use the first open browser found from list
+    const supportedChromiumBrowsers = [
+      'Google Chrome Canary',
+      'Google Chrome',
+      'Microsoft Edge',
+      'Brave Browser',
+      'Vivaldi',
+      'Chromium',
+    ];
+
+    for (let chromiumBrowser of supportedChromiumBrowsers) {
+      try {
+        // Try our best to reuse existing tab
+        // on OSX Chromium-based browser with AppleScript
+        execSync('ps cax | grep "' + chromiumBrowser + '"');
+        execSync(
+          'osascript openChrome.applescript "' +
+            encodeURI(url) +
+            '" "' +
+            chromiumBrowser +
+            '"',
+          {
+            cwd: __dirname,
+            stdio: 'ignore',
+          }
+        );
+        return true;
+      } catch (err) {
+        // Ignore errors.
+      }
     }
   }
 
@@ -99,7 +123,7 @@ function startBrowserProcess(browser, url, args) {
   // Fallback to open
   // (It will always open new tab)
   try {
-    var options = { app: browser, wait: false };
+    var options = { app: browser, wait: false, url: true };
     open(url, options).catch(() => {}); // Prevent `unhandledRejection` error.
     return true;
   } catch (err) {
