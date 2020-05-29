@@ -58,7 +58,6 @@
     "cookie-parser": "^1.4.4",
     "copy-webpack-plugin": "^4.6.0",
     "core-js": "^3.6.4",
-    "css-loader": "2.1.1",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "eslint": "^6.7.1",

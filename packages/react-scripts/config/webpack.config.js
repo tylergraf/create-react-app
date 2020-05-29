@@ -474,7 +474,7 @@ module.exports = function(webpackEnv) {
                   compact: false,
                   presets: [
                     [
-                      require.resolve('@fs/babel-preset-frontier-react/dependencies'),
+                      require.resolve('@fs/babel-preset-frontier/dependencies'),
                       { helpers: true },
                     ],
                   ],

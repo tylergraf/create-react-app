@@ -22,7 +22,7 @@ const spawn = require('react-dev-utils/crossSpawn');
 const { defaultBrowsers } = require('react-dev-utils/browsersHelper');
 const os = require('os');
 const verifyTypeScriptSetup = require('./utils/verifyTypeScriptSetup');
-const { installFrontierDependencies } = require('./utils/frontierInit');
+const { setupFrontier } = require('./utils/frontierInit');
 
 function isInGitRepository() {
   try {
@@ -89,7 +89,6 @@ module.exports = function(
   originalDirectory,
   templateName
 ) {
-  const ownPath = path.dirname(require.resolve(path.join(__dirname, '..', 'package.json')));
   const appPackage = require(path.join(appPath, 'package.json'));
   const useYarn = fs.existsSync(path.join(appPath, 'yarn.lock'));
 
@@ -221,10 +220,14 @@ module.exports = function(
     );
   }
 
+  const directoriesToNotCopyOver = ['node_modules', 'build', 'dist']
+
   // Copy the files for the user
   const templateDir = path.join(templatePath, 'template');
   if (fs.existsSync(templateDir)) {
-    fs.copySync(templateDir, appPath);
+    fs.copySync(templateDir, appPath, {filter: (src) => {
+      return !directoriesToNotCopyOver.some(dirName => src.includes(`/template/${dirName}/`))
+    }});
   } else {
     console.error(
       `Could not locate supplied template: ${chalk.green(templateDir)}`
@@ -316,7 +319,7 @@ module.exports = function(
   }
 
 
-  installFrontierDependencies(appPath, appName, ownPath);
+  setupFrontier(appPath, appName);
 
   if (args.find(arg => arg.includes('typescript'))) {
     console.log();
