@@ -1,6 +1,6 @@
 {
   "name": "@fs/react-scripts",
-  "version": "5.0.0",
+  "version": "5.0.0-alpha.0",
   "upstreamVersion": "3.4.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
@@ -39,6 +39,7 @@
     "@babel/core": "7.9.0",
     "@fs/babel-preset-frontier": "^2.2.0",
     "@fs/eslint-config-frontier-react": "^4.0.0",
+    "@fs/webpack-wci18n": "^1.0.0",
     "@svgr/webpack": "4.3.3",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
@@ -103,7 +104,6 @@
     "webpack-manifest-plugin": "2.2.0",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2",
-    "@fs/webpack-wci18n": "^1.0.0",
     "workbox-webpack-plugin": "4.3.1"
   },
   "devDependencies": {
