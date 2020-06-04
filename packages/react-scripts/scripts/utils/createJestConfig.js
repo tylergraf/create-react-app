@@ -45,8 +45,6 @@ module.exports = (resolve, rootDir, isEjecting) => {
     testMatch: [
       '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
       '<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}',
-      '<rootDir>/packages/**/__tests__/**/*.{js,jsx,ts,tsx}',
-      '<rootDir>/packages/**/*.{spec,test}.{js,jsx,ts,tsx}',
     ],
     testEnvironment: 'jest-environment-jsdom-sixteen',
     transform: {
@@ -66,6 +64,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
       '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
+      ...(modules.jestAliases || {}),
     },
     moduleFileExtensions: [...paths.moduleFileExtensions, 'node'].filter(
       ext => !ext.includes('mjs')
@@ -80,16 +79,19 @@ module.exports = (resolve, rootDir, isEjecting) => {
   }
   const overrides = Object.assign({}, require(paths.appPackageJson).jest);
   const supportedKeys = [
+    'clearMocks',
     'collectCoverageFrom',
+    'coveragePathIgnorePatterns',
     'coverageReporters',
     'coverageThreshold',
-    'coveragePathIgnorePatterns',
+    'displayName',
     'extraGlobals',
     'globalSetup',
     'globalTeardown',
     'moduleNameMapper',
     'resetMocks',
     'resetModules',
+    'restoreMocks',
     'roots',
     'snapshotSerializers',
     'transform',
