@@ -52,5 +52,8 @@
     "*.{js,md,css,html}": [
       "prettier --trailing-comma es5 --single-quote --write"
     ]
+  },
+  "dependencies": {
+    "react-dev-utils": "^10.2.1"
   }
 }
