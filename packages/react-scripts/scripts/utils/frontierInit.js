@@ -23,7 +23,6 @@ function setupFrontier(appPath, appName) {
 
   fs.unlinkSync(path.join(appPath, 'package-lock.json'));
   createLocalEnvFile()
-  // TODO: JOEY do I need to run npm install at this point?
 }
 
 function alterPackageJsonFile(appPath, extendFunction) {

@@ -111,6 +111,9 @@ module.exports = function(
     require.resolve(templateName, { paths: [appPath] }),
     '..'
   );
+  console.log('templateName: ', templateName)
+  console.log('appPath: ', appPath)
+
 
   let templateJsonPath;
   if (templateName) {
@@ -119,11 +122,13 @@ module.exports = function(
     // TODO: Remove support for this in v4.
     templateJsonPath = path.join(appPath, '.template.dependencies.json');
   }
+  console.log('templateJsonPath: ', templateJsonPath)
 
   let templateJson = {};
   if (fs.existsSync(templateJsonPath)) {
     templateJson = require(templateJsonPath);
   }
+  // console.log('templateJson: ', templateJson)
 
   const templatePackage = templateJson.package || {};
 
@@ -224,6 +229,8 @@ module.exports = function(
 
   // Copy the files for the user
   const templateDir = path.join(templatePath, 'template');
+  console.log('templatePath: ', templatePath)
+  console.log('templateDir: ', templateDir)
   if (fs.existsSync(templateDir)) {
     fs.copySync(templateDir, appPath, {filter: (src) => {
       // FamilySearch - we don't copy over node_mouldes, build, and dist here in order for us to be able to
