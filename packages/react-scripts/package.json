@@ -1,6 +1,6 @@
 {
   "name": "@fs/react-scripts",
-  "version": "4.5.4",
+  "version": "4.5.4-alpha.1",
   "upstreamVersion": "3.1.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
@@ -110,8 +110,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-i18next": "^11.0.1",
-    "react-router": "^5.0.1",
-    "@fs/zion-ui": "^9.12.0"
+    "react-router": "^5.0.1"
   },
   "optionalDependencies": {
     "fsevents": "2.0.7"
