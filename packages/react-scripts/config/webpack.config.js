@@ -330,9 +330,7 @@ module.exports = function(webpackEnv) {
         i18next: require.resolve('i18next'),
         'react-i18next': require.resolve('react-i18next'),
         'react-router': require.resolve('react-router'),
-        '@emotion/core': console.log(require.resolve('@emotion/core')) || require.resolve('@emotion/core'),
-        '@fs/zion-ui': console.log(require.resolve('@fs/zion-ui')) || require.resolve('@fs/zion-ui'),
-        '@fs/zion-ui/alert-banner': console.log(require.resolve('@fs/zion-ui/alert-banner')) || require.resolve('@fs/zion-ui/alert-banner'),
+        '@emotion/core': require.resolve('@emotion/core'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
