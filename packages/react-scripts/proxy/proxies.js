@@ -19,32 +19,35 @@ const proxies = [
     accept: 'application/' /* 'application/x-gedcomx-v1+json', 'application/json', etc. */
   },
   {
-    route: '/ask',
+    route: '/ask'
   },
   {
-    route: '/cis-web',
+    route: '/cis-web'
   },
   {
-    route: '/frontier',
+    route: '/frontier'
   },
   {
-    route: '/hf',
+    route: '/hf'
   },
   {
-    route: '/home/banner',
+    route: '/home/banner'
   },
   {
-    route: '/ident',
+    route: '/ident'
   },
   {
-    route: '/mobile',
+    route: '/mobile'
   },
   {
-    route: '/platform',
+    route: '/platform'
   },
   {
-    route: '/service',
+    route: '/service'
   },
+  {
+    route: '/dz'
+  }
 ]
 
 module.exports = proxies
