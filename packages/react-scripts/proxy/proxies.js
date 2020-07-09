@@ -16,7 +16,8 @@
 const proxies = [
   {
     route: '/ark',
-    accept: 'application/' /* 'application/x-gedcomx-v1+json', 'application/json', etc. */
+    accept:
+      'application/' /* 'application/x-gedcomx-v1+json', 'application/json', etc. */,
   },
   {
     route: '/ask',
@@ -45,6 +46,9 @@ const proxies = [
   {
     route: '/service',
   },
-]
+  {
+    route: '/dz',
+  },
+];
 
-module.exports = proxies
+module.exports = proxies;
