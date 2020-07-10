@@ -26,6 +26,9 @@ const proxies = [
     route: '/cis-web',
   },
   {
+    route: '/dz',
+  },
+  {
     route: '/frontier',
   },
   {
@@ -45,9 +48,6 @@ const proxies = [
   },
   {
     route: '/service',
-  },
-  {
-    route: '/dz',
   },
 ];
 
