@@ -128,6 +128,6 @@
     ]
   },
   "publishConfig": {
-    "registry": "https://repo.churchofjesuschrist.org/artifactory/api/npm/npm-fhd/"
+    "registry": "https://familysearch.jfrog.io/familysearch/api/npm/fs-npm-prod-virtual/"
   }
 }
