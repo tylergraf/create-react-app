@@ -1,6 +1,6 @@
 {
   "name": "@fs/react-scripts",
-  "version": "4.5.4",
+  "version": "4.5.5",
   "upstreamVersion": "3.1.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
@@ -36,10 +36,11 @@
   "dependencies": {
     "@alienfast/i18next-loader": "^1.0.18",
     "@babel/core": "7.5.5",
+    "@fs/auth-middleware": "^2.0.1",
     "@fs/babel-preset-frontier": "^2.2.0",
     "@fs/eslint-config-frontier-react": "^4.0.0",
+    "@fs/webpack-wci18n": "^1.0.0",
     "@svgr/webpack": "4.3.2",
-    "@fs/auth-middleware": "^2.0.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.2",
     "babel-jest": "24.8.0",
@@ -71,6 +72,7 @@
     "http-proxy-middleware": "^0.19.1",
     "identity-obj-proxy": "3.0.0",
     "inquirer": "^6.2.0",
+    "intersection-observer": "^0.10.0",
     "is-wsl": "^1.1.0",
     "jest": "^26.0.1",
     "jest-environment-jsdom-sixteen": "^1.0.3",
@@ -100,7 +102,6 @@
     "webpack-manifest-plugin": "2.0.4",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2",
-    "@fs/webpack-wci18n": "^1.0.0",
     "workbox-webpack-plugin": "4.3.1"
   },
   "devDependencies": {
