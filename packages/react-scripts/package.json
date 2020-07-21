@@ -1,6 +1,6 @@
 {
   "name": "@fs/react-scripts",
-  "version": "5.0.2",
+  "version": "5.1.0-alpha.0",
   "upstreamVersion": "3.4.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
@@ -37,7 +37,7 @@
   "dependencies": {
     "@alienfast/i18next-loader": "^1.0.18",
     "@babel/core": "7.9.0",
-    "@fs/babel-preset-frontier": "^2.2.0",
+    "@fs/babel-preset-frontier": "^3.0.0-alpha.1",
     "@fs/eslint-config-frontier-react": "^4.0.0",
     "@fs/webpack-wci18n": "^1.0.0",
     "@svgr/webpack": "4.3.3",
