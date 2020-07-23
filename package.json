@@ -10,16 +10,17 @@
     "e2e": "tasks/e2e-simple.sh",
     "e2e:docker": "tasks/local-test.sh",
     "postinstall": "echo \"cd packages/react-error-overlay/ && yarn build:prod\"",
-    "publish": "tasks/publish.sh",
     "start": "cd packages/react-scripts && node bin/react-scripts.js start",
     "screencast": "node ./tasks/screencast.js",
     "screencast:error": "svg-term --cast jyu19xGl88FQ3poMY8Hbmfw8y --out screencast-error.svg --window --at 12000 --no-cursor",
     "alex": "alex .",
     "test": "echo \"cd packages/react-scripts && node bin/react-scripts.js test\" && exit 0",
     "format": "prettier --trailing-comma es5 --single-quote --write 'packages/*/*.js' 'packages/*/!(node_modules)/**/*.js'",
-    "compile:lockfile": "node tasks/compile-lockfile.js"
+    "compile:lockfile": "node tasks/compile-lockfile.js",
+    "publish": "npmPublish"
   },
   "devDependencies": {
+    "@fs/npm-publisher": "^1.0.7",
     "@testing-library/jest-dom": "^4.2.0",
     "@testing-library/react": "^9.3.0",
     "@testing-library/user-event": "^7.1.2",

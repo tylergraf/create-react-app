@@ -26,11 +26,10 @@ script:
   - npm run build
 before_deploy: "cd ${TRAVIS_BUILD_DIR}/packages/react-scripts"
 deploy:
-  - provider: npm
-    cleanup: false
-    email: "dl-fh-eng-frontier@groups.ldschurch.org"
-    api_token: "$NPM_PUBLISH_TOKEN"
+  - provider: script
     edge: true
+    cleanup: false
+    script: npm run publish
     on:
       branch: frontierMaster
   - provider: script
