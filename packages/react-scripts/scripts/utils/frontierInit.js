@@ -21,7 +21,7 @@ function setupFrontier(appPath, appName) {
   replaceStringInFile(appPath, './blueprint.yml', /\{\{APP_NAME\}\}/g, appName)
   replaceStringInFile(appPath, './package.json', /cra-template-name-will-be-replaced/g, appName)
 
-  fs.unlinkSync(path.join(appPath, 'package-lock.json'));
+  // fs.unlinkSync(path.join(appPath, 'package-lock.json'));
   createLocalEnvFile()
 }
 

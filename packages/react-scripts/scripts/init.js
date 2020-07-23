@@ -330,8 +330,10 @@ module.exports = function(
 
   setupFrontier(appPath, appName);
 
+  console.log('args: ', args)
   if (args.find(arg => arg.includes('typescript'))) {
     console.log();
+    console.log('Gonna run verifyTypeScriptSetup')
     verifyTypeScriptSetup();
   }
 
