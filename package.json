@@ -16,11 +16,9 @@
     "alex": "alex .",
     "test": "echo \"cd packages/react-scripts && node bin/react-scripts.js test\" && exit 0",
     "format": "prettier --trailing-comma es5 --single-quote --write 'packages/*/*.js' 'packages/*/!(node_modules)/**/*.js'",
-    "compile:lockfile": "node tasks/compile-lockfile.js",
-    "publish": "npmPublish"
+    "compile:lockfile": "node tasks/compile-lockfile.js"
   },
   "devDependencies": {
-    "@fs/npm-publisher": "^1.0.7",
     "@testing-library/jest-dom": "^4.2.0",
     "@testing-library/react": "^9.3.0",
     "@testing-library/user-event": "^7.1.2",

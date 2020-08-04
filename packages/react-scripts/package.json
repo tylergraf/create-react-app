@@ -16,7 +16,8 @@
     "url": "https://github.com/fs-webdev/create-react-app/issues"
   },
   "scripts": {
-    "prettier": "npx prettier --arrow-parens always --single-quote --trailing-comma es5 --print-width 120 --no-semi --write \"template*/**/*.js\""
+    "prettier": "npx prettier --arrow-parens always --single-quote --trailing-comma es5 --print-width 120 --no-semi --write \"template*/**/*.js\"",
+    "publish": "npmPublish"
   },
   "files": [
     "bin",
@@ -108,6 +109,7 @@
   },
   "devDependencies": {
     "@emotion/core": "^10.0.10",
+    "@fs/npm-publisher": "^1.0.7",
     "babel-plugin-react-docgen": "^3.0.0",
     "i18next": "^19.0.3",
     "react": "^16.12.0",
