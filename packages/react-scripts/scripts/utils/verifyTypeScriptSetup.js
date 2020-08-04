@@ -112,9 +112,8 @@ function verifyTypeScriptSetup() {
     skipLibCheck: { suggested: true },
     esModuleInterop: { suggested: true },
     allowSyntheticDefaultImports: { suggested: true },
-    strict: { suggested: true },
+    strict: { suggested: false },
     forceConsistentCasingInFileNames: { suggested: true },
-    noFallthroughCasesInSwitch: { suggested: true },
 
     // These values are required and cannot be changed by the user
     // Keep this in sync with the webpack config
