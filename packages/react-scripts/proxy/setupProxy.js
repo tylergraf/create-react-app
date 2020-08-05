@@ -1,4 +1,4 @@
-const proxy = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 require('dotenv').config()
@@ -44,7 +44,7 @@ const setProxies = (app, customProxies = []) => {
         // (e.g., type 'application/' works for 'application/x-gedcomx-v1+json' and 'application/json')
         if (req.headers.accept && req.headers.accept.indexOf(proxyConfig.accept) === 0) {
           // set up proxy middleware and use immediately
-          proxy(proxyConfig.route, options)(req, res, next)
+          createProxyMiddleware(proxyConfig.route, options)(req, res, next)
         } else {
           // wrong accept type: don't proxy request
           next();
@@ -52,7 +52,7 @@ const setProxies = (app, customProxies = []) => {
       })
     }
     else {
-      app.use(proxy(proxyConfig.route, options))
+      app.use(createProxyMiddleware(proxyConfig.route, options))
     }
   }
 
