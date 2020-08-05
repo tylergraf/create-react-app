@@ -1,34 +1,26 @@
-import React, { Suspense } from 'react'
-import { Switch, Route, AuthRoute, NotFound } from '@fs/zion-router'
-import { Tab, Tabs } from '@fs/zion-ui'
-import ErrorBoundary from '@fs/zion-error-boundary'
-import HomePageSkeleton from './components/example/HomePageSkeleton'
-
-// Dynamically load components to reduce bundle size
-// https://reactjs.org/docs/react-api.html#reactlazy
-
-const HomePage = React.lazy(() => import('./components/example/HomePage'))
-const UserInfoPage = React.lazy(() => import('./components/example/UserInfoPage'))
-const I18nPage = React.lazy(() => import('./components/example/I18nPage'))
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
   return (
-    <ErrorBoundary>
-      <Suspense fallback={<HomePageSkeleton />}>
-        <Tabs>
-          <Tab title="Home" to="./" />
-          <Tab title="User Info" to="/user" />
-          <Tab title="I18n" to="/i18n" />
-        </Tabs>
-
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <AuthRoute path="/user" component={UserInfoPage} />
-          <Route path="/i18n" component={I18nPage} />
-          <Route component={NotFound} />
-        </Switch>
-      </Suspense>
-    </ErrorBoundary>
-  )
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
-export default App
+
+export default App;
