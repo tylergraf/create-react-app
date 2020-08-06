@@ -38,7 +38,7 @@
   "dependencies": {
     "@alienfast/i18next-loader": "^1.0.18",
     "@babel/core": "7.9.0",
-    "@fs/babel-preset-frontier": "^3.0.0-alpha.3",
+    "@fs/babel-preset-frontier": "^3.0.1",
     "@fs/eslint-config-frontier-react": "^4.0.0",
     "@fs/webpack-wci18n": "^1.0.0",
     "@svgr/webpack": "4.3.3",
