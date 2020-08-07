@@ -109,7 +109,7 @@
   },
   "devDependencies": {
     "@emotion/core": "^10.0.10",
-    "@fs/npm-publisher": "^1.0.14",
+    "@fs/npm-publisher": "^1.0.15",
     "babel-plugin-react-docgen": "^3.0.0",
     "i18next": "^19.0.3",
     "react": "^16.12.0",

@@ -57,7 +57,9 @@ const imageInlineSizeLimit = parseInt(
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 // FS - check if snow is installed in root node_modules
-const isSnow = fs.existsSync(path.join(paths.appNodeModules, 'snow', 'package.json')) || fs.existsSync(path.join(paths.appNodeModules, '@fs', 'snow', 'package.json'));
+const isSnow =
+  fs.existsSync(path.join(paths.appNodeModules, 'snow', 'package.json')) ||
+  fs.existsSync(path.join(paths.appNodeModules, '@fs', 'snow', 'package.json'));
 
 // style files regexes
 const cssRegex = /\.css$/;
@@ -291,7 +293,9 @@ module.exports = function(webpackEnv) {
       },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
-      runtimeChunk: isSnow ? false : {name: entrypoint => `runtime-${entrypoint.name}`},
+      runtimeChunk: isSnow
+        ? false
+        : { name: entrypoint => `runtime-${entrypoint.name}` },
     },
     resolve: {
       // This allows you to set a fallback for where webpack should look for modules.
@@ -370,11 +374,13 @@ module.exports = function(webpackEnv) {
                   ? undefined
                   : {
                       extends: [
-                        useTypeScript && require.resolve('@fs/eslint-config-frontier-react')
-                                                .replace('index.js', 'typescript.js'),
                         require
                           .resolve('@fs/eslint-config-frontier-react')
                           .replace('index.js', 'lenient.js'),
+                        useTypeScript &&
+                          require
+                            .resolve('@fs/eslint-config-frontier-react')
+                            .replace('index.js', 'typescript.js'),
                       ].filter(Boolean),
                     },
                 useEslintrc: isExtendingEslintConfig,
@@ -408,7 +414,7 @@ module.exports = function(webpackEnv) {
               options: {
                 debug: false,
                 basenameAsNamespace: true,
-              }
+              },
             },
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
@@ -417,7 +423,9 @@ module.exports = function(webpackEnv) {
               include: paths.appSrc,
               loader: require.resolve('babel-loader'),
               options: {
-                customize: require.resolve('@fs/babel-preset-frontier/webpack-overrides'),
+                customize: require.resolve(
+                  '@fs/babel-preset-frontier/webpack-overrides'
+                ),
                 // @remove-on-eject-begin
                 babelrc: false,
                 configFile: false,
@@ -428,7 +436,9 @@ module.exports = function(webpackEnv) {
                 // is sane and uses Babel options. Instead of options, we use
                 // the react-scripts and babel-preset-react-app versions.
                 cacheIdentifier: getCacheIdentifier(
-                  isEnvProduction ? 'production' : isEnvDevelopment && 'development',
+                  isEnvProduction
+                    ? 'production'
+                    : isEnvDevelopment && 'development',
                   [
                     'babel-plugin-named-asset-import',
                     '@fs/babel-preset-frontier',
@@ -471,42 +481,44 @@ module.exports = function(webpackEnv) {
                 {
                   loader: require.resolve('babel-loader'),
                   options: {
-                  babelrc: false,
-                  configFile: false,
-                  compact: false,
-                  presets: [
-                    [
-                      require.resolve('@fs/babel-preset-frontier/dependencies'),
-                      { helpers: true },
+                    babelrc: false,
+                    configFile: false,
+                    compact: false,
+                    presets: [
+                      [
+                        require.resolve(
+                          '@fs/babel-preset-frontier/dependencies'
+                        ),
+                        { helpers: true },
+                      ],
                     ],
-                  ],
-                  plugins: [
-                    [
-                      require.resolve('babel-plugin-bundled-import-meta'),
-                      { importStyle: 'iife' },
+                    plugins: [
+                      [
+                        require.resolve('babel-plugin-bundled-import-meta'),
+                        { importStyle: 'iife' },
+                      ],
                     ],
-                  ],
-                  cacheDirectory: true,
-                  // See #6846 for context on why cacheCompression is disabled
-                  cacheCompression: false,
-                  // @remove-on-eject-begin
-                  cacheIdentifier: getCacheIdentifier(
-                    isEnvProduction
-                      ? 'production'
-                      : isEnvDevelopment && 'development',
-                    [
-                      'babel-plugin-named-asset-import',
-                      '@fs/babel-preset-frontier',
-                      'react-dev-utils',
-                      '@fs/react-scripts',
-                    ]
-                  ),
-                 // @remove-on-eject-end
-                // Babel sourcemaps are needed for debugging into node_modules
-                // code.  Without the options below, debuggers like VSCode
-                // show incorrect code and set breakpoints on the wrong lines.
-                sourceMaps: shouldUseSourceMap,
-                inputSourceMap: shouldUseSourceMap,
+                    cacheDirectory: true,
+                    // See #6846 for context on why cacheCompression is disabled
+                    cacheCompression: false,
+                    // @remove-on-eject-begin
+                    cacheIdentifier: getCacheIdentifier(
+                      isEnvProduction
+                        ? 'production'
+                        : isEnvDevelopment && 'development',
+                      [
+                        'babel-plugin-named-asset-import',
+                        '@fs/babel-preset-frontier',
+                        'react-dev-utils',
+                        '@fs/react-scripts',
+                      ]
+                    ),
+                    // @remove-on-eject-end
+                    // Babel sourcemaps are needed for debugging into node_modules
+                    // code.  Without the options below, debuggers like VSCode
+                    // show incorrect code and set breakpoints on the wrong lines.
+                    sourceMaps: shouldUseSourceMap,
+                    inputSourceMap: shouldUseSourceMap,
                   },
                 },
               ],
