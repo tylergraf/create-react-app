@@ -370,10 +370,12 @@ module.exports = function(webpackEnv) {
                   ? undefined
                   : {
                       extends: [
+                        useTypeScript && require.resolve('@fs/eslint-config-frontier-react')
+                                                .replace('index.js', 'typescript.js'),
                         require
                           .resolve('@fs/eslint-config-frontier-react')
                           .replace('index.js', 'lenient.js'),
-                      ],
+                      ].filter(Boolean),
                     },
                 useEslintrc: isExtendingEslintConfig,
                 // @remove-on-eject-end
