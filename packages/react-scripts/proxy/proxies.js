@@ -25,6 +25,12 @@ const proxies = [
     route: '/cis-web',
   },
   {
+    route: '/cmsa',
+  },
+  {
+    route: '/dz',
+  },
+  {
     route: '/frontier',
   },
   {
