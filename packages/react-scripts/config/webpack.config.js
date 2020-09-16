@@ -33,6 +33,7 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { RetryChunkLoadPlugin } = require('webpack-retry-chunk-load-plugin');
 
 // @remove-on-eject-begin
 const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
@@ -740,6 +741,17 @@ module.exports = function(webpackEnv) {
             new RegExp('/[^/?]+\\.[^/]+$'),
           ],
         }),
+      // Retry failed chunks - for users on slow networks and older computers
+      new RetryChunkLoadPlugin({
+        // optional stringified function to get the cache busting query string appended to the script src
+        // if not set will default to appending the string `?cache-bust=true`
+        cacheBust: `function() { return Date.now() }`,
+        // optional value to set the maximum number of retries to load the chunk. Default is 1
+        maxRetries: 5,
+        // optional code to be executed in the browser context if after all retries chunk is not loaded.
+        // if not set - nothing will happen and error will be returned to the chunk loader.
+        // lastResortScript: "window.location.href='/500.html'"
+      }),
       // TypeScript type checking
       useTypeScript &&
         new ForkTsCheckerWebpackPlugin({
