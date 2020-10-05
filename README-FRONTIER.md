@@ -18,7 +18,12 @@ If you have cloned this repo and made changes locally and want to test them befo
 1. Clone this repo and make any changes needed in `./packages/react-scripts/`
 2. Change directories to where you want a brand new app to be created in (don't run step 3 in an existing repo)
 3. Run the following command  
-   `npx create-react-app --use-npm --template @fs/cra-template --scripts-version file:${relativePathToYourClonedCreateReactAppRepo}/packages/react-scripts ${your-app-name} `
+   `npx create-react-app --use-npm --template @fs/cra-template  ${your-app-name} `
+4. cd into your new app's directory
+5. Update the package.json file's dependency of "@fs/react-scripts" to the following
+    `"@fs/react-scripts": "file:${relativePathToYourClonedCreateReactAppRepo}/packages/react-scripts",`
+6. Delete your package-lock.json file and node_modules directory
+7. Run `npm install`
 
 ## Development and Cutting a Release
 
