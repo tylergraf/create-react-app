@@ -477,7 +477,9 @@ module.exports = function(webpackEnv) {
                   options: {
                     sourceMap: process.env.NODE_ENV !== 'production',
                     cacheDirectory: 'src/.linaria_cache',
-                    plugins: [require.resolve('@babel/plugin-transform-react-jsx')],
+                    babelOptions: {
+                      plugins: [require.resolve('@babel/plugin-transform-react-jsx')],
+                    },
                   },
                 },
               ],
