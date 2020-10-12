@@ -7,7 +7,7 @@ const config = {
       name: 'fallbackExperiment',
       default: true,
       description: `If you see this, then the call to get shared experiments failed somewhere. Please see the docs
-      here for some potential fixes. https://www.familysearch.org/frontier/docs/misc/issues`,
+      here for some potential fixes. https://www.familysearch.org/frontier/docs/miscellaneous/common-issues`,
     },
   ],
 }

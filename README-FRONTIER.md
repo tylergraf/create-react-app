@@ -5,7 +5,7 @@ That being said, if you want to use our fork "manually", then here is how you do
 
 1. Make sure you are authenticated with Artifactory
 
-   See https://beta.familysearch.org/frontier/docs/#/start/setup
+   See https://beta.familysearch.org/frontier/docs/getting-started/setup#setting-up-artifactory
 
 2. Run the following command
 
