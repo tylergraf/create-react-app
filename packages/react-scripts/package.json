@@ -1,6 +1,6 @@
 {
   "name": "@fs/react-scripts",
-  "version": "5.4.0",
+  "version": "5.4.1",
   "upstreamVersion": "3.4.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
@@ -57,7 +57,7 @@
     "connect-base": "^0.1.7",
     "connect-metric": "^1.0.1",
     "cookie-parser": "^1.4.4",
-    "copy-webpack-plugin": "^6.2.1",
+    "copy-webpack-plugin": "^4.6.0",
     "core-js": "^3.6.4",
     "css-loader": "3.4.2",
     "dotenv": "8.2.0",
