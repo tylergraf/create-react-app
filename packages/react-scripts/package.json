@@ -1,6 +1,6 @@
 {
   "name": "@fs/react-scripts",
-  "version": "5.4.3",
+  "version": "6.0.0",
   "upstreamVersion": "3.4.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
@@ -78,6 +78,7 @@
     "file-loader": "4.3.0",
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
     "fs-extra": "^9.0.1",
+    "glob-all": "^3.2.1",
     "html-webpack-plugin": "4.0.0-beta.11",
     "http-proxy-middleware": "^1.0.5",
     "identity-obj-proxy": "3.0.0",
@@ -86,6 +87,8 @@
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "jest-resolve": "^26.0.1",
     "jest-watch-typeahead": "^0.6.0",
+    "js-yaml": "^3.14.1",
+    "loader-utils": "^2.0.0",
     "mini-css-extract-plugin": "0.9.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "pnp-webpack-plugin": "1.6.4",
@@ -105,6 +108,7 @@
     "terser-webpack-plugin": "^4.2.3",
     "ts-pnp": "1.1.6",
     "url-loader": "2.3.0",
+    "uuid": "^8.3.2",
     "webpack": "4.42.0",
     "webpack-dev-server": "^3.11.0",
     "webpack-manifest-plugin": "2.2.0",
