@@ -614,7 +614,7 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
-      new PerLangPlugin(),
+      // new PerLangPlugin(),
       // copy static assets from shared components
       new CopyWebpackPlugin([
         {
