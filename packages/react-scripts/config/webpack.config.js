@@ -34,7 +34,6 @@ const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpack
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { RetryChunkLoadPlugin } = require('webpack-retry-chunk-load-plugin');
-const PerLangPlugin = require('../per-lang-loader/PerLangPlugin');
 
 // @remove-on-eject-begin
 const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
@@ -614,7 +613,6 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
-      // new PerLangPlugin(),
       // copy static assets from shared components
       new CopyWebpackPlugin([
         {
