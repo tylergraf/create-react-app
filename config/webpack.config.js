@@ -330,6 +330,7 @@ module.exports = function(webpackEnv) {
         'react-i18next': require.resolve('react-i18next'),
         'react-router': require.resolve('react-router'),
         '@emotion/core': require.resolve('@emotion/core'),
+        '@fs/zion-router': require.resolve(path.join(paths.appSrc, 'router')),
         ...(modules.webpackAliases || {}),
       },
       plugins: [
